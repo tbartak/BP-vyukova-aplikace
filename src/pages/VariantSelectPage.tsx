@@ -2,6 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { intersectionConfig } from '../config/variants'
 import { useContext } from 'react'
 import { AppContext } from '../context/AppContext'
+import { Box, Button, Typography } from '@mui/material'
 
 export default function VariantSelectPage() {
   const { type, schemeId } = useParams<{ type: 'T' | 'X'; schemeId: string }>()
@@ -10,11 +11,11 @@ export default function VariantSelectPage() {
 
   const intersectionType = intersectionConfig.find(item => item.type === type)
   if (!intersectionType) {
-    return <div>Nenalezen platný typ křižovatky.</div>
+    return <Box p={3}><Typography>Nenalezen platný typ křižovatky.</Typography></Box>
   }
   const scheme = intersectionType.schemes.find(s => s.id === schemeId)
   if (!scheme) {
-    return <div>Nenalezeno schéma křižovatky.</div>
+    return <Box p={3}><Typography>Nenalezeno schéma křižovatky.</Typography></Box>
   }
 
   const handleVariantSelect = (variant: any) => {
@@ -23,15 +24,17 @@ export default function VariantSelectPage() {
   }
 
   return (
-    <div>
-      <h2>Vyberte variantu pro {scheme.name}</h2>
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h5" gutterBottom>
+        Vyberte variantu pro {scheme.name}
+      </Typography>
       {scheme.variants.map(variant => (
-        <div key={variant.id} style={{ marginBottom: '0.5rem' }}>
-          <button onClick={() => handleVariantSelect(variant)}>
+        <Box key={variant.id} sx={{ mb: 1 }}>
+          <Button variant="outlined" onClick={() => handleVariantSelect(variant)}>
             {variant.name}
-          </button>
-        </div>
+          </Button>
+        </Box>
       ))}
-    </div>
+    </Box>
   )
 }

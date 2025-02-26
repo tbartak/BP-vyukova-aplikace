@@ -1,13 +1,21 @@
 import { Link } from 'react-router-dom'
+import { Button, Typography, Container } from '@mui/material'
 
 const Home = () => {
   return (
-    <div>
-      <h1>Welcome to the Intersection Visualization App</h1>
-      <Link to="/select-intersection">
-        <button>Vyberte křižovatku</button>
-      </Link>
-    </div>
+    <Container sx={{ textAlign: 'center', mt: 4 }}>
+      <Typography variant="h3" gutterBottom>
+        Welcome to the Intersection Visualization App
+      </Typography>
+      <Button
+        variant="contained"
+        component={Link}
+        to="/select-intersection"
+        size="large"
+      >
+        Vyberte křižovatku
+      </Button>
+    </Container>
   )
 }
 

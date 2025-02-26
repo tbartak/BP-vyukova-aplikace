@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Step } from '../../config/variants'
+import { Box, Button, Typography } from '@mui/material'
 
 interface WizardProps {
   steps: Step[]
@@ -21,16 +22,22 @@ export default function Wizard({ steps }: WizardProps) {
   }
 
   return (
-    <div>
-      <div>
-        <h3>{steps[currentStep].description}</h3>
-      </div>
-      <div>
-        {currentStep > 0 && <button onClick={goPrev}>Předchozí</button>}
-        {currentStep < steps.length - 1 && (
-          <button onClick={goNext}>Další</button>
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h6" gutterBottom>
+        {steps[currentStep].description}
+      </Typography>
+      <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
+        {currentStep > 0 && (
+          <Button variant="contained" onClick={goPrev}>
+            Předchozí
+          </Button>
         )}
-      </div>
-    </div>
+        {currentStep < steps.length - 1 && (
+          <Button variant="contained" onClick={goNext}>
+            Další
+          </Button>
+        )}
+      </Box>
+    </Box>
   )
 }

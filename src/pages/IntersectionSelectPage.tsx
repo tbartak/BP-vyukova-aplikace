@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom'
+import { Button, Typography, Box } from '@mui/material'
 
 export default function IntersectionSelectPage() {
   const navigate = useNavigate()
@@ -8,27 +9,47 @@ export default function IntersectionSelectPage() {
   }
 
   return (
-    <div>
-      <h1>Výběr křižovatky</h1>
-      <h2>Vyberte typ křižovatky</h2>
-      <div style={{ display: 'flex', gap: '1rem' }}>
-        <button onClick={() => handleTypeSelect('T')}>
+    <Box sx={{ p: 3, textAlign: 'center' }}>
+      <Typography variant="h4" gutterBottom>
+        Výběr křižovatky
+      </Typography>
+      <Typography variant="h6" gutterBottom>
+        Vyberte typ křižovatky
+      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 2,
+          mt: 2,
+          flexWrap: 'wrap'
+        }}
+      >
+        <Button 
+          variant="outlined" 
+          onClick={() => handleTypeSelect('T')}
+          sx={{ flexDirection: 'column', p: 2 }}
+        >
           <img
-            src="/images/T-type.png" // nahraď cestu ke skutečnému obrázku
+            src="/images/T-type.png" // TODO: doplnit obrázek schématu křižovatky typu T
             alt="Křižovatka typu T"
             style={{ width: '200px' }}
           />
-          <div>Typ T</div>
-        </button>
-        <button onClick={() => handleTypeSelect('X')}>
+          <Typography variant="button">Typ T</Typography>
+        </Button>
+        <Button 
+          variant="outlined" 
+          onClick={() => handleTypeSelect('X')}
+          sx={{ flexDirection: 'column', p: 2 }}
+        >
           <img
-            src="/images/X-type.png" // nahraď cestu ke skutečnému obrázku
+            src="/images/X-type.png" // TODO: doplnit obrázek schématu křižovatky typu X
             alt="Křižovatka typu X"
             style={{ width: '200px' }}
           />
-          <div>Typ X</div>
-        </button>
-      </div>
-    </div>
+          <Typography variant="button">Typ X</Typography>
+        </Button>
+      </Box>
+    </Box>
   )
 }

@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { intersectionConfig } from '../config/variants'
+import { Box, Button, Typography } from '@mui/material'
 
 export default function SchemeSelectPage() {
   const { type } = useParams<{ type: 'T' | 'X' }>()
@@ -8,7 +9,7 @@ export default function SchemeSelectPage() {
   const intersectionType = intersectionConfig.find(item => item.type === type)
 
   if (!intersectionType) {
-    return <div>Nenalezen platný typ křižovatky.</div>
+    return <Box p={3}><Typography>Nenalezen platný typ křižovatky.</Typography></Box>
   }
 
   const handleSchemeSelect = (schemeId: string) => {
@@ -16,14 +17,18 @@ export default function SchemeSelectPage() {
   }
 
   return (
-    <div>
-      <h2>Vyberte schéma křižovatky typu {type}</h2>
+    <Box sx={{ p: 3 }}>
+      <Typography variant="h5" gutterBottom>
+        Vyberte schéma křižovatky typu {type}
+      </Typography>
       {intersectionType.schemes.map(scheme => (
-        <div key={scheme.id} style={{ marginBottom: '1rem' }}>
-          <h3>{scheme.name}</h3>
-          <button onClick={() => handleSchemeSelect(scheme.id)}>Vybrat</button>
-        </div>
+        <Box key={scheme.id} sx={{ mb: 2 }}>
+          <Typography variant="h6">{scheme.name}</Typography>
+          <Button variant="contained" onClick={() => handleSchemeSelect(scheme.id)}>
+            Vybrat
+          </Button>
+        </Box>
       ))}
-    </div>
+    </Box>
   )
 }
