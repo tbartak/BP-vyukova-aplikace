@@ -3,6 +3,7 @@ import { AppContext } from '../context/AppContext'
 import Wizard from '../components/GraphWizard/Wizard'
 import { Box, Typography } from '@mui/material'
 import { Graph } from '../config/variants'
+import IntersectionGraph from '../components/IntersectionGraph'
 
 export default function DetailPage() {
   const { selectedVariant } = useContext(AppContext)
@@ -50,6 +51,12 @@ export default function DetailPage() {
 					Hrany:{' '}
 					{graph.edges.map(([from, to]) => `${from}-${to}`).join(', ')}
 				</Typography>
+			</Box>
+			<Box sx={{ mt: 4, textAlign: 'center' }}>
+				<Typography variant="h6" gutterBottom>
+					Vizualizace grafu:
+				</Typography>
+				<IntersectionGraph graph={graph} />
 			</Box>
     </Box>
   )
