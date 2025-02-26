@@ -1,13 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Step } from '../../config/variants'
 import { Box, Button, Typography } from '@mui/material'
 
 interface WizardProps {
   steps: Step[]
+  // Callback, který se zavolá při změně kroku
+  onStepChange?: (stepIndex: number) => void
 }
 
-export default function Wizard({ steps }: WizardProps) {
+export default function Wizard({ steps, onStepChange }: WizardProps) {
   const [currentStep, setCurrentStep] = useState(0)
+
+  // Zavoláme akci při každé změně kroku
+  useEffect(() => {
+    if (onStepChange) {
+      onStepChange(currentStep)
+    }
+  }, [currentStep, onStepChange])
 
   const goNext = () => {
     if (currentStep < steps.length - 1) {

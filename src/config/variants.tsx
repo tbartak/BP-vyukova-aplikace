@@ -1,7 +1,13 @@
-export interface Step {
+	export interface Graph {
+		vertices: string[]
+		edges: [string, string][]
+	}
+	
+	export interface Step {
     id: string
     description: string
-    // případně reference na komponentu, která vykreslí detail kroku
+    // Akce, která modifikuje graf; nepovinná, pokud jen popisujeme
+  	action?: (graph: Graph) => Graph
   }
   
   export interface Variant {
@@ -49,6 +55,11 @@ export interface Step {
               name: 'Variant 4',
               steps: generateSteps('T-scheme-1-var-4')
             },
+						{
+							id: 'T-scheme-1-var-demo',
+							name: 'Demo varianta',
+							steps: generateDemoSteps('T-scheme-1-var-demo')
+						},
           ]
         },
         // Přidejte další 4 schémata k typu T
@@ -81,12 +92,42 @@ export interface Step {
               name: 'Variant 4',
               steps: generateSteps('X-scheme-1-var-4')
             },
+						{
+							id: 'X-scheme-1-var-demo',
+							name: 'Demo varianta',
+							steps: generateDemoSteps('X-scheme-1-var-demo')
+						},
           ]
         },
         // Přidejte další 4 schémata k typu X
       ]
     }
   ]
+
+	// Pro demonstraci definujeme variantu s 3 kroky:
+	// Krok 1: Přidat vrchol A
+	// Krok 2: Přidat vrchol B
+	// Krok 3: Spojit A a B hranou
+	function generateDemoSteps(prefix: string): Step[] {
+		return [
+			{
+				id: `${prefix}-step-1`,
+				description: 'Přidání vrcholu A',
+				action: (graph) => ({ ...graph, vertices: [...graph.vertices, 'A'] })
+			},
+			{
+				id: `${prefix}-step-2`,
+				description: 'Přidání vrcholu B',
+				action: (graph) => ({ ...graph, vertices: [...graph.vertices, 'B'] })
+			},
+			{
+				id: `${prefix}-step-3`,
+				description: 'Spojení vrcholů A a B hranou',
+				action: (graph) =>
+					({ ...graph, edges: [...graph.edges, ['A', 'B']] })
+			}
+		]
+	}
   
   // Pomocná funkce pro generování kroků s náhodným textem 
   function generateSteps(prefix: string): Step[] {
@@ -94,7 +135,7 @@ export interface Step {
     for (let i = 1; i <= 20; i++) {
       steps.push({
         id: `${prefix}-step-${i}`,
-        description: `Krok ${i}: Popis pro ${prefix}.`
+        description: `Krok ${i}: Popis pro ${prefix}.`,
         // případně další data jako např. reference na komponentu
       })
     }
