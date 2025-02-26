@@ -11,11 +11,20 @@ export default function VariantSelectPage() {
 
   const intersectionType = intersectionConfig.find(item => item.type === type)
   if (!intersectionType) {
-    return <Box p={3}><Typography>Nenalezen platný typ křižovatky.</Typography></Box>
+    return (
+      <Box sx={{ p: 3 }}>
+        <Typography>Nenalezen platný typ křižovatky.</Typography>
+      </Box>
+    )
   }
+
   const scheme = intersectionType.schemes.find(s => s.id === schemeId)
   if (!scheme) {
-    return <Box p={3}><Typography>Nenalezeno schéma křižovatky.</Typography></Box>
+    return (
+      <Box sx={{ p: 3 }}>
+        <Typography>Nenalezeno schéma křižovatky.</Typography>
+      </Box>
+    )
   }
 
   const handleVariantSelect = (variant: any) => {
@@ -24,17 +33,41 @@ export default function VariantSelectPage() {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 3, textAlign: 'center' }}>
       <Typography variant="h5" gutterBottom>
         Vyberte variantu pro {scheme.name}
       </Typography>
-      {scheme.variants.map(variant => (
-        <Box key={variant.id} sx={{ mb: 1 }}>
-          <Button variant="outlined" onClick={() => handleVariantSelect(variant)}>
-            {variant.name}
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          gap: 2,
+          flexWrap: 'wrap'
+        }}
+      >
+        {scheme.variants.map(variant => (
+          <Button
+            key={variant.id}
+            variant="outlined"
+            onClick={() => handleVariantSelect(variant)}
+            sx={{
+              flexDirection: 'column',
+              p: 2,
+              width: 220,
+              height: 250
+            }}
+          >
+            <img
+              src={`/images/${variant.id}.png`} // TODO: přidat obrázky variant
+              alt={variant.name}
+              style={{ width: '200px', height: 'auto' }}
+            />
+            <Typography variant="button" sx={{ mt: 1 }}>
+              {variant.name}
+            </Typography>
           </Button>
-        </Box>
-      ))}
+        ))}
+      </Box>
     </Box>
   )
 }
