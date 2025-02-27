@@ -1,6 +1,20 @@
-	export interface Graph {
-		vertices: string[]
-		edges: [string, string][]
+  export interface Vertex {
+    id: string
+    color?: string
+    value?: number
+  }
+
+  export interface Edge {
+    source: string
+    target: string
+    color?: string
+    value?: number
+    type?: 'weak' | 'strong'
+  }
+  
+  export interface Graph {
+		vertices: Vertex[]
+		edges: Edge[]
 	}
 	
 	export interface Step {
@@ -104,30 +118,64 @@
     }
   ]
 
-	// Pro demonstraci definujeme variantu s 3 kroky:
-	// Krok 1: Přidat vrchol A
-	// Krok 2: Přidat vrchol B
-	// Krok 3: Spojit A a B hranou
 	function generateDemoSteps(prefix: string): Step[] {
-		return [
-			{
-				id: `${prefix}-step-1`,
-				description: 'Přidání vrcholu A',
-				action: (graph) => ({ ...graph, vertices: [...graph.vertices, 'A'] })
-			},
-			{
-				id: `${prefix}-step-2`,
-				description: 'Přidání vrcholu B',
-				action: (graph) => ({ ...graph, vertices: [...graph.vertices, 'B'] })
-			},
-			{
-				id: `${prefix}-step-3`,
-				description: 'Spojení vrcholů A a B hranou',
-				action: (graph) =>
-					({ ...graph, edges: [...graph.edges, ['A', 'B']] })
-			}
-		]
-	}
+    return [
+      {
+        id: `${prefix}-step-1`,
+        description: 'Přidání vrcholu A',
+        action: (graph) => ({ 
+          ...graph, 
+          vertices: [...graph.vertices, { id: 'A' }] 
+        })
+      },
+      {
+        id: `${prefix}-step-2`,
+        description: 'Přidání vrcholu B',
+        action: (graph) => ({ 
+          ...graph, 
+          vertices: [...graph.vertices, { id: 'B' }] 
+        })
+      },
+      {
+        id: `${prefix}-step-3`,
+        description: 'Spojení vrcholů A a B hranou',
+        action: (graph) => ({ 
+          ...graph, 
+          edges: [...graph.edges, { source: 'A', target: 'B' }] 
+        })
+      },
+      {
+        id: `${prefix}-step-4`,
+        description: 'Obarvení vrcholu A červeně',
+        action: (graph) => {
+          const newVertices = graph.vertices.map(v =>
+            v.id === 'A' ? { ...v, color: 'red' } : v
+          )
+          return { ...graph, vertices: newVertices }
+        }
+      },
+      {
+        id: `${prefix}-step-5`,
+        description: 'Obarvení hrany mezi A a B modře',
+        action: (graph) => {
+          const newEdges = graph.edges.map(e =>
+            (e.source === 'A' && e.target === 'B') ? { ...e, color: 'blue' } : e
+          )
+          return { ...graph, edges: newEdges }
+        }
+      },
+      {
+        id: `${prefix}-step-6`,
+        description: 'Přidání hodnoty 5 vrcholu B',
+        action: (graph) => {
+          const newVertices = graph.vertices.map(v =>
+            v.id === 'B' ? { ...v, value: 5 } : v
+          )
+          return { ...graph, vertices: newVertices }
+        }
+      }
+    ]
+  }
   
   // Pomocná funkce pro generování kroků s náhodným textem 
   function generateSteps(prefix: string): Step[] {

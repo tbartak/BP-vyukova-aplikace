@@ -49,7 +49,7 @@ export default function DetailPage() {
 				<Typography>Vrcholy: {graph.vertices.join(', ')}</Typography>
 				<Typography>
 					Hrany:{' '}
-					{graph.edges.map(([from, to]) => `${from}-${to}`).join(', ')}
+					{graph.edges.map(edge => `${edge.source}-${edge.target}`).join(', ')}
 				</Typography>
 			</Box>
 			<Box sx={{ mt: 4, textAlign: 'center' }}>

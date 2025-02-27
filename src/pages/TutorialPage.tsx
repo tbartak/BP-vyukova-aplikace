@@ -12,17 +12,57 @@ const tutorialSteps: Step[] = [
   {
     id: 'tut-2',
     description: 'Krok 1: Přidání vrcholu A do grafu.',
-    action: (graph: Graph) => ({ ...graph, vertices: [...graph.vertices, 'A'] }),
+    action: (graph: Graph) => ({ 
+      ...graph, 
+      vertices: [...graph.vertices, { id: 'A' }] 
+    }),
   },
   {
     id: 'tut-3',
     description: 'Krok 2: Přidání vrcholu B do grafu.',
-    action: (graph: Graph) => ({ ...graph, vertices: [...graph.vertices, 'B'] }),
+    action: (graph: Graph) => ({ 
+      ...graph, 
+      vertices: [...graph.vertices, { id: 'B' }] 
+    }),
   },
   {
     id: 'tut-4',
     description: 'Krok 3: Spojení vrcholů A a B hranou.',
-    action: (graph: Graph) => ({ ...graph, edges: [...graph.edges, ['A', 'B']] }),
+    action: (graph: Graph) => ({ 
+      ...graph, 
+      edges: [...graph.edges, { source: 'A', target: 'B' }] 
+    }),
+  },
+  {
+    id: 'tut-5',
+    description: 'Krok 4: Obarvení vrcholu A červeně.',
+    action: (graph: Graph) => {
+      const newVertices = graph.vertices.map(v =>
+        v.id === 'A' ? { ...v, color: 'red' } : v
+      )
+      return { ...graph, vertices: newVertices }
+    },
+  },
+  {
+    id: 'tut-6',
+    description: 'Krok 5: Přidání hodnoty 3 k vrcholu B.',
+    action: (graph: Graph) => {
+      const newVertices = graph.vertices.map(v =>
+        v.id === 'B' ? { ...v, value: 3 } : v
+      )
+      return { ...graph, vertices: newVertices }
+    },
+  },
+  {
+    id: 'tut-7',
+    description: 'Krok 6: Obarvení hrany mezi A a B modře a přidání hodnoty 5.',
+    action: (graph: Graph) => {
+      const newEdges = graph.edges.map(e =>
+        (e.source === 'A' && e.target === 'B') ? 
+        { ...e, color: 'blue', value: 5, type: 'weak' as const } : e
+      )
+      return { ...graph, edges: newEdges }
+    },
   },
 ]
 
