@@ -46,7 +46,7 @@ export default function DetailPage() {
       />
 			<Box sx={{ mt: 4, textAlign: 'left' }}>
 				<Typography variant="h6">Aktuální graf:</Typography>
-				<Typography>Vrcholy: {graph.vertices.join(', ')}</Typography>
+				<Typography>Vrcholy: {graph.vertices.map(vertex => vertex.id).join(', ')}</Typography>
 				<Typography>
 					Hrany:{' '}
 					{graph.edges.map(edge => `${edge.source}-${edge.target}`).join(', ')}
