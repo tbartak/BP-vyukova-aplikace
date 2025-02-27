@@ -15,6 +15,14 @@ const Home = () => {
       >
         Vyberte křižovatku
       </Button>
+      <Button
+          variant="outlined"
+          component={Link}
+          to="/tutorial"
+          size="large"
+        >
+          Tutoriál
+        </Button>
     </Container>
   )
 }

@@ -4,6 +4,7 @@ import IntersectionSelectPage from './pages/IntersectionSelectPage'
 import SchemeSelectPage from './pages/SchemeSelectPage'
 import VariantSelectPage from './pages/VariantSelectPage'
 import DetailPage from './pages/DetailPage'
+import TutorialPage from './pages/TutorialPage'
 import { AppProvider } from './context/AppContext'
 import './App.css'
 
@@ -20,6 +21,7 @@ function App() {
             element={<VariantSelectPage />}
           />
           <Route path="/detail" element={<DetailPage />} />
+          <Route path="/tutorial" element={<TutorialPage />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

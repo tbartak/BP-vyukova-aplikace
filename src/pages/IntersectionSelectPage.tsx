@@ -31,11 +31,11 @@ export default function IntersectionSelectPage() {
           sx={{ flexDirection: 'column', p: 2 }}
         >
           <img
-            src="/images/T-type.png" // TODO: doplnit obrázek schématu křižovatky typu T
+            src="src/imgs/T-type.jpg"
             alt="Křižovatka typu T"
             style={{ width: '200px' }}
           />
-          <Typography variant="button">Typ T</Typography>
+          <Typography variant="button" sx={{mt: 1}}>Typ T</Typography>
         </Button>
         <Button 
           variant="outlined" 
@@ -43,11 +43,11 @@ export default function IntersectionSelectPage() {
           sx={{ flexDirection: 'column', p: 2 }}
         >
           <img
-            src="/images/X-type.png" // TODO: doplnit obrázek schématu křižovatky typu X
+            src="src/imgs/X-type.jpg"
             alt="Křižovatka typu X"
             style={{ width: '200px' }}
           />
-          <Typography variant="button">Typ X</Typography>
+          <Typography variant="button" sx={{mt: 1}}>Typ X</Typography>
         </Button>
       </Box>
     </Box>
