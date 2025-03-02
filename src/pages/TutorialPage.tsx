@@ -1,8 +1,9 @@
 import { useState, useCallback } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import Wizard from '../components/GraphWizard/Wizard'
 import IntersectionGraph from '../components/IntersectionGraph'
 import { Graph, Step } from '../config/variants'
+import { useNavigate } from 'react-router-dom'
 
 // TODO: Probrat, jestli by bylo lepší vždycky prvně uvést popisek a pak po kliknutí na další teprve upravit graf, takže jakoby každý krok rozdělit na dva, v jednom by se jenom změnil description, ve druhým zůstane description stejnej, ale přidá se akce
 const tutorialSteps: Step[] = [
@@ -418,6 +419,11 @@ const tutorialSteps: Step[] = [
 
 export default function TutorialPage() {
   const [graph, setGraph] = useState<Graph>({ vertices: [], edges: [] })
+	const navigate = useNavigate()
+
+	const handleTypeSelect = (type: 'T' | 'X') => {
+    navigate(`/select-scheme/${type}`)
+  }
 
   const handleStepChange = useCallback((stepIndex: number) => {
     // Znovuvytvoříme graf od začátku až do aktuálního kroku
@@ -464,16 +470,30 @@ export default function TutorialPage() {
         <Typography variant="h6" gutterBottom>
           Příklady schémat křižovatky:
         </Typography>
-        <img
-          src="src/imgs/T-type.jpg" // TODO: mohlo by být jako tlačítko, které by přesměrovalo uživatele na dané schéma
-          alt="Schéma křižovatky typu T"
-          style={{ width: '200px', marginRight: '10px' }}
-        />
-        <img
-          src="src/imgs/X-type.jpg" // TODO: mohlo by být jako tlačítko, které by přesměrovalo uživatele na dané schéma
-          alt="Schéma křižovatky typu X"
-          style={{ width: '200px' }}
-        />
+        <Button 
+          variant="outlined" 
+          onClick={() => handleTypeSelect('T')}
+          sx={{ flexDirection: 'column', p: 2, mr: 2 }}
+        >
+          <img
+            src="src/imgs/T-type.jpg"
+            alt="Schéma křižovatky typu T"
+            style={{ width: '200px' }}
+          />
+          <Typography variant="button" sx={{mt: 1}}>Typ T</Typography>
+        </Button>
+        <Button 
+          variant="outlined" 
+          onClick={() => handleTypeSelect('X')}
+          sx={{ flexDirection: 'column', p: 2 }}
+        >
+          <img
+            src="src/imgs/X-type.jpg"
+            alt="Schéma křižovatky typu X"
+            style={{ width: '200px' }}
+          />
+          <Typography variant="button" sx={{mt: 1}}>Typ X</Typography>
+        </Button>
       </Box>
     </Box>
   )
