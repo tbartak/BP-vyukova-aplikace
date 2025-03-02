@@ -74,7 +74,27 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
       .attr('cx', v => vertexPositions[v.id][0])
       .attr('cy', v => vertexPositions[v.id][1])
       .attr('r', 15)
-      .attr('fill', v => v.color || 'lightblue')
+      .attr('fill', v => {
+				if (v.color?.startsWith('linear-gradient')) {
+					// Vytvoříme gradient pro rozdělené vrcholy
+					const gradientId = `gradient-${v.id}`;
+					const gradient = svg.append('defs')
+						.append('linearGradient')
+						.attr('id', gradientId);
+						
+					gradient.append('stop')
+						.attr('offset', '50%')
+						.attr('stop-color', 'red');
+						
+					gradient.append('stop')
+						.attr('offset', '50%')
+						.attr('stop-color', 'blue');
+						
+					return `url(#${gradientId})`;
+				} else {
+					return v.color || 'lightblue';
+				}
+			})
       .attr('stroke', 'black')
 
     // Přidáme popisky vrcholů
@@ -106,7 +126,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 			.text(v => v.value)
 			.attr('font-size', '12px')
 			.attr('fill', 'black')
-			
+
   }, [graph])
 
   return <svg ref={svgRef} />
