@@ -1,3 +1,14 @@
+import { T_scheme_1_variants } from './schemes/T-scheme-1'
+import { T_scheme_2_variants } from './schemes/T-scheme-2'
+import { T_scheme_3_variants } from './schemes/T-scheme-3'
+import { T_scheme_4_variants } from './schemes/T-scheme-4'
+import { T_scheme_5_variants } from './schemes/T-scheme-5'
+import { X_scheme_1_variants } from './schemes/X-scheme-1'
+import { X_scheme_2_variants } from './schemes/X-scheme-2'
+import { X_scheme_3_variants } from './schemes/X-scheme-3'
+import { X_scheme_4_variants } from './schemes/X-scheme-4'
+import { X_scheme_5_variants } from './schemes/X-scheme-5'
+  
   export interface Vertex {
     id: string
     color?: string
@@ -52,22 +63,22 @@
             {
               id: 'T-scheme-1-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('T-scheme-1-var-1') // funkce pro generování 20 kroků
+              steps: T_scheme_1_variants['T-scheme-1-var-1']
             },
             {
               id: 'T-scheme-1-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('T-scheme-1-var-2')
+              steps: T_scheme_1_variants['T-scheme-1-var-2']
             },
             {
               id: 'T-scheme-1-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('T-scheme-1-var-3')
+              steps: T_scheme_1_variants['T-scheme-1-var-3']
             },
             {
               id: 'T-scheme-1-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('T-scheme-1-var-4')
+              steps: T_scheme_1_variants['T-scheme-1-var-4']
             },
           ]
         },
@@ -78,22 +89,22 @@
             {
               id: 'T-scheme-2-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('T-scheme-2-var-1') // funkce pro generování 20 kroků
+              steps: T_scheme_2_variants['T-scheme-2-var-1']
             },
             {
               id: 'T-scheme-2-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('T-scheme-2-var-2')
+              steps: T_scheme_2_variants['T-scheme-2-var-2']
             },
             {
               id: 'T-scheme-2-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('T-scheme-2-var-3')
+              steps: T_scheme_2_variants['T-scheme-2-var-3']
             },
             {
               id: 'T-scheme-2-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('T-scheme-2-var-4')
+              steps: T_scheme_2_variants['T-scheme-2-var-4']
             },
           ]
         },
@@ -104,22 +115,22 @@
             {
               id: 'T-scheme-3-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('T-scheme-3-var-1') // funkce pro generování 20 kroků
+              steps: T_scheme_3_variants['T-scheme-3-var-1']
             },
             {
               id: 'T-scheme-3-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('T-scheme-3-var-2')
+              steps: T_scheme_3_variants['T-scheme-3-var-2']
             },
             {
               id: 'T-scheme-3-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('T-scheme-3-var-3')
+              steps: T_scheme_3_variants['T-scheme-3-var-3']
             },
             {
               id: 'T-scheme-3-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('T-scheme-3-var-4')
+              steps: T_scheme_3_variants['T-scheme-3-var-4']
             },
           ]
         },
@@ -130,22 +141,22 @@
             {
               id: 'T-scheme-4-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('T-scheme-4-var-1') // funkce pro generování 20 kroků
+              steps: T_scheme_4_variants['T-scheme-4-var-1']
             },
             {
               id: 'T-scheme-4-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('T-scheme-4-var-2')
+              steps: T_scheme_4_variants['T-scheme-4-var-2']
             },
             {
               id: 'T-scheme-4-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('T-scheme-4-var-3')
+              steps: T_scheme_4_variants['T-scheme-4-var-3']
             },
             {
               id: 'T-scheme-4-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('T-scheme-4-var-4')
+              steps: T_scheme_4_variants['T-scheme-4-var-4']
             },
           ]
         },
@@ -156,22 +167,22 @@
             {
               id: 'T-scheme-5-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('T-scheme-5-var-1') // funkce pro generování 20 kroků
+              steps: T_scheme_5_variants['T-scheme-5-var-1']
             },
             {
               id: 'T-scheme-5-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('T-scheme-5-var-2')
+              steps: T_scheme_5_variants['T-scheme-5-var-2']
             },
             {
               id: 'T-scheme-5-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('T-scheme-5-var-3')
+              steps: T_scheme_5_variants['T-scheme-5-var-3']
             },
             {
               id: 'T-scheme-5-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('T-scheme-5-var-4')
+              steps: T_scheme_5_variants['T-scheme-5-var-4']
             },
           ]
         },
@@ -187,22 +198,22 @@
             {
               id: 'X-scheme-1-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('X-scheme-1-var-1')
+              steps: X_scheme_1_variants['X-scheme-1-var-1']
             },
             {
               id: 'X-scheme-1-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('X-scheme-1-var-2')
+              steps: X_scheme_1_variants['X-scheme-1-var-2']
             },
             {
               id: 'X-scheme-1-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('X-scheme-1-var-3')
+              steps: X_scheme_1_variants['X-scheme-1-var-3']
             },
             {
               id: 'X-scheme-1-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('X-scheme-1-var-4')
+              steps: X_scheme_1_variants['X-scheme-1-var-4']
             },
 						{ // TODO: potom odstranit
 							id: 'X-scheme-1-var-demo',
@@ -218,22 +229,22 @@
             {
               id: 'X-scheme-2-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('X-scheme-2-var-1')
+              steps: X_scheme_2_variants['X-scheme-2-var-1']
             },
             {
               id: 'X-scheme-2-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('X-scheme-2-var-2')
+              steps: X_scheme_2_variants['X-scheme-2-var-2']
             },
             {
               id: 'X-scheme-2-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('X-scheme-2-var-3')
+              steps: X_scheme_2_variants['X-scheme-2-var-3']
             },
             {
               id: 'X-scheme-2-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('X-scheme-2-var-4')
+              steps: X_scheme_2_variants['X-scheme-2-var-4']
             },
           ]
         },
@@ -244,22 +255,22 @@
             {
               id: 'X-scheme-3-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('X-scheme-3-var-1')
+              steps: X_scheme_3_variants['X-scheme-3-var-1']
             },
             {
               id: 'X-scheme-3-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('X-scheme-3-var-2')
+              steps: X_scheme_3_variants['X-scheme-3-var-2']
             },
             {
               id: 'X-scheme-3-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('X-scheme-3-var-3')
+              steps: X_scheme_3_variants['X-scheme-3-var-3']
             },
             {
               id: 'X-scheme-3-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('X-scheme-3-var-4')
+              steps: X_scheme_3_variants['X-scheme-3-var-4']
             },
           ]
         },
@@ -270,22 +281,22 @@
             {
               id: 'X-scheme-4-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('X-scheme-4-var-1')
+              steps: X_scheme_4_variants['X-scheme-4-var-1']
             },
             {
               id: 'X-scheme-4-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('X-scheme-4-var-2')
+              steps: X_scheme_4_variants['X-scheme-4-var-2']
             },
             {
               id: 'X-scheme-4-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('X-scheme-4-var-3')
+              steps: X_scheme_4_variants['X-scheme-4-var-3']
             },
             {
               id: 'X-scheme-4-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('X-scheme-4-var-4')
+              steps: X_scheme_4_variants['X-scheme-4-var-4']
             },
           ]
         },
@@ -296,22 +307,22 @@
             {
               id: 'X-scheme-5-var-1',
               name: 'Varianta 1',
-              steps: generateSteps('X-scheme-5-var-1')
+              steps: X_scheme_5_variants['X-scheme-5-var-1']
             },
             {
               id: 'X-scheme-5-var-2',
               name: 'Varianta 2',
-              steps: generateSteps('X-scheme-5-var-2')
+              steps: X_scheme_5_variants['X-scheme-5-var-2']
             },
             {
               id: 'X-scheme-5-var-3',
               name: 'Varianta 3',
-              steps: generateSteps('X-scheme-5-var-3')
+              steps: X_scheme_5_variants['X-scheme-5-var-3']
             },
             {
               id: 'X-scheme-5-var-4',
               name: 'Varianta 4',
-              steps: generateSteps('X-scheme-5-var-4')
+              steps: X_scheme_5_variants['X-scheme-5-var-4']
             },
           ]
         },
@@ -379,7 +390,7 @@
     ]
   }
   
-  // Pomocná funkce pro generování kroků s náhodným textem 
+  // Pomocná funkce pro generování kroků s náhodným textem // TODO: později odstranit
   function generateSteps(prefix: string): Step[] {
     const steps: Step[] = []
     for (let i = 1; i <= 20; i++) {
