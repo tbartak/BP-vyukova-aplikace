@@ -450,7 +450,7 @@ export default function TutorialPage() {
           Původní schéma křižovatky:
         </Typography>
         <img
-          src="src/imgs/tutorial_scheme.jpg"
+          src="/imgs/tutorial_scheme.jpg"
           alt="Původní schéma křižovatky"
           style={{ width: '300px' }}
         />
@@ -476,7 +476,7 @@ export default function TutorialPage() {
           sx={{ flexDirection: 'column', p: 2, mr: 2 }}
         >
           <img
-            src="src/imgs/T-type.jpg"
+            src="/imgs/T-type.jpg"
             alt="Schéma křižovatky typu T"
             style={{ width: '200px' }}
           />
@@ -488,7 +488,7 @@ export default function TutorialPage() {
           sx={{ flexDirection: 'column', p: 2 }}
         >
           <img
-            src="src/imgs/X-type.jpg"
+            src="/imgs/X-type.jpg"
             alt="Schéma křižovatky typu X"
             style={{ width: '200px' }}
           />

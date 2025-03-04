@@ -14,7 +14,7 @@ export default function Wizard({ steps, onStepChange }: WizardProps) {
   // Zavoláme akci při každé změně kroku
   useEffect(() => {
     if (onStepChange) {
-      onStepChange(currentStep)
+      onStepChange(currentStep) // TODO: nepřesunout sem samotný kód pro změnu kroku?
     }
   }, [currentStep, onStepChange])
 
