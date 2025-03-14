@@ -58,7 +58,7 @@ export default function VariantSelectPage() {
             }}
           >
             <img
-              src={`/images/${variant.id}.png`} // TODO: přidat obrázky variant
+              src={`/imgs/${variant.id}.jpg`}
               alt={variant.name}
               style={{ width: '200px', height: 'auto' }}
             />

@@ -5,7 +5,7 @@ import { Graph } from '../config/variants'
 interface IntersectionGraphProps {
   graph: Graph
 }
-
+// TODO: zajistit, aby se hodnoty hran a vrcholů nevypisovali přes čáry
 const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
   const svgRef = useRef<SVGSVGElement | null>(null)
   

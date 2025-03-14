@@ -46,7 +46,7 @@ export default function SchemeSelectPage() {
             }}
           >
             <img
-              src={`/imgs/${scheme.id}.jpg`} // TODO: doplnit obrázky schématů křižovatky
+              src={`/imgs/${scheme.id}.jpg`}
               alt={scheme.name}
               style={{ width: '200px', height: 'auto' }}
             />
