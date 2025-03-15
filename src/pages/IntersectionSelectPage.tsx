@@ -1,15 +1,28 @@
 import { useNavigate } from 'react-router-dom'
 import { Button, Typography, Box } from '@mui/material'
+import BreadcrumbsNav from '../components/BreadcrumbsNav'
+import { useContext, useEffect } from 'react'
+import { AppContext } from '../context/AppContext'
 
 export default function IntersectionSelectPage() {
   const navigate = useNavigate()
+  const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext)
+
+  // Reset při načtení této stránky
+  useEffect(() => {
+    setSelectedType(null);
+    setSelectedScheme(null);
+    setSelectedVariant(null);
+  }, [setSelectedType, setSelectedScheme, setSelectedVariant]);
 
   const handleTypeSelect = (type: 'T' | 'X') => {
+    setSelectedType(type);
     navigate(`/select-scheme/${type}`)
   }
 
   return (
     <Box sx={{ p: 3, textAlign: 'center' }}>
+      <BreadcrumbsNav />
       <Typography variant="h4" gutterBottom>
         Výběr křižovatky
       </Typography>

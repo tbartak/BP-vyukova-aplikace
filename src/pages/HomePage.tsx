@@ -1,9 +1,22 @@
 import { Link } from 'react-router-dom'
 import { Button, Typography, Container } from '@mui/material'
+import BreadcrumbsNav from '../components/BreadcrumbsNav'
+import { useContext, useEffect } from 'react'
+import { AppContext } from '../context/AppContext'
 
 const Home = () => {
+  const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext);
+  
+  // Reset při načtení této stránky
+  useEffect(() => {
+    setSelectedType(null);
+    setSelectedScheme(null);
+    setSelectedVariant(null);
+  }, [setSelectedType, setSelectedScheme, setSelectedVariant]);
+
   return (
     <Container sx={{ textAlign: 'center', mt: 4 }}>
+      <BreadcrumbsNav />
       <Typography variant="h3" gutterBottom>
         Welcome to the Intersection Visualization App
       </Typography>

@@ -1,9 +1,11 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useContext, useEffect } from 'react'
 import { Box, Typography, Button } from '@mui/material'
 import Wizard from '../components/GraphWizard/Wizard'
 import IntersectionGraph from '../components/IntersectionGraph'
 import { Graph, Step } from '../config/variants'
 import { useNavigate } from 'react-router-dom'
+import { AppContext } from '../context/AppContext'
+import BreadcrumbsNav from '../components/BreadcrumbsNav'
 
 // TODO: Probrat, jestli by bylo lepší vždycky prvně uvést popisek a pak po kliknutí na další teprve upravit graf, takže jakoby každý krok rozdělit na dva, v jednom by se jenom změnil description, ve druhým zůstane description stejnej, ale přidá se akce
 const tutorialSteps: Step[] = [
@@ -420,6 +422,14 @@ const tutorialSteps: Step[] = [
 export default function TutorialPage() {
   const [graph, setGraph] = useState<Graph>({ vertices: [], edges: [] })
 	const navigate = useNavigate()
+	const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext);
+
+	// Reset při načtení tutoriálu // TODO: teoreticky by nemuselo být potřeba, protože se vždymusí na tutoriál přes home, kde se to zresetuje, ale kdyby někdo šel přes odkaz, tak je to asi vhodné
+  useEffect(() => {
+    setSelectedType(null);
+    setSelectedScheme(null);
+    setSelectedVariant(null);
+  }, [setSelectedType, setSelectedScheme, setSelectedVariant]);
 
 	const handleTypeSelect = (type: 'T' | 'X') => {
     navigate(`/select-scheme/${type}`)
@@ -439,6 +449,7 @@ export default function TutorialPage() {
 
   return (
     <Box sx={{ p: 3 }}>
+			<BreadcrumbsNav />
       <Typography variant="h4" gutterBottom>
         Tutoriál
       </Typography>

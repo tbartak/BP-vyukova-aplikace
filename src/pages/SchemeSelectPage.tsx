@@ -1,27 +1,43 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { intersectionConfig } from '../config/variants'
 import { Box, Button, Typography } from '@mui/material'
+import BreadcrumbsNav from '../components/BreadcrumbsNav'
+import { useContext, useEffect } from 'react'
+import { AppContext } from '../context/AppContext'
 
 export default function SchemeSelectPage() {
   const { type } = useParams<{ type: 'T' | 'X' }>()
   const navigate = useNavigate()
+  const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext);
+
+  // Aktualizace kontextu při načtení stránky
+  useEffect(() => {
+    if (type) {
+      setSelectedType(type as 'T' | 'X');
+      setSelectedScheme(null);
+      setSelectedVariant(null);
+    }
+  }, [type, setSelectedType, setSelectedScheme]);
 
   const intersectionType = intersectionConfig.find(item => item.type === type)
 
   if (!intersectionType) {
     return (
       <Box sx={{ p: 3 }}>
+        <BreadcrumbsNav />
         <Typography>Nenalezen platný typ křižovatky.</Typography>
       </Box>
     )
   }
 
   const handleSchemeSelect = (schemeId: string) => {
+    setSelectedScheme(schemeId);
     navigate(`/select-variant/${type}/${schemeId}`)
   }
 
   return (
     <Box sx={{ p: 3, textAlign: 'center' }}>
+      <BreadcrumbsNav />
       <Typography variant="h5" gutterBottom>
         Vyberte schéma křižovatky typu {type}
       </Typography>

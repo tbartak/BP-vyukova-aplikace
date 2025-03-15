@@ -4,6 +4,7 @@ import Wizard from '../components/GraphWizard/Wizard'
 import { Box, Typography } from '@mui/material'
 import { Graph } from '../config/variants'
 import IntersectionGraph from '../components/IntersectionGraph'
+import BreadcrumbsNav from '../components/BreadcrumbsNav'
 
 // TODO: bylo by fajn, aby nahoře někde třeba vlevo nahoře v rohu byla nějaká navigace, například typ X > schéma 2 > varianta 3, aby zároveň bylo vidět, co si uživatel zvolil a zároveň, aby si mohl jednoduše zvolit úroveň, kde si chce vybrat nějakou jinou křižovatku
 export default function DetailPage() {
@@ -38,6 +39,7 @@ export default function DetailPage() {
 
   return (
     <Box sx={{ p: 3 }}>
+			<BreadcrumbsNav />
       <Typography variant="h4" gutterBottom>
         {selectedVariant.name}
       </Typography>

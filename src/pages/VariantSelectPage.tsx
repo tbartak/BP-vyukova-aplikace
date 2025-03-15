@@ -1,18 +1,29 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { intersectionConfig } from '../config/variants'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { AppContext } from '../context/AppContext'
 import { Box, Button, Typography } from '@mui/material'
+import BreadcrumbsNav from '../components/BreadcrumbsNav'
 
 export default function VariantSelectPage() {
   const { type, schemeId } = useParams<{ type: 'T' | 'X'; schemeId: string }>()
   const navigate = useNavigate()
-  const { setSelectedVariant } = useContext(AppContext)
+  const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext)
+
+  // Aktualizace kontextu při načtení stránky
+  useEffect(() => {
+    if (type && schemeId) {
+      setSelectedType(type as 'T' | 'X');
+      setSelectedScheme(schemeId);
+      setSelectedVariant(null);
+    }
+  }, [type, schemeId, setSelectedType, setSelectedScheme]);
 
   const intersectionType = intersectionConfig.find(item => item.type === type)
   if (!intersectionType) {
     return (
       <Box sx={{ p: 3 }}>
+        <BreadcrumbsNav />
         <Typography>Nenalezen platný typ křižovatky.</Typography>
       </Box>
     )
@@ -22,6 +33,7 @@ export default function VariantSelectPage() {
   if (!scheme) {
     return (
       <Box sx={{ p: 3 }}>
+        <BreadcrumbsNav />
         <Typography>Nenalezeno schéma křižovatky.</Typography>
       </Box>
     )
@@ -34,6 +46,7 @@ export default function VariantSelectPage() {
 
   return (
     <Box sx={{ p: 3, textAlign: 'center' }}>
+      <BreadcrumbsNav />
       <Typography variant="h5" gutterBottom>
         Vyberte variantu pro {scheme.name}
       </Typography>
