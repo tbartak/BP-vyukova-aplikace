@@ -30,26 +30,22 @@ export default function Wizard({ steps, onStepChange }: WizardProps) {
     }
   }
 
+  // TODO: zajistit, aby délka kroků neovlivňovala pozici ostatních prvků na stránce
   return (
     <Box sx={{ 
       p: 3,
       display: 'flex',
       flexDirection: 'column',
       height: '400px',
-      position: 'relative'
      }}>
       <Typography variant="h6" gutterBottom>
         {steps[currentStep].description}
       </Typography>
       <Box sx={{ 
-        position: 'absolute',
-        bottom: 20,
-        left: 0,
-        right: 0,
+        mt: 'auto',
         display: 'flex',
         justifyContent: 'center',
-        gap: 2,
-        p: 2
+        gap: 2
       }}>
         {currentStep > 0 && (
           <Button variant="contained" onClick={goPrev}>
