@@ -31,11 +31,26 @@ export default function Wizard({ steps, onStepChange }: WizardProps) {
   }
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ 
+      p: 3,
+      display: 'flex',
+      flexDirection: 'column',
+      height: '400px',
+      position: 'relative'
+     }}>
       <Typography variant="h6" gutterBottom>
         {steps[currentStep].description}
       </Typography>
-      <Box sx={{ mt: 2, display: 'flex', gap: 2 }}>
+      <Box sx={{ 
+        position: 'absolute',
+        bottom: 20,
+        left: 0,
+        right: 0,
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 2,
+        p: 2
+      }}>
         {currentStep > 0 && (
           <Button variant="contained" onClick={goPrev}>
             Předchozí
