@@ -76,20 +76,26 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
       .attr('r', 15)
       .attr('fill', v => {
 				if (v.color?.startsWith('linear-gradient')) {
+					// Extrahovat barvy z řetězce gradientu
+					const colorMatch = v.color.match(/linear-gradient\(\d+deg,\s*([a-z]+)\s*\d+%,\s*([a-z]+)\s*\d+%\)/);
+					
+					const firstColor = colorMatch ? colorMatch[1] : 'red';
+					const secondColor = colorMatch ? colorMatch[2] : 'blue';
+					
 					// Vytvoříme gradient pro rozdělené vrcholy
 					const gradientId = `gradient-${v.id}`;
 					const gradient = svg.append('defs')
-						.append('linearGradient')
-						.attr('id', gradientId);
-						
+							.append('linearGradient')
+							.attr('id', gradientId);
+							
 					gradient.append('stop')
-						.attr('offset', '50%')
-						.attr('stop-color', 'red');
-						
+							.attr('offset', '50%')
+							.attr('stop-color', firstColor);  // Použijeme první extrahovanou barvu
+							
 					gradient.append('stop')
-						.attr('offset', '50%')
-						.attr('stop-color', 'blue');
-						
+							.attr('offset', '50%')
+							.attr('stop-color', secondColor); // Použijeme druhou extrahovanou barvu
+							
 					return `url(#${gradientId})`;
 				} else {
 					return v.color || 'lightblue';
