@@ -77,25 +77,68 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
       .attr('fill', v => {
 				if (v.color?.startsWith('linear-gradient')) {
 					// Extrahovat barvy z řetězce gradientu
-					const colorMatch = v.color.match(/linear-gradient\(\d+deg,\s*([a-z]+)\s*\d+%,\s*([a-z]+)\s*\d+%\)/);
+					const colorRegex = /linear-gradient\(\d+deg,\s*([\w]+)\s*(\d+)%,\s*([\w]+)\s*(\d+)%(,\s*([\w]+)\s*(\d+)%)?\)/;
+					const matches = v.color.match(colorRegex);
 					
-					const firstColor = colorMatch ? colorMatch[1] : 'red';
-					const secondColor = colorMatch ? colorMatch[2] : 'blue';
-					
-					// Vytvoříme gradient pro rozdělené vrcholy
 					const gradientId = `gradient-${v.id}`;
 					const gradient = svg.append('defs')
-							.append('linearGradient')
-							.attr('id', gradientId);
+						.append('linearGradient')
+						.attr('id', gradientId);
+					
+					if (matches) {
+						// První barva a pozice
+						const color1 = matches[1] || 'red';
+						const pos1 = matches[2] || '33';
+						
+						// Druhá barva a pozice  
+						const color2 = matches[3] || 'blue';
+						const pos2 = matches[4] || '66';
+						
+						// Třetí barva a pozice (pokud existuje)
+						const color3 = matches[6] || null;
+						const pos3 = matches[7] || '100';
+						
+						// Vytvoříme gradient se dvěma nebo třemi barvami
+						gradient.append('stop')
+							.attr('offset', '0%')
+							.attr('stop-color', color1);
+						
+						gradient.append('stop')
+							.attr('offset', `${pos1}%`)
+							.attr('stop-color', color1);
+						
+						gradient.append('stop')
+							.attr('offset', `${pos1}%`)
+							.attr('stop-color', color2);
+						
+						if (color3) {
+							gradient.append('stop')
+								.attr('offset', `${pos2}%`)
+								.attr('stop-color', color2);
 							
-					gradient.append('stop')
+							gradient.append('stop')
+								.attr('offset', `${pos2}%`)
+								.attr('stop-color', color3);
+							
+							gradient.append('stop')
+								.attr('offset', '100%')
+								.attr('stop-color', color3);
+						} else {
+							gradient.append('stop')
+								.attr('offset', '100%')
+								.attr('stop-color', color2);
+						}
+					} else {
+						// Fallback pro případ, že by regex nefungoval
+						gradient.append('stop')
+							.attr('offset', '0%')
+							.attr('stop-color', 'red');
+							
+						gradient.append('stop')
 							.attr('offset', '50%')
-							.attr('stop-color', firstColor);  // Použijeme první extrahovanou barvu
-							
-					gradient.append('stop')
-							.attr('offset', '50%')
-							.attr('stop-color', secondColor); // Použijeme druhou extrahovanou barvu
-							
+							.attr('stop-color', 'blue');
+					}
+					
 					return `url(#${gradientId})`;
 				} else {
 					return v.color || 'lightblue';
