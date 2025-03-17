@@ -6,7 +6,6 @@ const variant1Id = 'X-scheme-2-var-1'
 const variant2Id = 'X-scheme-2-var-2'
 const variant3Id = 'X-scheme-2-var-3'
 const variant4Id = 'X-scheme-2-var-4'
-// ... další varianty
 
 // Vrcholy jsou totožné pro všechny varianty X-scheme-2
 const createVertices = (graph: Graph): Graph => ({
@@ -23,7 +22,7 @@ const createVertices = (graph: Graph): Graph => ({
   ]
 })
 
-// Kroky 1-10 jsou společné pro všechny varianty X-scheme-2
+// Společné kroky pro všechny varianty X-scheme-2
 const createCommonSteps = (variantId: string): Step[] => {
 	return createSteps(variantId, [
 		{
@@ -149,7 +148,6 @@ export const variant1Steps: Step[] = [
 					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.4 } // L/H
 					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
-					// atd. pro další hrany
 					return { ...e, value: 0.5 } // výchozí hodnota
 				})
 				return { ...graph, edges: edgesWithValues }
@@ -241,7 +239,6 @@ export const variant1Steps: Step[] = [
 				return { ...graph, vertices: newVertices }
 			}
 		},
-		// Další kroky barvení...
 		{
 			text: 'Graf je nyní kompletně obarven a má chromatické číslo 3.',
 			noNumber: true,
@@ -365,7 +362,6 @@ export const variant2Steps: Step[] = [
 					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.2 } // L/H
 					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
-					// atd. pro další hrany
 					return { ...e, value: 0.5 } // výchozí hodnota
 				})
 				return { ...graph, edges: edgesWithValues }
@@ -457,7 +453,6 @@ export const variant2Steps: Step[] = [
 				return { ...graph, vertices: newVertices }
 			}
 		},
-		// Další kroky barvení...
 		{
 			text: 'Graf je nyní kompletně obarven a má chromatické číslo 3.',
 			noNumber: true,
@@ -581,7 +576,6 @@ export const variant3Steps: Step[] = [
 					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.4 } // L/H
 					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
-					// atd. pro další hrany
 					return { ...e, value: 0.5 } // výchozí hodnota
 				})
 				return { ...graph, edges: edgesWithValues }
@@ -673,7 +667,6 @@ export const variant3Steps: Step[] = [
 				return { ...graph, vertices: newVertices }
 			}
 		},
-		// Další kroky barvení...
 		{
 			text: 'Graf je nyní kompletně obarven a má chromatické číslo 3.',
 			noNumber: true,
@@ -797,7 +790,6 @@ export const variant4Steps: Step[] = [
 					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.2 } // L/H
 					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
-					// atd. pro další hrany
 					return { ...e, value: 0.5 } // výchozí hodnota
 				})
 				return { ...graph, edges: edgesWithValues }
@@ -889,7 +881,6 @@ export const variant4Steps: Step[] = [
 				return { ...graph, vertices: newVertices }
 			}
 		},
-		// Další kroky barvení...
 		{
 			text: 'Graf je nyní kompletně obarven a má chromatické číslo 3.',
 			noNumber: true,
@@ -1000,5 +991,4 @@ export const X_scheme_2_variants = {
   [variant2Id]: variant2Steps,
 	[variant3Id]: variant3Steps,
 	[variant4Id]: variant4Steps,
-  // ... další varianty
 }
