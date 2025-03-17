@@ -796,7 +796,7 @@ export const variant4Steps: Step[] = [
 			}
 		},
 		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
-			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě je slabě sousedící dvojice vrcholů EW a SW.',
+			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě jsou slabě sousedící dvojice vrcholů EN a SN, WE a SE a EW a SW',
 			action: (graph: Graph) => {
 				const edgesWithType = graph.edges.map(e => {
 					const sourceVertex = graph.vertices.find(v => v.id === e.source);

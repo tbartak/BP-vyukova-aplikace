@@ -21,7 +21,7 @@ const createVertices = (graph: Graph): Graph => ({
   ]
 })
 
-// Kroky 1-10 jsou společné pro všechny varianty X-scheme-2 // TODO: change comment numbers for new scheme + change content based on common steps
+// Společné kroky pro všechny varianty X-scheme-2 // TODO: change comment numbers for new scheme + change content based on common steps
 const createCommonSteps = (variantId: string): Step[] => {
 	return createSteps(variantId, [
 		{
