@@ -1,12 +1,14 @@
 import { Step, Graph } from '../variants'
 import { createSteps, getStepCounts } from '../scheme_utils'
 
-// Definice ID variant // TODO: needs changing for new variant (numbers/types)
+// Definice ID variant
 const variant1Id = 'X-scheme-2-var-1'
 const variant2Id = 'X-scheme-2-var-2'
+const variant3Id = 'X-scheme-2-var-3'
+const variant4Id = 'X-scheme-2-var-4'
 // ... další varianty
 
-// Vrcholy jsou totožné pro všechny varianty X-scheme-2 // TODO: change comment number for new scheme
+// Vrcholy jsou totožné pro všechny varianty X-scheme-2
 const createVertices = (graph: Graph): Graph => ({
   ...graph,
   vertices: [
@@ -21,7 +23,7 @@ const createVertices = (graph: Graph): Graph => ({
   ]
 })
 
-// Kroky 1-10 jsou společné pro všechny varianty X-scheme-2 // TODO: change comment numbers for new scheme + change content based on common steps
+// Kroky 1-10 jsou společné pro všechny varianty X-scheme-2
 const createCommonSteps = (variantId: string): Step[] => {
 	return createSteps(variantId, [
 		{
@@ -116,15 +118,19 @@ const createCommonSteps = (variantId: string): Step[] => {
 	]);
 };
 
-// Vytvoření společných kroků // TODO: add for every variant
+// Vytvoření společných kroků
 const commonStepsVar1 = createCommonSteps(variant1Id);
 const commonStepsVar2 = createCommonSteps(variant2Id);
+const commonStepsVar3 = createCommonSteps(variant3Id);
+const commonStepsVar4 = createCommonSteps(variant4Id);
 
-// Získání počtu kroků v společné části // TODO: add for every variant
+// Získání počtu kroků v společné části
 const { totalSteps: var1TotalSteps, numberedSteps: var1NumberedSteps } = getStepCounts(commonStepsVar1);
 const { totalSteps: var2TotalSteps, numberedSteps: var2NumberedSteps } = getStepCounts(commonStepsVar2);
+const { totalSteps: var3TotalSteps, numberedSteps: var3NumberedSteps } = getStepCounts(commonStepsVar3);
+const { totalSteps: var4TotalSteps, numberedSteps: var4NumberedSteps } = getStepCounts(commonStepsVar4);
 
-// Varianta 1 // TODO: change content based on the scheme
+// Varianta 1
 export const variant1Steps: Step[] = [
   ...commonStepsVar1,
 	...createSteps(variant1Id, [
@@ -137,10 +143,10 @@ export const variant1Steps: Step[] = [
 					if (e.source === 'NS' && e.target === 'EW') return { ...e, value: 0.45 }
 					if (e.source === 'NS' && e.target === 'SW') return { ...e, value: 0.4 }
 					if (e.source === 'NS' && e.target === 'WE') return { ...e, value: 0.45 }
-					if (e.source === 'EN' && e.target === 'SN') return { ...e, value: 0.35 }
+					if (e.source === 'EN' && e.target === 'SN') return { ...e, value: 0.35 } // L/H
 					if (e.source === 'EW' && e.target === 'SN') return { ...e, value: 0.6 }
-					if (e.source === 'EW' && e.target === 'SW') return { ...e, value: 0.55 }
-					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.6 }
+					if (e.source === 'EW' && e.target === 'SW') return { ...e, value: 0.55 } // L/H
+					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.4 } // L/H
 					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
 					// atd. pro další hrany
@@ -264,7 +270,7 @@ export const variant1Steps: Step[] = [
 			noNumber: true
 		},
 		{
-			text: 'Následně přiřadíme každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně obarven. Tento krok je řešen simplexovou metodou lineárního programování, viz. Patrikova aplikace.', // TODO: přidat odkaz na Patrikovu aplikaci
+			text: 'Následně přiřadíme každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně obarven. Tento krok je řešen simplexovou metodou lineárního programování, viz. http://patrikes.explonetwork.eu/learn/linear',
 			noNumber: true
 		},
 		{
@@ -331,20 +337,668 @@ export const variant1Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Vrchol SE je z poloviny žlutý a z poloviny fialový, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Podobně je tomu také u vrcholu EN, který je z poloviny červený a z poloviny žlutý. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo
+			text: 'Graf je nyní frakcionálně obarven. Vrchol SE je z poloviny žlutý a z poloviny fialový, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Podobně je tomu také u vrcholu EN, který je z poloviny červený a z poloviny žlutý. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
 			noNumber: true
 		}
 	], {
-		startStepNum: var1TotalSteps + 1, // Začátek číslování kroků pro tuto variantu // TODO: change for every variant
-    startDisplayNum: var1NumberedSteps // Začátek číslování zobrazených kroků pro tuto variantu // TODO: change for every variant
+		startStepNum: var1TotalSteps + 1, // Začátek číslování kroků pro tuto variantu
+    startDisplayNum: var1NumberedSteps // Začátek číslování zobrazených kroků pro tuto variantu
 	})
 ];
 
-// TODO: dodělat zbytek variant
+// Varianta 2
+export const variant2Steps: Step[] = [
+  ...commonStepsVar2,
+	...createSteps(variant2Id, [
+		{
+			text: 'Ohodnotíme hrany podle pravděpodobnosti kolize.',
+			action: (graph: Graph) => {
+				// Ohodnocení všech hran najednou pro názornost
+				const edgesWithValues = graph.edges.map(e => {
+					// Přiřadíme hodnoty podle páru vrcholů
+					if (e.source === 'NS' && e.target === 'EW') return { ...e, value: 0.45 }
+					if (e.source === 'NS' && e.target === 'SW') return { ...e, value: 0.4 }
+					if (e.source === 'NS' && e.target === 'WE') return { ...e, value: 0.45 }
+					if (e.source === 'EN' && e.target === 'SN') return { ...e, value: 0.2 } // L/H
+					if (e.source === 'EW' && e.target === 'SN') return { ...e, value: 0.6 }
+					if (e.source === 'EW' && e.target === 'SW') return { ...e, value: 0.55 } // L/H
+					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.2 } // L/H
+					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
+					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
+					// atd. pro další hrany
+					return { ...e, value: 0.5 } // výchozí hodnota
+				})
+				return { ...graph, edges: edgesWithValues }
+			}
+		},
+		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
+			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě to jsou dvojice vrcholů SE a WE a také EN a SN.',
+			action: (graph: Graph) => {
+				const edgesWithType = graph.edges.map(e => {
+					const sourceVertex = graph.vertices.find(v => v.id === e.source);
+					const targetVertex = graph.vertices.find(v => v.id === e.target);
+					
+					if (sourceVertex?.value && targetVertex?.value) {
+						const minVertexValue = Math.min(sourceVertex.value, targetVertex.value);
+						if (e.value && e.value < minVertexValue / 2) {
+							return { ...e, type: 'weak' as const };
+						}
+					}
+					return { ...e, type: 'strong' as const };
+				});
+				
+				return { ...graph, edges: edgesWithType };
+			}
+		},
+		{
+			text: 'Dále je možné graf začít barvit jako u klasických grafů.',
+			noNumber: true
+		},
+		{
+			text: 'Obarvíme vrchol NS červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'NS' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol WE zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'WE' ? { ...v, color: 'green' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SW modře.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SW' ? { ...v, color: 'blue' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SN červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SN' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol EW zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EW' ? { ...v, color: 'green' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Nakonec obarvíme také slabě sousedící vrchol SE barvou jeho sousedního vrcholu, tedy barvou vrcholu WE (zeleně).',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SE' ? { ...v, color: 'green' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Podobně řešíme také obarvení vrcholu EN, který bude obarven barvou jeho souseda, tedy barvou vrcholu SN (červeně).',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EN' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		// Další kroky barvení...
+		{
+			text: 'Graf je nyní kompletně obarven a má chromatické číslo 3.',
+			noNumber: true,
+			action: (graph: Graph) => {
+				return graph;
+			}
+		},
+		{
+			text: 'Dále graf zkusíme obarvit ještě frakcionálně, což může pomoct nalézt optimálnější řešení nastavení křižovatky.',
+			noNumber: true,
+		},
+		{
+			text: 'Reset barev: Vrátíme se do stavu před barvením a aplikujeme frakcionální barvení.',
+			noNumber: true,
+			action: (graph: Graph) => {
+				// Reset barev všech vrcholů
+				const resetVertices = graph.vertices.map(v => {
+					const { color, ...rest } = v;
+					return rest;
+				});
+				return { ...graph, vertices: resetVertices };
+			}
+		},
+		{
+			text: 'Nejprve identifikujeme nezávislé množiny mezi silně sousedícími vrcholy v grafu: S1 = {SN, NS}, S2 = {SN, SW}, S3 = {WE, EW}. Nezávislé množiny jsou skupiny vrcholů, které nejsou spojeny hranou. Pro každou z nich zvolíme jednu barvu, například pro S1 červenou, pro S2 zelenou a pro S3 modrou.',
+			noNumber: true
+		},
+		{
+			text: 'Následně přiřadíme každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně obarven. Tento krok je řešen simplexovou metodou lineárního programování, viz. http://patrikes.explonetwork.eu/learn/linear',
+			noNumber: true
+		},
+		{
+			text: 'Obarvíme vrchol, dle barev nezávislých množin, NS červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'NS' ? { ...v, color: 'red' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol WE modře.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'WE' ? { ...v, color: 'blue' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SW zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SW' ? { ...v, color: 'green' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Frakcionálně obarvíme vrchol SN - z poloviny červeně a z poloviny zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SN' ? { ...v, color: 'linear-gradient(90deg, red 50%, green 50%)' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol EW modře.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EW' ? { ...v, color: 'blue' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Nakonec obarvíme také slabě sousedící vrchol SE barvou jeho sousedního vrcholu, tedy barvou vrcholu WE (modře).',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SE' ? { ...v, color: 'blue' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Podobně řešíme také obarvení vrcholu EN, který bude obarven barvou jeho souseda, tedy barvou vrcholu SN (z poloviny červeně a z poloviny zeleně).',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EN' ? { ...v, color: 'linear-gradient(90deg, red 50%, green 50%)' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Graf je nyní frakcionálně obarven. Vrcholy SN a EN jsou obarveny frakcionálně, oba jsou z poloviny červené a z poloviny zelené, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
+			noNumber: true
+		}
+	], {
+		startStepNum: var2TotalSteps + 1, // Začátek číslování kroků pro tuto variantu
+    startDisplayNum: var2NumberedSteps // Začátek číslování zobrazených kroků pro tuto variantu
+	})
+];
+
+// Varianta 3
+export const variant3Steps: Step[] = [
+  ...commonStepsVar3,
+	...createSteps(variant3Id, [
+		{
+			text: 'Ohodnotíme hrany podle pravděpodobnosti kolize.',
+			action: (graph: Graph) => {
+				// Ohodnocení všech hran najednou pro názornost
+				const edgesWithValues = graph.edges.map(e => {
+					// Přiřadíme hodnoty podle páru vrcholů
+					if (e.source === 'NS' && e.target === 'EW') return { ...e, value: 0.45 }
+					if (e.source === 'NS' && e.target === 'SW') return { ...e, value: 0.4 }
+					if (e.source === 'NS' && e.target === 'WE') return { ...e, value: 0.45 }
+					if (e.source === 'EN' && e.target === 'SN') return { ...e, value: 0.35 } // L/H
+					if (e.source === 'EW' && e.target === 'SN') return { ...e, value: 0.6 }
+					if (e.source === 'EW' && e.target === 'SW') return { ...e, value: 0.2 } // L/H
+					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.4 } // L/H
+					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
+					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
+					// atd. pro další hrany
+					return { ...e, value: 0.5 } // výchozí hodnota
+				})
+				return { ...graph, edges: edgesWithValues }
+			}
+		},
+		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
+			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě je slabě sousedící dvojice vrcholů EW a SW.',
+			action: (graph: Graph) => {
+				const edgesWithType = graph.edges.map(e => {
+					const sourceVertex = graph.vertices.find(v => v.id === e.source);
+					const targetVertex = graph.vertices.find(v => v.id === e.target);
+					
+					if (sourceVertex?.value && targetVertex?.value) {
+						const minVertexValue = Math.min(sourceVertex.value, targetVertex.value);
+						if (e.value && e.value < minVertexValue / 2) {
+							return { ...e, type: 'weak' as const };
+						}
+					}
+					return { ...e, type: 'strong' as const };
+				});
+				
+				return { ...graph, edges: edgesWithType };
+			}
+		},
+		{
+			text: 'Dále je možné graf začít barvit jako u klasických grafů.',
+			noNumber: true
+		},
+		{
+			text: 'Obarvíme vrchol NS červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'NS' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol WE zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'WE' ? { ...v, color: 'green' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SW modře.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SW' ? { ...v, color: 'blue' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SN červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SN' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SE červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SE' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol EN zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EN' ? { ...v, color: 'green' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Nakonec obarvíme také slabě sousedící vrchol EW, například modrou barvou.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EW' ? { ...v, color: 'blue' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		// Další kroky barvení...
+		{
+			text: 'Graf je nyní kompletně obarven a má chromatické číslo 3.',
+			noNumber: true,
+			action: (graph: Graph) => {
+				return graph;
+			}
+		},
+		{
+			text: 'Dále graf zkusíme obarvit ještě frakcionálně, což může pomoct nalézt optimálnější řešení nastavení křižovatky.',
+			noNumber: true,
+		},
+		{
+			text: 'Reset barev: Vrátíme se do stavu před barvením a aplikujeme frakcionální barvení.',
+			noNumber: true,
+			action: (graph: Graph) => {
+				// Reset barev všech vrcholů
+				const resetVertices = graph.vertices.map(v => {
+					const { color, ...rest } = v;
+					return rest;
+				});
+				return { ...graph, vertices: resetVertices };
+			}
+		},
+		{
+			text: 'Nejprve identifikujeme nezávislé množiny mezi silně sousedícími vrcholy v grafu: S1 = {EN, WE, EW}, S2 = {EN, SE, NS}, S3 = {EN, SE, EW, SW}, S4 = {SN, SE, NS}, S5 = {SN, SE, SW}. Nezávislé množiny jsou skupiny vrcholů, které nejsou spojeny hranou. Pro každou z nich zvolíme jednu barvu, například pro S1 červenou, pro S2 zelenou, pro S3 modrou, pro S4 žlutou a pro S5 fialovou.',
+			noNumber: true
+		},
+		{
+			text: 'Následně přiřadíme každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně obarven. Tento krok je řešen simplexovou metodou lineárního programování, viz. http://patrikes.explonetwork.eu/learn/linear',
+			noNumber: true
+		},
+		{
+			text: 'Obarvíme vrchol, dle barev nezávislých množin, NS zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'NS' ? { ...v, color: 'green' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol WE červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'WE' ? { ...v, color: 'red' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SW fialově.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SW' ? { ...v, color: 'purple' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SN fialově',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SN' ? { ...v, color: 'purple' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol EW červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EW' ? { ...v, color: 'red' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Frakcionálně obarvíme vrchol SE - z poloviny zelenou barvou a z poloviny fialovou barvou.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SE' ? { ...v, color: 'linear-gradient(90deg, green 50%, purple 50%)' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Frakcionálně obarvíme vrchol EN - z poloviny červeně a z poloviny zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EN' ? { ...v, color: 'linear-gradient(90deg, red 50%, green 50%)' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Graf je nyní frakcionálně obarven. Vrcholy SE a EN jsou obarveny frakcionálně, vrchol SE je obarven z poloviny zeleně a z poloviny fialově, vrchol EN je pak obarven z poloviny červeně a z poloviny zeleně, každá barva má váhu 0,5. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
+			noNumber: true
+		}
+	], {
+		startStepNum: var3TotalSteps + 1, // Začátek číslování kroků pro tuto variantu
+    startDisplayNum: var3NumberedSteps // Začátek číslování zobrazených kroků pro tuto variantu
+	})
+];
+
+// Varianta 4
+export const variant4Steps: Step[] = [
+  ...commonStepsVar4,
+	...createSteps(variant4Id, [
+		{
+			text: 'Ohodnotíme hrany podle pravděpodobnosti kolize.',
+			action: (graph: Graph) => {
+				// Ohodnocení všech hran najednou pro názornost
+				const edgesWithValues = graph.edges.map(e => {
+					// Přiřadíme hodnoty podle páru vrcholů
+					if (e.source === 'NS' && e.target === 'EW') return { ...e, value: 0.45 }
+					if (e.source === 'NS' && e.target === 'SW') return { ...e, value: 0.4 }
+					if (e.source === 'NS' && e.target === 'WE') return { ...e, value: 0.45 }
+					if (e.source === 'EN' && e.target === 'SN') return { ...e, value: 0.2 } // L/H
+					if (e.source === 'EW' && e.target === 'SN') return { ...e, value: 0.6 }
+					if (e.source === 'EW' && e.target === 'SW') return { ...e, value: 0.2 } // L/H
+					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.2 } // L/H
+					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
+					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
+					// atd. pro další hrany
+					return { ...e, value: 0.5 } // výchozí hodnota
+				})
+				return { ...graph, edges: edgesWithValues }
+			}
+		},
+		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
+			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě je slabě sousedící dvojice vrcholů EW a SW.',
+			action: (graph: Graph) => {
+				const edgesWithType = graph.edges.map(e => {
+					const sourceVertex = graph.vertices.find(v => v.id === e.source);
+					const targetVertex = graph.vertices.find(v => v.id === e.target);
+					
+					if (sourceVertex?.value && targetVertex?.value) {
+						const minVertexValue = Math.min(sourceVertex.value, targetVertex.value);
+						if (e.value && e.value < minVertexValue / 2) {
+							return { ...e, type: 'weak' as const };
+						}
+					}
+					return { ...e, type: 'strong' as const };
+				});
+				
+				return { ...graph, edges: edgesWithType };
+			}
+		},
+		{
+			text: 'Dále je možné graf začít barvit jako u klasických grafů.',
+			noNumber: true
+		},
+		{
+			text: 'Obarvíme vrchol NS červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'NS' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol WE zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'WE' ? { ...v, color: 'green' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SW modře.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SW' ? { ...v, color: 'blue' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SN červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SN' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Nakonec obarvíme také slabě sousedící vrchol SE barvou jeho sousedního vrcholu WE (zelenou).',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SE' ? { ...v, color: 'green' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Podobně obarvíme také vrchol EW, kterému přiřadíme modrou barvu',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EW' ? { ...v, color: 'blue' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		{
+			text: 'Nakonec obarvíme také slabě sousedící vrchol EN barvou jeho sousedního vrcholu SN (červenou).',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EN' ? { ...v, color: 'red' } : v
+				)
+				return { ...graph, vertices: newVertices }
+			}
+		},
+		// Další kroky barvení...
+		{
+			text: 'Graf je nyní kompletně obarven a má chromatické číslo 3.',
+			noNumber: true,
+			action: (graph: Graph) => {
+				return graph;
+			}
+		},
+		{
+			text: 'Dále graf zkusíme obarvit ještě frakcionálně, což může pomoct nalézt optimálnější řešení nastavení křižovatky.',
+			noNumber: true,
+		},
+		{
+			text: 'Reset barev: Vrátíme se do stavu před barvením a aplikujeme frakcionální barvení.',
+			noNumber: true,
+			action: (graph: Graph) => {
+				// Reset barev všech vrcholů
+				const resetVertices = graph.vertices.map(v => {
+					const { color, ...rest } = v;
+					return rest;
+				});
+				return { ...graph, vertices: resetVertices };
+			}
+		},
+		{
+			text: 'Nejprve identifikujeme nezávislé množiny mezi silně sousedícími vrcholy v grafu: S1 = {SN, NS}, S2 = {SN, SW}, S3 = {WE, EW}, S4 = {EW, SW}. Nezávislé množiny jsou skupiny vrcholů, které nejsou spojeny hranou. Pro každou z nich zvolíme jednu barvu, například pro S1 červenou, pro S2 zelenou, pro S3 modrou a pro S4 žlutou.',
+			noNumber: true
+		},
+		{
+			text: 'Následně přiřadíme každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně obarven. Tento krok je řešen simplexovou metodou lineárního programování, viz. http://patrikes.explonetwork.eu/learn/linear',
+			noNumber: true
+		},
+		{
+			text: 'Obarvíme vrchol, dle barev nezávislých množin, NS červeně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'NS' ? { ...v, color: 'red' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol WE modře.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'WE' ? { ...v, color: 'blue' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol SW zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SW' ? { ...v, color: 'green' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Frakcionálně obarvíme vrchol SN - z poloviny červenou barvou a z poloviny zelenou barvou.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SN' ? { ...v, color: 'linear-gradient(90deg, red 50%, green 50%)' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Obarvíme vrchol EW modře.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EW' ? { ...v, color: 'blue' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Nakonec obarvíme vrchol SE barvou jeho sousedního vrcholu WE (modrou).',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'SE' ? { ...v, color: 'blue' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Podobně frakcionálně obarvíme vrchol EN podle jeho sousedního vrcholu SN - z poloviny červeně a z poloviny zeleně.',
+			action: (graph: Graph) => {
+				const newVertices = graph.vertices.map(v =>
+					v.id === 'EN' ? { ...v, color: 'linear-gradient(90deg, red 50%, green 50%)' } : v
+				);
+				return { ...graph, vertices: newVertices };
+			}
+		},
+		{
+			text: 'Graf je nyní frakcionálně obarven. Vrcholy SE a EN jsou obarveny frakcionálně, oba vrcholy jsou obarveny z poloviny červeně a z poloviny zeleně, každá barva má váhu 0,5. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
+			noNumber: true
+		}
+	], {
+		startStepNum: var4TotalSteps + 1, // Začátek číslování kroků pro tuto variantu
+    startDisplayNum: var4NumberedSteps // Začátek číslování zobrazených kroků pro tuto variantu
+	})
+];
 
 // Export všech variant pro použití v hlavním konfiguračním souboru 
-export const X_scheme_2_variants = {// TODO: needs changing for new variant
+export const X_scheme_2_variants = {
   [variant1Id]: variant1Steps,
   [variant2Id]: variant2Steps,
+	[variant3Id]: variant3Steps,
+	[variant4Id]: variant4Steps,
   // ... další varianty
 }

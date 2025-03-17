@@ -137,7 +137,7 @@ export const variant1Steps: Step[] = [
 					if (e.source === 'NS' && e.target === 'EW') return { ...e, value: 0.45 }
 					if (e.source === 'NS' && e.target === 'SW') return { ...e, value: 0.4 }
 					if (e.source === 'NS' && e.target === 'WE') return { ...e, value: 0.45 }
-					if (e.source === 'EN' && e.target === 'SN') return { ...e, value: 0.35 }
+					if (e.source === 'EN' && e.target === 'SN') return { ...e, value: 0.35 } // TODO: vyznačit L/H a původní hodnotu vrcholů a hran
 					if (e.source === 'EW' && e.target === 'SN') return { ...e, value: 0.6 }
 					if (e.source === 'EW' && e.target === 'SW') return { ...e, value: 0.55 }
 					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.6 }
@@ -149,7 +149,7 @@ export const variant1Steps: Step[] = [
 				return { ...graph, edges: edgesWithValues }
 			}
 		},
-		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
+		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak // TODO: změnit popisek podle slabých/silných vrcholů a hran
 			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), nicméně v této variantě žádné slabě sousedící vrcholy či hrany neexistují.',
 			action: (graph: Graph) => {
 				const edgesWithType = graph.edges.map(e => {
@@ -264,7 +264,7 @@ export const variant1Steps: Step[] = [
 			noNumber: true
 		},
 		{
-			text: 'Následně přiřadíme každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně obarven. Tento krok je řešen simplexovou metodou lineárního programování, viz. Patrikova aplikace.', // TODO: přidat odkaz na Patrikovu aplikaci
+			text: 'Následně přiřadíme každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně obarven. Tento krok je řešen simplexovou metodou lineárního programování, viz. http://patrikes.explonetwork.eu/learn/linear',
 			noNumber: true
 		},
 		{
@@ -331,7 +331,7 @@ export const variant1Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Vrchol SE je z poloviny žlutý a z poloviny fialový, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Podobně je tomu také u vrcholu EN, který je z poloviny červený a z poloviny žlutý. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo
+			text: 'Graf je nyní frakcionálně obarven. Vrchol SE je z poloviny žlutý a z poloviny fialový, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Podobně je tomu také u vrcholu EN, který je z poloviny červený a z poloviny žlutý. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
 			noNumber: true
 		}
 	], {
@@ -345,6 +345,5 @@ export const variant1Steps: Step[] = [
 // Export všech variant pro použití v hlavním konfiguračním souboru 
 export const X_scheme_2_variants = {// TODO: needs changing for new variant
   [variant1Id]: variant1Steps,
-  [variant2Id]: variant2Steps,
   // ... další varianty
 }
