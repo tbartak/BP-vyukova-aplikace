@@ -5,7 +5,7 @@ import { Graph } from '../config/variants'
 interface IntersectionGraphProps {
   graph: Graph
 }
-// TODO: zajistit, aby se hodnoty hran a vrcholů nevypisovali přes čáry + zajistit, aby se popisky vrcholů co jsou ve spodní polovině kruhu vypisovali pod vrcholem místo nad ním
+
 const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
   const svgRef = useRef<SVGSVGElement | null>(null)
   
@@ -50,7 +50,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
       .attr('stroke-width', 2)
 			.attr('stroke-dasharray', d => d.type === 'weak' ? '5,5' : 'none')
 
-		// Vytvoříme nejprve skupinu pro pozadí textů (budou pod hranami)
+		// Vytvoříme nejprve skupinu pro pozadí textů (budou pod hranami) // TODO: teoreticky se zamyslet nad něčím jiným pro hrany, ale prozatím funkční
     const labelBackgroundGroup = svg.append('g').attr('class', 'label-backgrounds');
     
     // Pak skupinu pro hrany (ty už jsou vykreslené)
@@ -232,9 +232,9 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 			.attr('class', 'vertex-value')
 			.attr('x', v => vertexPositions[v.id][0])
 			.attr('y', v => {
-				const centerY = height / 2;
+				const centerY = height / 2; // střed grafu
 				const vertexY = vertexPositions[v.id][1];
-				return vertexY > centerY ? vertexY + 30 : vertexY - 20;
+				return vertexY > centerY ? vertexY + 30 : vertexY - 20; // hodnota pod vrcholem, pokud je ve spodní polovině grafu, jinak nad ním
 			})
 			.attr('text-anchor', 'middle')
 			.text(v => v.value)

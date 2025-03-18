@@ -415,7 +415,7 @@ const tutorialSteps: Step[] = [
 	},
 	{
 		id: 'tut-47',
-		description: 'Tímto jsme dokončili tvorbu grafu a jeho barvení na základě schématu křižovatky. V případě, že byste chtěli vytvořit graf na základě jiného schématu křižovatky, můžete si vybrat z několika předpřipravených schémat, které jsou zobrazeny níže.',
+		description: 'Tímto jsme dokončili tvorbu grafu a jeho barvení na základě schématu křižovatky. V případě, že byste chtěli vytvořit graf na základě jiného schématu křižovatky, můžete si vybrat z několika předpřipravených schémat, které si lze vybrat kliknutím na tlačítko "Vyberte křižovatku" na domovské obrazovce.',
 	}
 ]
 
@@ -477,7 +477,7 @@ export default function TutorialPage() {
 			<Box sx={{ flex: 1 }}>
 				<Wizard steps={tutorialSteps} onStepChange={handleStepChange} />
 			</Box>
-			{/* TODO: zobrazit schémata křižovatek u posledního kroku */}
+			{/* TODO: zobrazit schémata křižovatek u posledního kroku, možná ani není potřeba, dostanou se tam přes domovskou obrazovku */}
       {/* <Box sx={{ mt: 4, textAlign: 'center' }}>
         <Typography variant="h6" gutterBottom>
           Příklady schémat křižovatky:
