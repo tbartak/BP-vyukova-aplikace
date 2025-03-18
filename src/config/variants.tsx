@@ -148,16 +148,6 @@ import { X_scheme_5_variants } from './schemes/X-scheme-5'
               name: 'Varianta 2',
               steps: T_scheme_4_variants['T-scheme-4-var-2']
             },
-            {
-              id: 'T-scheme-4-var-3',
-              name: 'Varianta 3',
-              steps: T_scheme_4_variants['T-scheme-4-var-3']
-            },
-            {
-              id: 'T-scheme-4-var-4',
-              name: 'Varianta 4',
-              steps: T_scheme_4_variants['T-scheme-4-var-4']
-            },
           ]
         },
         {
@@ -173,16 +163,6 @@ import { X_scheme_5_variants } from './schemes/X-scheme-5'
               id: 'T-scheme-5-var-2',
               name: 'Varianta 2',
               steps: T_scheme_5_variants['T-scheme-5-var-2']
-            },
-            {
-              id: 'T-scheme-5-var-3',
-              name: 'Varianta 3',
-              steps: T_scheme_5_variants['T-scheme-5-var-3']
-            },
-            {
-              id: 'T-scheme-5-var-4',
-              name: 'Varianta 4',
-              steps: T_scheme_5_variants['T-scheme-5-var-4']
             },
           ]
         },

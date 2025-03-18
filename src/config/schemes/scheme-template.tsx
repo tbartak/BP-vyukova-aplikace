@@ -1,6 +1,8 @@
 import { Step, Graph } from '../variants'
 import { createSteps, getStepCounts } from '../scheme_utils'
 
+// TODO: popsat změny do dokumentace BP
+
 // Definice ID variant // TODO: needs changing for new variant (numbers/types)
 const variant1Id = 'X-scheme-2-var-1'
 const variant2Id = 'X-scheme-2-var-2'
