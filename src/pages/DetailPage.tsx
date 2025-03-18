@@ -38,30 +38,39 @@ export default function DetailPage() {
   }, [selectedVariant])
 
   return (
-    <Box sx={{ p: 3 }}>
+    <Box sx={{ p: 3, width: '100%', maxWidth: '1000px', mx: 'auto' }}>
 			<BreadcrumbsNav />
       <Typography variant="h4" gutterBottom>
         {selectedVariant.name}
       </Typography>
-			<Box sx={{ mt: 4, textAlign: 'center' }}>
-        <Typography variant="h6" gutterBottom>
-          Zvolená varianta křižovatky:
-        </Typography>
-        <img
-          src={`/imgs/${selectedVariant.id}.jpg`}
-          alt="Zvolená varianta křižovatky"
-          style={{ width: '300px' }}
-        />
-      </Box>
-      <Wizard
-        steps={selectedVariant.steps}
-        onStepChange={handleStepChange}
-      />
-			<Box sx={{ mt: 4, textAlign: 'center' }}>
-				<Typography variant="h6" gutterBottom>
-					Vizualizace grafu:
-				</Typography>
-				<IntersectionGraph graph={graph} />
+			<Box sx={{ flexDirection: 'row', display: 'flex', gap: 4, justifyContent: 'center' }}>
+				<Box sx={{ mt: 4, textAlign: 'center' }}>
+					<Typography variant="h6" gutterBottom>
+						Zvolená varianta křižovatky:
+					</Typography>
+					<img
+						src={`/imgs/${selectedVariant.id}.jpg`}
+						alt="Zvolená varianta křižovatky"
+						style={{ width: '400px' }}
+					/>
+				</Box>
+				<Box sx={{ mt: 4, textAlign: 'center' }}>
+					<Typography variant="h6" gutterBottom>
+						Vizualizace grafu:
+					</Typography>
+					<IntersectionGraph graph={graph} />
+				</Box>
+			</Box>
+			<Box sx={{
+				width: '100%',
+				maxWidth: '830px',
+				mx: 'auto',
+				mt: 2
+			}}>
+				<Wizard
+					steps={selectedVariant.steps}
+					onStepChange={handleStepChange}
+				/>
 			</Box>
     </Box>
   )

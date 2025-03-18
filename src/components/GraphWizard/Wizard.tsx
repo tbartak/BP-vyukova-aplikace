@@ -33,10 +33,9 @@ export default function Wizard({ steps, onStepChange }: WizardProps) {
   // TODO: zajistit, aby délka kroků neovlivňovala pozici ostatních prvků na stránce
   return (
     <Box sx={{ 
-      p: 3,
       display: 'flex',
       flexDirection: 'column',
-      height: '400px',
+      height: '205px',
      }}>
       <Typography variant="h6" gutterBottom>
         {steps[currentStep].description}
