@@ -15,7 +15,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 
     const width = 400
     const height = 400
-    const margin = 20
+    const margin = 40
     const radius = Math.min(width, height) / 2 - margin
 
     // Vypočteme pozice vrcholů ve kruhové geometrii
@@ -223,7 +223,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
       .attr('font-size', '12px')
       .attr('fill', 'black')
 
-		// Přidáme hodnoty vrcholů, pokud existují
+		// Přidáme hodnoty vrcholům, pokud existují
 		svg
 			.selectAll('.vertex-value')
 			.data(graph.vertices.filter(v => v.value !== undefined))
@@ -231,8 +231,11 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 			.append('text')
 			.attr('class', 'vertex-value')
 			.attr('x', v => vertexPositions[v.id][0])
-			.attr('y', v => vertexPositions[v.id][1])
-			.attr('dy', -20)
+			.attr('y', v => {
+				const centerY = height / 2;
+				const vertexY = vertexPositions[v.id][1];
+				return vertexY > centerY ? vertexY + 30 : vertexY - 20;
+			})
 			.attr('text-anchor', 'middle')
 			.text(v => v.value)
 			.attr('font-size', '12px')
