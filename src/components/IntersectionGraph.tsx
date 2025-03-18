@@ -50,17 +50,79 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
       .attr('stroke-width', 2)
 			.attr('stroke-dasharray', d => d.type === 'weak' ? '5,5' : 'none')
 
-		// Vykreslíme hodnoty hran, pokud existují
-    svg
+		// Vytvoříme nejprve skupinu pro pozadí textů (budou pod hranami)
+    const labelBackgroundGroup = svg.append('g').attr('class', 'label-backgrounds');
+    
+    // Pak skupinu pro hrany (ty už jsou vykreslené)
+    // A nakonec skupinu pro texty (budou nad hranami)
+    const labelGroup = svg.append('g').attr('class', 'labels');
+
+    // Funkce pro výpočet pozice popisku hrany
+    const calculateEdgeLabelPosition = (d) => {
+      const x1 = vertexPositions[d.source][0];
+      const y1 = vertexPositions[d.source][1];
+      const x2 = vertexPositions[d.target][0];
+      const y2 = vertexPositions[d.target][1];
+      
+      // Středový bod hrany
+      const midX = (x1 + x2) / 2;
+      const midY = (y1 + y2) / 2;
+      
+      // Vektor kolmý k hraně
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const length = Math.sqrt(dx * dx + dy * dy);
+      
+      // Normalizovaný kolmý vektor
+      const offsetSize = 15; // Velikost offsetu
+      const offsetX = -dy / length * offsetSize;
+      const offsetY = dx / length * offsetSize;
+      
+      // Přidáme offset ke středovému bodu
+      return {
+        x: midX + offsetX,
+        y: midY + offsetY
+      };
+    };
+
+    // Vykreslíme bílé obdélníky jako pozadí pro popisky hran
+    labelBackgroundGroup
+      .selectAll('.edge-label-bg')
+      .data(graph.edges.filter(e => e.value !== undefined))
+      .enter()
+      .append('rect')
+      .attr('class', 'edge-label-bg')
+      .attr('x', d => {
+        const pos = calculateEdgeLabelPosition(d);
+        return pos.x - 15; // Offset pro obdélník
+      })
+      .attr('y', d => {
+        const pos = calculateEdgeLabelPosition(d);
+        return pos.y - 10; // Offset pro obdélník
+      })
+      .attr('width', 30)
+      .attr('height', 20)
+      .attr('fill', 'white')
+      .attr('rx', 5) // Zaoblené rohy
+      .attr('ry', 5);
+
+    // Vykreslíme hodnoty hran, pokud existují
+    labelGroup
       .selectAll('.edge-value')
       .data(graph.edges.filter(e => e.value !== undefined))
       .enter()
       .append('text')
       .attr('class', 'edge-value')
-      .attr('x', d => (vertexPositions[d.source][0] + vertexPositions[d.target][0]) / 2)
-      .attr('y', d => (vertexPositions[d.source][1] + vertexPositions[d.target][1]) / 2 - 5)
+      .attr('x', d => {
+        const pos = calculateEdgeLabelPosition(d);
+        return pos.x;
+      })
+      .attr('y', d => {
+        const pos = calculateEdgeLabelPosition(d);
+        return pos.y;
+      })
       .attr('text-anchor', 'middle')
-      .attr('dy', -5)
+      .attr('dominant-baseline', 'central') // Centruje vertikálně
       .text(d => d.value)
       .attr('font-size', '12px')
       .attr('fill', 'black');
