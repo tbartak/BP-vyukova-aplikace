@@ -362,12 +362,12 @@ const tutorialSteps: Step[] = [
 		},
 	},
 	{ // TODO: možná by stálo za to ty kroky nějak odlišit, jestli normální barvení nebo frakcionální, například krok 44a/44b?
-		id: 'tut-43', // TODO: zkontrolovat pořádně, nevím, jestli je to aktuálně správně
-		description: 'Krok 33: Nezávislé množiny: Určíme tedy nezávislé množiny (vrcholy, které nejsou mezi sebou přímo spojené hranou), S1 = {NS, NE}, S2 = {NS, ES}, S3 = {NE, SW}, S4 = {ES, WN}. Každé takové nezávislé množině přidělíme jednu barvu. Zvolíme například červenou pro S1, zelenou pro S2, modrou pro S3 a fialovou pro S4.',
+		id: 'tut-43',
+		description: 'Krok 33: Nezávislé množiny: Určíme tedy nezávislé množiny mezi silně sousedícími vrcholy (vrcholy, které nejsou mezi sebou přímo spojené hranou), S1 = {NS, NE}, S2 = {NS, ES}, S3 = {NE, SW}, S4 = {ES, WN}. Každé takové nezávislé množině přidělíme jednu barvu. Zvolíme například červenou pro S1, zelenou pro S2, modrou pro S3 a fialovou pro S4.',
 	},
 	{
 		id: 'tut-44',
-		description: 'V dalším kroku je potřeba přiřadit každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně pokryt, tedy aby součet těchto zlomků u každého z vrcholů byl alespoň 1. Tento krok lze řešit jako úlohu lineárního programování, kde budeme minimalizovat počet barev, které jsou potřeba k obarvení grafu frakcionálně. Konkrétně budeme používat simplexovou metodu, která je podrobně vysvětlena v (odkaz na Patrikovu bakalářku)', // TODO: doplnit odkaz na Patrikovu bakalářku
+		description: 'V dalším kroku je potřeba přiřadit každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně pokryt, tedy aby součet těchto zlomků u každého z vrcholů byl alespoň 1. Tento krok lze řešit jako úlohu lineárního programování, kde budeme minimalizovat počet barev, které jsou potřeba k obarvení grafu frakcionálně. Konkrétně budeme používat simplexovou metodu, která je podrobně vysvětlena v: http://patrikes.explonetwork.eu/learn/linear',
 	},
 	{
 		id: 'tut-44',
@@ -424,7 +424,7 @@ export default function TutorialPage() {
 	const navigate = useNavigate()
 	const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext);
 
-	// Reset při načtení tutoriálu // TODO: teoreticky by nemuselo být potřeba, protože se vždymusí na tutoriál přes home, kde se to zresetuje, ale kdyby někdo šel přes odkaz, tak je to asi vhodné
+	// Reset při načtení tutoriálu // TODO: teoreticky by nemuselo být potřeba, protože se vždy musí na tutoriál přes home, kde se to zresetuje, ale kdyby někdo šel přes odkaz, tak je to asi vhodné
   useEffect(() => {
     setSelectedType(null);
     setSelectedScheme(null);
@@ -456,28 +456,29 @@ export default function TutorialPage() {
       <Typography variant="body1" gutterBottom>
         Tento tutoriál vás provede tvorbou grafu na základě schématu křižovatky. V pravé části můžete sledovat aktuální podobu grafu.
       </Typography>
-      <Box sx={{ mt: 4, textAlign: 'center' }}>
-        <Typography variant="h6" gutterBottom>
-          Původní schéma křižovatky:
-        </Typography>
-        <img
-          src="/imgs/tutorial_scheme.jpg"
-          alt="Původní schéma křižovatky"
-          style={{ width: '300px' }}
-        />
-      </Box>
-      <Box sx={{ display: 'flex', gap: 4, mt: 4, flexWrap: 'wrap' }}>
-        <Box sx={{ flex: 1, minWidth: 300 }}>
-          <Wizard steps={tutorialSteps} onStepChange={handleStepChange} />
-        </Box>
-        <Box sx={{ flex: 1, minWidth: 300, textAlign: 'center' }}>
+      <Box sx={{ mt: 4, textAlign: 'center', flexDirection: 'row', display: 'flex', gap: 4 }}>
+				<Box sx={{ flex: 1 }}>
+					<Typography variant="h6" gutterBottom>
+						Původní schéma křižovatky:
+					</Typography>
+					<img
+						src="/imgs/tutorial_scheme.jpg"
+						alt="Původní schéma křižovatky"
+						style={{ width: '400px' }}
+					/>
+				</Box>
+				<Box sx={{ flex: 1, textAlign: 'center' }}>
           <Typography variant="h6" gutterBottom>
             Vizualizace grafu
           </Typography>
           <IntersectionGraph graph={graph} />
         </Box>
       </Box>
-      <Box sx={{ mt: 4, textAlign: 'center' }}>
+			<Box sx={{ flex: 1 }}>
+				<Wizard steps={tutorialSteps} onStepChange={handleStepChange} />
+			</Box>
+			{/* TODO: zobrazit schémata křižovatek u posledního kroku */}
+      {/* <Box sx={{ mt: 4, textAlign: 'center' }}>
         <Typography variant="h6" gutterBottom>
           Příklady schémat křižovatky:
         </Typography>
@@ -505,7 +506,7 @@ export default function TutorialPage() {
           />
           <Typography variant="button" sx={{mt: 1}}>Typ X</Typography>
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   )
 }

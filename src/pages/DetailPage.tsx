@@ -38,13 +38,13 @@ export default function DetailPage() {
   }, [selectedVariant])
 
   return (
-    <Box sx={{ p: 3, width: '100%', maxWidth: '1000px', mx: 'auto' }}>
+    <Box sx={{ p: 3 }}>
 			<BreadcrumbsNav />
       <Typography variant="h4" gutterBottom>
         {selectedVariant.name}
       </Typography>
-			<Box sx={{ flexDirection: 'row', display: 'flex', gap: 4, justifyContent: 'center' }}>
-				<Box sx={{ mt: 4, textAlign: 'center' }}>
+			<Box sx={{ flexDirection: 'row', display: 'flex', gap: 4, textAlign: 'center', mt: 4 }}>
+				<Box sx={{ flex: 1 }}>
 					<Typography variant="h6" gutterBottom>
 						Zvolená varianta křižovatky:
 					</Typography>
@@ -54,7 +54,7 @@ export default function DetailPage() {
 						style={{ width: '400px' }}
 					/>
 				</Box>
-				<Box sx={{ mt: 4, textAlign: 'center' }}>
+				<Box sx={{ flex: 1, textAlign: 'center' }}>
 					<Typography variant="h6" gutterBottom>
 						Vizualizace grafu:
 					</Typography>

@@ -5,7 +5,7 @@ import { Graph } from '../config/variants'
 interface IntersectionGraphProps {
   graph: Graph
 }
-// TODO: zajistit, aby se hodnoty hran a vrcholů nevypisovali přes čáry
+// TODO: zajistit, aby se hodnoty hran a vrcholů nevypisovali přes čáry + zajistit, aby se popisky vrcholů co jsou ve spodní polovině kruhu vypisovali pod vrcholem místo nad ním
 const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
   const svgRef = useRef<SVGSVGElement | null>(null)
   
@@ -15,7 +15,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 
     const width = 400
     const height = 400
-    const margin = 40
+    const margin = 20
     const radius = Math.min(width, height) / 2 - margin
 
     // Vypočteme pozice vrcholů ve kruhové geometrii

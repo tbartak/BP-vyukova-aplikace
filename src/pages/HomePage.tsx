@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Button, Typography, Container } from '@mui/material'
+import { Button, Typography, Container, Box } from '@mui/material'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
 import { useContext, useEffect } from 'react'
 import { AppContext } from '../context/AppContext'
@@ -18,24 +18,32 @@ const Home = () => {
     <Container sx={{ textAlign: 'center', mt: 4 }}>
       <BreadcrumbsNav />
       <Typography variant="h3" gutterBottom>
-        Welcome to the Intersection Visualization App
+        Vítejte ve výukové aplikaci
       </Typography>
-      <Button
-        variant="contained"
-        component={Link}
-        to="/select-intersection"
-        size="large"
-      >
-        Vyberte křižovatku
-      </Button>
-      <Button
-          variant="outlined"
+      <Box sx={{ 
+        mt: 4,
+        display: 'flex',
+        justifyContent: 'center',
+        gap: 2,
+        flexDirection: 'row'  
+      }} >
+        <Button
+          variant="contained"
           component={Link}
-          to="/tutorial"
+          to="/select-intersection"
           size="large"
         >
-          Tutoriál
+          Vyberte křižovatku
         </Button>
+        <Button
+            variant="outlined"
+            component={Link}
+            to="/tutorial"
+            size="large"
+          >
+            Tutoriál
+        </Button>
+      </Box>
     </Container>
   )
 }
