@@ -237,6 +237,11 @@ import { X_scheme_5_variants } from './schemes/X-scheme-5'
               name: 'Varianta 4',
               steps: X_scheme_3_variants['X-scheme-3-var-4']
             },
+            { // TODO: dočasně navíc
+              id: 'X-scheme-3-var-5',
+              name: 'Varianta 5',
+              steps: X_scheme_3_variants['X-scheme-3-var-5']
+            }
           ]
         },
         {
