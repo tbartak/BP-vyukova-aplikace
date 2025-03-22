@@ -172,7 +172,7 @@ export const variant1Steps: Step[] = [
 			text: 'Obarvíme vrchol SN zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'green' } : v
+					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -181,7 +181,7 @@ export const variant1Steps: Step[] = [
 			text: 'Obarvíme vrchol ES modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'blue' } : v
+					v.id === 'ES' ? { ...v, color: 'cyan' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -248,7 +248,7 @@ export const variant1Steps: Step[] = [
 			text: 'Obarvíme vrchol SN modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'blue' } : v
+					v.id === 'SN' ? { ...v, color: 'cyan' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -257,7 +257,7 @@ export const variant1Steps: Step[] = [
 			text: 'Obarvíme vrchol ES zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'green' } : v
+					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -275,7 +275,7 @@ export const variant1Steps: Step[] = [
 			text: 'Nakonec frakcionálně obarvíme vrchol WS - ze třetiny červenou, ze třetiny modrou a ze třetiny žlutou.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'linear-gradient(90deg, red 33%, blue 66%, yellow 100%)' } : v
+					v.id === 'WS' ? { ...v, color: 'linear-gradient(90deg, red 33%, cyan 66%, yellow 100%)' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -348,7 +348,7 @@ export const variant2Steps: Step[] = [
 			text: 'Obarvíme vrchol SN zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'green' } : v
+					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -357,7 +357,7 @@ export const variant2Steps: Step[] = [
 			text: 'Obarvíme vrchol ES modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'blue' } : v
+					v.id === 'ES' ? { ...v, color: 'cyan' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -375,7 +375,7 @@ export const variant2Steps: Step[] = [
 			text: 'Nakonec obarvíme vrchol WS barvou jeho sousedního vrcholu ES (modrou).',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'blue' } : v
+					v.id === 'WS' ? { ...v, color: 'cyan' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -424,7 +424,7 @@ export const variant2Steps: Step[] = [
 			text: 'Obarvíme vrchol SN modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'blue' } : v
+					v.id === 'SN' ? { ...v, color: 'cyan' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -433,7 +433,7 @@ export const variant2Steps: Step[] = [
 			text: 'Obarvíme vrchol ES zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'green' } : v
+					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -451,7 +451,7 @@ export const variant2Steps: Step[] = [
 			text: 'Nakonec obarvíme vrchol WS barvou jeho sousedního vrcholu (modrou).',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'blue' } : v
+					v.id === 'WS' ? { ...v, color: 'cyan' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -524,7 +524,7 @@ export const variant3Steps: Step[] = [
 			text: 'Obarvíme vrchol SN zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'green' } : v
+					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -533,7 +533,7 @@ export const variant3Steps: Step[] = [
 			text: 'Obarvíme vrchol ES modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'blue' } : v
+					v.id === 'ES' ? { ...v, color: 'cyan' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -600,7 +600,7 @@ export const variant3Steps: Step[] = [
 			text: 'Obarvíme vrchol SN modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'blue' } : v
+					v.id === 'SN' ? { ...v, color: 'cyan' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -609,7 +609,7 @@ export const variant3Steps: Step[] = [
 			text: 'Obarvíme vrchol ES zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'green' } : v
+					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -627,7 +627,7 @@ export const variant3Steps: Step[] = [
 			text: 'Nakonec frakcionálně obarvíme vrchol WS - z poloviny červeně a z poloviny modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'linear-gradient(90deg, red 50%, blue 50%)' } : v
+					v.id === 'WS' ? { ...v, color: 'linear-gradient(90deg, red 50%, cyan 50%)' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -700,7 +700,7 @@ export const variant4Steps: Step[] = [
 			text: 'Obarvíme vrchol SN zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'green' } : v
+					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -709,7 +709,7 @@ export const variant4Steps: Step[] = [
 			text: 'Obarvíme vrchol ES modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'blue' } : v
+					v.id === 'ES' ? { ...v, color: 'cyan' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -727,7 +727,7 @@ export const variant4Steps: Step[] = [
 			text: 'Obarvíme vrchol WS barvou jeho sousedniho vrcholu ES, modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'blue' } : v
+					v.id === 'WS' ? { ...v, color: 'cyan' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -776,7 +776,7 @@ export const variant4Steps: Step[] = [
 			text: 'Obarvíme vrchol SN modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'blue' } : v
+					v.id === 'SN' ? { ...v, color: 'cyan' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -785,7 +785,7 @@ export const variant4Steps: Step[] = [
 			text: 'Obarvíme vrchol ES zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'green' } : v
+					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -803,7 +803,7 @@ export const variant4Steps: Step[] = [
 			text: 'Nakonec obarvíme vrchol WS barvou jeho sousedního vrcholu ES, zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'green' } : v
+					v.id === 'WS' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -876,7 +876,7 @@ export const variant5Steps: Step[] = [
 			text: 'Obarvíme vrchol SN zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'green' } : v
+					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -885,7 +885,7 @@ export const variant5Steps: Step[] = [
 			text: 'Obarvíme vrchol ES zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'green' } : v
+					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -952,7 +952,7 @@ export const variant5Steps: Step[] = [
 			text: 'Obarvíme vrchol SN pouze zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'green' } : v
+					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -961,7 +961,7 @@ export const variant5Steps: Step[] = [
 			text: 'Obarvíme vrchol ES zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'green' } : v
+					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}

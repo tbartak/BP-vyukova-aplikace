@@ -281,7 +281,7 @@ const tutorialSteps: Step[] = [
 			text: 'Barvení vrcholů: Přesuneme se na vrchol ES. Tento vrchol sousedí s vrcholem NE, který je již obarven červeně, proto musíme zvolit jinou barvu. Vybereme tedy zelenou barvu.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'green' } : v
+					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			},
@@ -290,7 +290,7 @@ const tutorialSteps: Step[] = [
 			text: 'Barvení vrcholů: Vrchol SW sousedí jak s vrcholem ES, tak s vrcholem NS, které jsou již obarveny. Proto musíme zvolit jinou barvu (libovolnou mimo červenou a zelenou). Vybereme tedy modrou barvu.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SW' ? { ...v, color: 'blue' } : v
+					v.id === 'SW' ? { ...v, color: 'cyan' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			},
@@ -299,7 +299,7 @@ const tutorialSteps: Step[] = [
 			text: 'Barvení vrcholů: Poslední v pořadí je vrchol WN, ten sousedí s vrcholy NE a NS (červené), proto tedy musíme zvolit jinou barvu (libovolnou mimo červenou), opět se snažíme zvolit takovou barvu, aby počet barev na obarvení grafu byl nejmenší. Volíme tedy pro vrchol WN barvu zelenou.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WN' ? { ...v, color: 'green' } : v
+					v.id === 'WN' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			},
@@ -361,7 +361,7 @@ const tutorialSteps: Step[] = [
 			text: 'Na základě nezávislých množin bude frakcionálně obarven vrchol NS barvou, která je přiřazená množině S1 a S2, tedy červená a zelená. Tento vrchol bude tedy z poloviny obarvený červeně a z poloviny zeleně, což reprezentuje jeho podíl v nezávislých množinách S1 a S2.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'NS' ? { ...v, color: 'linear-gradient(90deg, red 50%, green 50%)' } : v
+					v.id === 'NS' ? { ...v, color: 'linear-gradient(90deg, red 50%, yellowgreen 50%)' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -370,7 +370,7 @@ const tutorialSteps: Step[] = [
 			text: 'Podobným způsobem jsme schopni obarvit také zbylé vrcholy, například vrchol NE patří do nezávislých množin S1 a S3, které mají přiřazeny červenou a modrou barvu. Obarvíme tento vrchol tedy frakcionálně červenou a modrou barvou.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'NE' ? { ...v, color: 'linear-gradient(90deg, red 50%, blue 50%)' } : v
+					v.id === 'NE' ? { ...v, color: 'linear-gradient(90deg, red 50%, cyan 50%)' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -379,7 +379,7 @@ const tutorialSteps: Step[] = [
 			text: 'Dále vrchol ES patří do nezávislých množin S2 a S4, které mají přiřazeny zelenou a žlutou barvu. Obarvíme tento vrchol tedy frakcionálně zelenou a žlutou barvou.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'linear-gradient(90deg, green 50%, yellow 50%)' } : v
+					v.id === 'ES' ? { ...v, color: 'linear-gradient(90deg, yellowgreen 50%, yellow 50%)' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -388,7 +388,7 @@ const tutorialSteps: Step[] = [
 			text: 'Dále vrchol SW patří do nezávislých množin S3 a S5, které mají přiřazeny modrou a fialovou barvu. Obarvíme tento vrchol tedy frakcionálně modrou a fialovou barvou.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SW' ? { ...v, color: 'linear-gradient(90deg, blue 50%, purple 50%)' } : v
+					v.id === 'SW' ? { ...v, color: 'linear-gradient(90deg, cyan 50%, mediumpurple 50%)' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -397,7 +397,7 @@ const tutorialSteps: Step[] = [
 			text: 'Nakonec vrchol WN patří do nezávislých množin S4 a S5, které mají přiřazeny žlutou a fialovou barvu. Obarvíme tento vrchol tedy frakcionálně žlutou a fialovou barvou.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WN' ? { ...v, color: 'linear-gradient(90deg, yellow 50%, purple 50%)' } : v
+					v.id === 'WN' ? { ...v, color: 'linear-gradient(90deg, yellow 50%, mediumpurple 50%)' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}

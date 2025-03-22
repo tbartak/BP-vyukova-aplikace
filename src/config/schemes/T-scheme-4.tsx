@@ -121,7 +121,7 @@ export const variant1Steps: Step[] = [
 			text: 'Obarvíme vrchol SW zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SW' ? { ...v, color: 'green' } : v
+					v.id === 'SW' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -130,7 +130,7 @@ export const variant1Steps: Step[] = [
 			text: 'Obarvíme vrchol SE zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SE' ? { ...v, color: 'green' } : v
+					v.id === 'SE' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -179,7 +179,7 @@ export const variant1Steps: Step[] = [
 			text: 'Obarvíme vrchol, dle barev nezávislých množin, WE zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WE' ? { ...v, color: 'green' } : v
+					v.id === 'WE' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -274,7 +274,7 @@ export const variant2Steps: Step[] = [
 			text: 'Obarvíme vrchol SW zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SW' ? { ...v, color: 'green' } : v
+					v.id === 'SW' ? { ...v, color: 'yellowgreen' } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -332,7 +332,7 @@ export const variant2Steps: Step[] = [
 			text: 'Obarvíme vrchol, dle barev nezávislých množin, WE zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WE' ? { ...v, color: 'green' } : v
+					v.id === 'WE' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}

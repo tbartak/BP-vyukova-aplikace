@@ -153,7 +153,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 						const pos1 = matches[2] || '33';
 						
 						// Druhá barva a pozice  
-						const color2 = matches[3] || 'blue';
+						const color2 = matches[3] || 'cyan';
 						const pos2 = matches[4] || '66';
 						
 						// Třetí barva a pozice (pokud existuje)
@@ -198,7 +198,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 							
 						gradient.append('stop')
 							.attr('offset', '50%')
-							.attr('stop-color', 'blue');
+							.attr('stop-color', 'cyan');
 					}
 					
 					return `url(#${gradientId})`;
