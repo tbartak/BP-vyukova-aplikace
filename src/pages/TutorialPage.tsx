@@ -310,8 +310,8 @@ const tutorialSteps: Step[] = [
 				...graph,
 				edges: [
 					...graph.edges, 
-					{ source: 'NS', target: 'ES', type: 'weak' }, 
-					{ source: 'SW', target: 'WN', type: 'weak' }
+					{ source: 'NS', target: 'ES', type: 'weak', value: 0.2 }, 
+					{ source: 'SW', target: 'WN', type: 'weak', value: 0.3 }
 				]
 			}),
 		},
@@ -409,8 +409,8 @@ const tutorialSteps: Step[] = [
 				...graph,
 				edges: [
 					...graph.edges, 
-					{ source: 'NS', target: 'ES', type: 'weak' },
-					{ source: 'SW', target: 'WN', type: 'weak' }
+					{ source: 'NS', target: 'ES', type: 'weak', value: 0.2 },
+					{ source: 'SW', target: 'WN', type: 'weak', value: 0.3 }
 				]
 			}),
 		},
