@@ -331,12 +331,12 @@ const tutorialSteps: Step[] = [
 			text: 'Reset grafu: Odstraníme aktuální barvy vrcholů a hran a odstraníme slabou hranu mezi ES a NS a také hranu mezi SW a WN pro názornost.',
 			noNumber: true,
 			action: (graph: Graph) => {
-				// Vrátíme každému vrcholu neobarvený stav (odstraníme vlastnost color)
+				// Odstranění barvy všech vrcholů
 				const resetVertices = graph.vertices.map(v => {
-					const { color, ...rest } = v;  // odstraníme color
+					const { color, ...rest } = v;
 					return rest;
 				});
-				// Odstraníme barvy u hran a specificky i hranu mezi ES a NS (v obou směrech)
+				// Odstranění hrany mezi ES a NS a také SW a WN (v obou směrech)
 				const resetEdges = graph.edges
 					.filter(e => !( (e.source === 'ES' && e.target === 'NS') || (e.source === 'NS' && e.target === 'ES') || (e.source === 'SW' && e.target === 'WN') || (e.source === 'WN' && e.target === 'SW') ))
 					.map(e => {
@@ -346,7 +346,7 @@ const tutorialSteps: Step[] = [
 				return { ...graph, vertices: resetVertices, edges: resetEdges };
 			},
 		},
-		{ // TODO: možná by stálo za to ty kroky nějak odlišit, jestli normální barvení nebo frakcionální, například krok 44a/44b? [[0, 1], [0, 3], [1, 2], [2, 4], [3, 4]] 
+		{ // TODO: možná by stálo za to ty kroky nějak odlišit, jestli normální barvení nebo frakcionální, například krok 44a/44b?
 			text: 'Nezávislé množiny: Určíme tedy nezávislé množiny mezi silně sousedícími vrcholy (vrcholy, které nejsou mezi sebou přímo spojené hranou), S1 = {NS, NE}, S2 = {NS, ES}, S3 = {NE, SW}, S4 = {ES, WN}, S5 = {SW, WN}. Každé takové nezávislé množině přidělíme jednu barvu. Zvolíme například červenou pro S1, zelenou pro S2, modrou pro S3, žlutou pro S4 a fialovou pro S5.',
 		},
 		{
@@ -455,7 +455,7 @@ export default function TutorialPage() {
         Tutoriál
       </Typography>
       <Typography variant="body1" gutterBottom>
-        Tento tutoriál vás provede tvorbou grafu na základě schématu křižovatky. V pravé části můžete sledovat aktuální podobu grafu.
+				Tento tutoriál slouží k seznámení se s tvorbou grafů ze schématu křižovatky. Aktuální podobu grafu lze sledovat v pravé části.
       </Typography>
       <Box sx={{ mt: 4, textAlign: 'center', flexDirection: 'row', display: 'flex', gap: 4 }}>
 				<Box sx={{ flex: 1 }}>

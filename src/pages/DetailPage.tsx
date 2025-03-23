@@ -6,7 +6,6 @@ import { Graph } from '../config/variants'
 import IntersectionGraph from '../components/IntersectionGraph'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
 
-// TODO: bylo by fajn, aby nahoře někde třeba vlevo nahoře v rohu byla nějaká navigace, například typ X > schéma 2 > varianta 3, aby zároveň bylo vidět, co si uživatel zvolil a zároveň, aby si mohl jednoduše zvolit úroveň, kde si chce vybrat nějakou jinou křižovatku
 export default function DetailPage() {
   const { selectedVariant } = useContext(AppContext)
   const [graph, setGraph] = useState<Graph>({ vertices: [], edges: [] })
@@ -19,7 +18,7 @@ export default function DetailPage() {
     )
   }
 
-  // Funkce, která odpočítá graf od počátku až po daný krok.
+  // Funkce, která přepočítá graf
   const recalcGraph = (stepIndex: number): Graph => {
     let newGraph: Graph = { vertices: [], edges: [] }
     for (let i = 0; i <= stepIndex; i++) {
@@ -31,7 +30,7 @@ export default function DetailPage() {
     return newGraph
   }
 
-  // Memoizovaná funkce, která při změně kroku přepočítá graf od počátku.
+  // Memoizovaná funkce, která při změně kroku přepočítá graf
   const handleStepChange = useCallback((stepIndex: number) => {
     const newGraph = recalcGraph(stepIndex)
     setGraph(newGraph)

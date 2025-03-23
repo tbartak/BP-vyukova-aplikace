@@ -1,6 +1,6 @@
 import { Step, Graph } from './variants';  
   
-// Pomocná funkce pro číslování kroků
+// Pomocná funkce pro vytvoření daného kroku
 function createStep(
 	variantId: string, 
 	stepNum: number, 
@@ -18,14 +18,14 @@ function createStep(
 		action
 	};
 }
-  
+
 // Funkce pro vytváření kroků s automatickým číslováním
 export function createSteps(
 	variantId: string,
 	descriptions: Array<{
 		text: string,
 		noNumber?: boolean, // true pokud nechceme číslo v popisu
-		action?: (graph: Graph) => Graph
+		action?: (graph: Graph) => Graph // optional, může být jen popis
 	}>,
 	options?: {
 		startStepNum?: number,  // počáteční hodnota pro ID kroků
@@ -33,14 +33,13 @@ export function createSteps(
 	}
 ): Step[] {
 	let stepCounter = options?.startStepNum ?? 1; // počítadlo pro ID, výchozí 1 nebo zadaná hodnota
-	let displayCounter = options?.startDisplayNum ?? 0; // počítadlo pro zobrazovaná čísla
+	let displayCounter = options?.startDisplayNum ?? 1; // počítadlo pro zobrazovaná čísla, výchozí 1 nebo zadaná hodnota
 	
 	return descriptions.map(item => {
-		if (!item.noNumber) displayCounter++;
 		const step = createStep(
 			variantId,
 			stepCounter++,
-			item.noNumber ? null : displayCounter,
+			item.noNumber ? null : displayCounter++,
 			item.text,
 			item.action
 		);
@@ -48,7 +47,7 @@ export function createSteps(
 	});
 }
 
-// Pomocná funkce pro získání počtu kroků a číslovaných kroků
+// Pomocná funkce pro získání počtu kroků a číslovaných kroků, aby bylo možné vytvořit společné kroky a na ně číselně navázat kroky specifické pro dané schéma
 export function getStepCounts(steps: Step[]): { totalSteps: number, numberedSteps: number } {
   const totalSteps = steps.length;
   const numberedSteps = steps.filter(step => 
