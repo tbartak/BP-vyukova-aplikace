@@ -10,27 +10,38 @@ interface WizardProps {
 
 export default function Wizard({ steps, onStepChange }: WizardProps) {
   const [currentStep, setCurrentStep] = useState(0)
+  const [isDescriptionPhase, setIsDescriptionPhase] = useState(true) // Fáze popisu, aby bylo možné kroky, které mají zároveň popis i akci na "dva" kroky
 
   // Zavoláme akci při každé změně kroku
   useEffect(() => {
-    if (onStepChange) {
-      onStepChange(currentStep) // TODO: nepřesunout sem samotný kód pro změnu kroku?
+    if (onStepChange && !isDescriptionPhase) {
+      onStepChange(currentStep)
     }
-  }, [currentStep, onStepChange])
+  }, [currentStep, onStepChange, isDescriptionPhase])
 
   const goNext = () => {
-    if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1)
+    if (isDescriptionPhase && steps[currentStep].action) { // Pokud má daný krok i akci, tak ji provedeme
+      setIsDescriptionPhase(false)
+    } else { // Další krok
+      if (currentStep < steps.length - 1) {
+        setCurrentStep(currentStep + 1)
+        setIsDescriptionPhase(true) // Popis je vždy jako první u daného kroku
+      }
     }
   }
 
   const goPrev = () => {
-    if (currentStep > 0) {
-      setCurrentStep(currentStep - 1)
+    if (!isDescriptionPhase) { // Pokud jsme v akci, tak se vrátíme zpět na popis
+      setIsDescriptionPhase(true)
+    } else {
+      if (currentStep > 0) {
+        setCurrentStep(currentStep - 1)
+        const hasAction = steps[currentStep - 1].action !== undefined 
+        setIsDescriptionPhase(!hasAction) // Vrácení na předchozí krok, podle toho jestli má akci nebo pouze popis
+      }
     }
   }
 
-  // TODO: zajistit, aby délka kroků neovlivňovala pozici ostatních prvků na stránce
   return (
     <Box sx={{ 
       display: 'flex',
