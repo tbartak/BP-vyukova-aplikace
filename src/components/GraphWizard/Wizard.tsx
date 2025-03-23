@@ -42,6 +42,41 @@ export default function Wizard({ steps, onStepChange }: WizardProps) {
     }
   }
 
+  // Navigace mezi kroky pomocí šipek
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      // Odstranění výchozího chování šipek
+      if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown'].includes(event.key)) {
+        event.preventDefault();
+      }
+
+      // Navigace pomocí šipek
+      switch (event.key) {
+        case 'ArrowRight':
+        case 'ArrowUp':
+          if (currentStep < steps.length - 1) {
+            goNext();
+          }
+          break;
+        case 'ArrowLeft':
+        case 'ArrowDown':
+          if (currentStep > 0) {
+            goPrev();
+          }
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    // Odstranění event listeneru, když se komponenta přestane používat
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [currentStep, isDescriptionPhase, steps]);
+
   return (
     <Box sx={{ 
       display: 'flex',
@@ -64,7 +99,7 @@ export default function Wizard({ steps, onStepChange }: WizardProps) {
         )}
         {currentStep < steps.length - 1 && (
           <Button variant="contained" onClick={goNext}>
-            Další
+            {isDescriptionPhase && steps[currentStep].action ? "Provést akci" : "Další"}
           </Button>
         )}
       </Box>
