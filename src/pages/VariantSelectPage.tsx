@@ -71,7 +71,7 @@ export default function VariantSelectPage() {
             }}
           >
             <img
-              src={`/imgs/${variant.id}.jpg`}
+              src={`/imgs/${variant.id}.png`}
               alt={variant.name}
               style={{ width: '200px', height: 'auto' }}
             />

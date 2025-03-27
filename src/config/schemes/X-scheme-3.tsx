@@ -6,7 +6,6 @@ const variant1Id = 'X-scheme-3-var-1'
 const variant2Id = 'X-scheme-3-var-2'
 const variant3Id = 'X-scheme-3-var-3'
 const variant4Id = 'X-scheme-3-var-4'
-const variant5Id = 'X-scheme-3-var-5' // TODO: dočasně navíc, spolu s tím nakonec odstranit i obrázek schématu kdyžtak a nebo vyměnit za jinou z variant
 
 // Vrcholy jsou totožné pro všechny varianty X-scheme-3
 const createVertices = (graph: Graph): Graph => ({
@@ -105,14 +104,12 @@ const commonStepsVar1 = createCommonSteps(variant1Id);
 const commonStepsVar2 = createCommonSteps(variant2Id);
 const commonStepsVar3 = createCommonSteps(variant3Id);
 const commonStepsVar4 = createCommonSteps(variant4Id);
-const commonStepsVar5 = createCommonSteps(variant5Id); // TODO: dočasně navíc
 
 // Získání počtu kroků v společné části
 const { totalSteps: var1TotalSteps, numberedSteps: var1NumberedSteps } = getStepCounts(commonStepsVar1);
 const { totalSteps: var2TotalSteps, numberedSteps: var2NumberedSteps } = getStepCounts(commonStepsVar2);
 const { totalSteps: var3TotalSteps, numberedSteps: var3NumberedSteps } = getStepCounts(commonStepsVar3);
 const { totalSteps: var4TotalSteps, numberedSteps: var4NumberedSteps } = getStepCounts(commonStepsVar4);
-const { totalSteps: var5TotalSteps, numberedSteps: var5NumberedSteps } = getStepCounts(commonStepsVar5); // TODO: dočasně navíc
 
 // Varianta 1
 export const variant1Steps: Step[] = [
@@ -448,10 +445,10 @@ export const variant2Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Nakonec obarvíme vrchol WS barvou jeho sousedního vrcholu (modrou).',
+			text: 'Nakonec obarvíme vrchol WS barvou jeho sousedního vrcholu (zelenou).',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'cyan' } : v
+					v.id === 'WS' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -818,187 +815,10 @@ export const variant4Steps: Step[] = [
 	})
 ];
 
-// Varianta 5 // TODO: dočasně navíc
-export const variant5Steps: Step[] = [ 
-  ...commonStepsVar5,
-	...createSteps(variant5Id, [
-		{
-			text: 'Ohodnotíme hrany podle pravděpodobnosti kolize.',
-			action: (graph: Graph) => {
-				// Ohodnocení všech hran najednou pro názornost
-				const edgesWithValues = graph.edges.map(e => {
-					// Přiřadíme hodnoty podle páru vrcholů
-					if (e.source === 'NE' && e.target === 'ES') return { ...e, value: 0.45 }
-					if (e.source === 'NE' && e.target === 'SN') return { ...e, value: 0.55 }
-					if (e.source === 'NE' && e.target === 'WE') return { ...e, value: 0.15 } // L/H
-					if (e.source === 'ES' && e.target === 'SN') return { ...e, value: 0.2 } // L/H pro ukázku výhody když neobsahuje trojúhelník
-					if (e.source === 'ES' && e.target === 'WE') return { ...e, value: 0.35 }
-					if (e.source === 'ES' && e.target === 'WS') return { ...e, value: 0.45 } // L/H
-					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.4 }
-					return { ...e, value: 0.5 } // výchozí hodnota
-				})
-				return { ...graph, edges: edgesWithValues }
-			}
-		},
-		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
-			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě jsou slabě sousedící dvojice vrcholů NE a WE a také ES a SN.',
-			action: (graph: Graph) => {
-				const edgesWithType = graph.edges.map(e => {
-					const sourceVertex = graph.vertices.find(v => v.id === e.source);
-					const targetVertex = graph.vertices.find(v => v.id === e.target);
-					
-					if (sourceVertex?.value && targetVertex?.value) {
-						const minVertexValue = Math.min(sourceVertex.value, targetVertex.value);
-						if (e.value && e.value < minVertexValue / 2) {
-							return { ...e, type: 'weak' as const };
-						}
-					}
-					return { ...e, type: 'strong' as const };
-				});
-				
-				return { ...graph, edges: edgesWithType };
-			}
-		},
-		{
-			text: 'Dále je možné graf začít barvit jako u klasických grafů.',
-			noNumber: true
-		},
-		{
-			text: 'Obarvíme vrchol WE červeně.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'WE' ? { ...v, color: 'red' } : v
-				)
-				return { ...graph, vertices: newVertices }
-			}
-		},
-		{
-			text: 'Obarvíme vrchol SN zeleně.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
-				)
-				return { ...graph, vertices: newVertices }
-			}
-		},
-		{
-			text: 'Obarvíme vrchol ES zeleně.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
-				)
-				return { ...graph, vertices: newVertices }
-			}
-		},
-		{
-			text: 'Obarvíme vrchol NE červeně.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'NE' ? { ...v, color: 'red' } : v
-				)
-				return { ...graph, vertices: newVertices }
-			}
-		},
-		{
-			text: 'Nakonec obarvíme vrchol WS červeně.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'red' } : v
-				)
-				return { ...graph, vertices: newVertices }
-			}
-		},
-		{
-			text: 'Graf je nyní kompletně obarven a má chromatické číslo 2.',
-			noNumber: true,
-			action: (graph: Graph) => {
-				return graph;
-			}
-		},
-		{
-			text: 'Dále graf zkusíme obarvit ještě frakcionálně, což může pomoct nalézt optimálnější řešení nastavení křižovatky.',
-			noNumber: true,
-		},
-		{
-			text: 'Reset barev: Vrátíme se do stavu před barvením a aplikujeme frakcionální barvení.',
-			noNumber: true,
-			action: (graph: Graph) => {
-				// Reset barev všech vrcholů
-				const resetVertices = graph.vertices.map(v => {
-					const { color, ...rest } = v;
-					return rest;
-				});
-				return { ...graph, vertices: resetVertices };
-			}
-		},
-		{
-			text: 'Nejprve identifikujeme nezávislé množiny mezi silně sousedícími vrcholy v grafu: S1 = {NE, WE, WS}, S2 = {ES, SN}, S3 = {SN, WS}. Nezávislé množiny jsou skupiny vrcholů, které nejsou spojeny hranou. Pro každou z nich zvolíme jednu barvu, například pro S1 červenou, pro S2 zelenou a pro S3 modrou.',
-			noNumber: true
-		},
-		{
-			text: 'Následně přiřadíme každé nezávislé množině zlomek tak, aby každý vrchol byl dostatečně obarven. Tento krok je řešen simplexovou metodou lineárního programování, viz. http://patrikes.explonetwork.eu/learn/linear',
-			noNumber: true
-		},
-		{
-			text: 'Ze simplexové metody vzešlo, že nezávislá množina pro optimální řešení není potřebná. Obarvíme vrchol WE červenou..',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'WE' ? { ...v, color: 'red' } : v
-				);
-				return { ...graph, vertices: newVertices };
-			}
-		},
-		{
-			text: 'Obarvíme vrchol SN pouze zeleně.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
-				);
-				return { ...graph, vertices: newVertices };
-			}
-		},
-		{
-			text: 'Obarvíme vrchol ES zeleně.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: 'yellowgreen' } : v
-				);
-				return { ...graph, vertices: newVertices };
-			}
-		},
-		{
-			text: 'Obarvíme vrchol NE červeně.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'NE' ? { ...v, color: 'red' } : v
-				);
-				return { ...graph, vertices: newVertices };
-			}
-		},
-		{
-			text: 'Nakonec obarvíme také vrchol WS pouze červenou barvou.',
-			action: (graph: Graph) => {
-				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'red' } : v
-				);
-				return { ...graph, vertices: newVertices };
-			}
-		},
-		{
-			text: 'Graf je nyní obarven, avšak frakcionální barvení použito nebylo, protože nepřináší optimálnější řešení. Graf s kružnicí o sudém počtu vrcholů nelze obarvit menším počtem barev, než právě 2. Jeho chromatické číslo tedy zůstává 2.', 
-			noNumber: true
-		}
-	], {
-		startStepNum: var5TotalSteps + 1, // Začátek číslování kroků pro tuto variantu
-		startDisplayNum: var5NumberedSteps // Začátek číslování zobrazených kroků pro tuto variantu
-	})
-];
-
 // Export všech variant pro použití v hlavním konfiguračním souboru 
 export const X_scheme_3_variants = {
   [variant1Id]: variant1Steps,
 	[variant2Id]: variant2Steps,
 	[variant3Id]: variant3Steps,
 	[variant4Id]: variant4Steps,
-	[variant5Id]: variant5Steps // TODO: dočasně navíc
 }

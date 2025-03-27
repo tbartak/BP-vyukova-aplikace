@@ -12,7 +12,7 @@ export default function Wizard({ steps, onStepChange }: WizardProps) {
   const [currentStep, setCurrentStep] = useState(0)
   const [isDescriptionPhase, setIsDescriptionPhase] = useState(true) // Fáze popisu, aby bylo možné kroky, které mají zároveň popis i akci na "dva" kroky
 
-  // Zavoláme akci při každé změně kroku
+  // Zavoláme akci při každé změně kroku // TODO: přidat případně do BP dokumentace změny pro goNext, goPrev a navigaci šipkami
   useEffect(() => {
     if (onStepChange && !isDescriptionPhase) {
       onStepChange(currentStep)

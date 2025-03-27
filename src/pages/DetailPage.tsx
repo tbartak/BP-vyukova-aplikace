@@ -48,7 +48,7 @@ export default function DetailPage() {
 						Zvolená varianta křižovatky:
 					</Typography>
 					<img
-						src={`/imgs/${selectedVariant.id}.jpg`}
+						src={`/imgs/${selectedVariant.id}.png`}
 						alt="Zvolená varianta křižovatky"
 						style={{ width: '400px' }}
 					/>

@@ -62,7 +62,7 @@ export default function SchemeSelectPage() {
             }}
           >
             <img
-              src={`/imgs/${scheme.id}.jpg`}
+              src={`/imgs/${scheme.id}.png`}
               alt={scheme.name}
               style={{ width: '200px', height: 'auto' }}
             />

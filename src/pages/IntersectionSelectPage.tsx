@@ -44,7 +44,7 @@ export default function IntersectionSelectPage() {
           sx={{ flexDirection: 'column', p: 2 }}
         >
           <img
-            src="/imgs/T-type.jpg"
+            src="/imgs/T-type.png"
             alt="Křižovatka typu T"
             style={{ width: '200px' }}
           />
@@ -56,7 +56,7 @@ export default function IntersectionSelectPage() {
           sx={{ flexDirection: 'column', p: 2 }}
         >
           <img
-            src="/imgs/X-type.jpg"
+            src="/imgs/X-type.png"
             alt="Křižovatka typu X"
             style={{ width: '200px' }}
           />
