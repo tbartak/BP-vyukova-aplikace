@@ -976,7 +976,7 @@ export const variant4Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Vrcholy SE a EN jsou obarveny frakcionálně, oba vrcholy jsou obarveny z poloviny červeně a z poloviny zeleně, každá barva má váhu 0,5. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
+			text: 'Graf je nyní frakcionálně obarven. Vrcholy SN a EN jsou obarveny frakcionálně, oba vrcholy jsou obarveny z poloviny červeně a z poloviny zeleně, každá barva má váhu 0,5. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
 			noNumber: true
 		}
 	], {
