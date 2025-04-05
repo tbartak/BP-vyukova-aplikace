@@ -64,7 +64,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
         onEdgeHover(null);
       });
 
-		// Vytvoříme nejprve skupinu pro pozadí textů (budou pod hranami) // TODO: teoreticky se zamyslet nad něčím jiným pro hrany, ale prozatím funkční
+		// Vytvoříme nejprve skupinu pro pozadí textů (budou pod hranami) // TODO: teoreticky se zamyslet nad něčím jiným pro hrany, ale prozatím funkční, případně je možné asi úplně odstranit kvůli seznamu hran se zvýrazněním
     const labelBackgroundGroup = svg.append('g').attr('class', 'label-backgrounds');
     
     // Pak skupinu pro hrany (ty už jsou vykreslené)
@@ -256,24 +256,6 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
 			.attr('fill', 'black')
 
   }, [graph, hoveredEdgeId, onEdgeHover])
-
-	// Druhý useEffect pro aktualizaci vizuálních aspektů při změně hoveredEdgeId
-  useEffect(() => {
-    if (!svgRef.current || !hoveredEdgeId) return;
-    
-    // Aktualizace tloušťky hran podle hoveredEdgeId
-    d3.select(svgRef.current)
-      .selectAll('line')
-      .attr('stroke-width', d => {
-        const edgeId = `${d.source}-${d.target}`;
-        return edgeId === hoveredEdgeId ? 4 : 2;
-      })
-      .attr('stroke-opacity', d => {
-        const edgeId = `${d.source}-${d.target}`;
-        return edgeId === hoveredEdgeId ? 1 : 0.8;
-      });
-      
-  }, [hoveredEdgeId]);
 
   return <svg ref={svgRef} />
 }
