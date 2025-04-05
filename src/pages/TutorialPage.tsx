@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
 import { createSteps } from '../config/scheme_utils'
+import EdgeList from '../components/EdgeList'
 
-// TODO: Probrat, jestli by bylo lepší vždycky prvně uvést popisek a pak po kliknutí na další teprve upravit graf, takže jakoby každý krok rozdělit na dva, v jednom by se jenom změnil text, ve druhým zůstane description stejnej, ale přidá se akce
 const tutorialSteps: Step[] = [
 	...createSteps('tut', [
 		{
@@ -160,16 +160,7 @@ const tutorialSteps: Step[] = [
 			},
 		},
 		{
-			text: 'Ohodnocení hran: Začneme ohodnocením hrany mezi vrcholy NS a ES. Vzhledem k tomu, že se průjezd ES pouze připojuje k NS, tak hrana bude ohodnocena například hodnotou 0.2, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do S a ze směru E do S je velmi nízká.',
-			action: (graph: Graph) => {
-				const newEdges = graph.edges.map(e =>
-					(e.source === 'NS' && e.target === 'ES') ? { ...e, value: 0.2 } : e
-				)
-				return { ...graph, edges: newEdges }
-			},
-		},
-		{
-			text: 'Ohodnocení hran: Hrana mezi vrcholy NS a SW se kříží, proto bude ohodnocena hodnotou 0.7, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do S a ze směru S do W je vysoká.',
+			text: 'Ohodnocení hran: Začneme ohodnocením hrany mezi vrcholy NS a SW. Tyto průjezdy se kříží, proto bude ohodnocena hodnotou 0.7, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do S a ze směru S do W je vysoká.',
 			action: (graph: Graph) => {
 				const newEdges = graph.edges.map(e =>
 					(e.source === 'NS' && e.target === 'SW') ? { ...e, value: 0.7 } : e
@@ -178,7 +169,7 @@ const tutorialSteps: Step[] = [
 			},
 		},
 		{
-			text: 'Ohodnocení hran: Hrana mezi vrcholy NS a WN se kříží, proto bude ohodnocena hodnotou 0.65, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do S a ze směru W do N je vysoká.',
+			text: 'Ohodnocení hran: Průjezd mezi NS a WN se kříží, proto bude hrana ohodnocena hodnotou 0.65, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do S a ze směru W do N je vysoká.',
 			action: (graph: Graph) => {
 				const newEdges = graph.edges.map(e =>
 					(e.source === 'NS' && e.target === 'WN') ? { ...e, value: 0.65 } : e
@@ -187,7 +178,16 @@ const tutorialSteps: Step[] = [
 			},
 		},
 		{
-			text: 'Ohodnocení hran: Hrana mezi vrcholy NE a WN se kříží, proto bude ohodnocena hodnotou 0.65, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do E a ze směru W do N je vysoká.',
+			text: 'Ohodnocení hran: Hrana mezi vrcholy NS a ES, vzhledem k tomu, že se průjezd ES pouze připojuje k NS, tak hrana bude ohodnocena například hodnotou 0.2, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do S a ze směru E do S je velmi nízká.',
+			action: (graph: Graph) => {
+				const newEdges = graph.edges.map(e =>
+					(e.source === 'NS' && e.target === 'ES') ? { ...e, value: 0.2 } : e
+				)
+				return { ...graph, edges: newEdges }
+			},
+		},
+		{
+			text: 'Ohodnocení hran: Průjezd mezi NE a WN se kříží, proto bude hrana ohodnocena hodnotou 0.65, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do E a ze směru W do N je vysoká.',
 			action: (graph: Graph) => {
 				const newEdges = graph.edges.map(e =>
 					(e.source === 'NE' && e.target === 'WN') ? { ...e, value: 0.65 } : e
@@ -196,7 +196,7 @@ const tutorialSteps: Step[] = [
 			},
 		},
 		{
-			text: 'Ohodnocení hran: Hrana mezi vrcholy NE a ES se kříží, proto bude ohodnocena hodnotou 0.5, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do E a ze směru E do S je střední.',
+			text: 'Ohodnocení hran: Průjezd mezi NE a ES se kříží, proto bude hrana ohodnocena hodnotou 0.5, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru N do E a ze směru E do S je střední.',
 			action: (graph: Graph) => {
 				const newEdges = graph.edges.map(e =>
 					(e.source === 'NE' && e.target === 'ES') ? { ...e, value: 0.5 } : e
@@ -205,7 +205,7 @@ const tutorialSteps: Step[] = [
 			},
 		},
 		{
-			text: 'Ohodnocení hran: Hrana mezi vrcholy ES a SW se kříží, proto bude ohodnocena hodnotou 0.4, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru E do S a ze směru S do W je střední.',
+			text: 'Ohodnocení hran: Průjezd mezi ES a SW se kříží, proto bude hrana ohodnocena hodnotou 0.4, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru E do S a ze směru S do W je střední.',
 			action: (graph: Graph) => {
 				const newEdges = graph.edges.map(e =>
 					(e.source === 'ES' && e.target === 'SW') ? { ...e, value: 0.4 } : e
@@ -214,7 +214,7 @@ const tutorialSteps: Step[] = [
 			},
 		},
 		{
-			text: 'Ohodnocení hran: Hrana mezi vrcholy SW a WN se kříží, proto bude ohodnocena hodnotou 0.3, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru S do W a ze směru W do N je nízká.',
+			text: 'Ohodnocení hran: Průjezd mezi SW a WN se kříží, proto bude hrana ohodnocena hodnotou 0.3, což znamená, že pravděpodobnost vzniku kolize mezi průjezdy křižovatkou ze směru S do W a ze směru W do N je nízká.',
 			action: (graph: Graph) => {
 				const newEdges = graph.edges.map(e =>
 					(e.source === 'SW' && e.target === 'WN') ? { ...e, value: 0.3 } : e
@@ -424,6 +424,12 @@ export default function TutorialPage() {
   const [graph, setGraph] = useState<Graph>({ vertices: [], edges: [] })
 	const navigate = useNavigate()
 	const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext);
+	const [hoveredEdgeId, setHoveredEdgeId] = useState<string | null>(null);	
+
+	// Handler pro změnu zvýrazněné hrany
+	const handleEdgeHover = useCallback((edgeId: string | null) => {
+		setHoveredEdgeId(edgeId);
+	}, []);
 
 	// Reset při načtení tutoriálu // TODO: teoreticky by nemuselo být potřeba, protože se vždy musí na tutoriál přes home, kde se to zresetuje, ale kdyby někdo šel přes odkaz, tak je to asi vhodné
   useEffect(() => {
@@ -436,8 +442,8 @@ export default function TutorialPage() {
     navigate(`/select-scheme/${type}`)
   }
 
-  const handleStepChange = useCallback((stepIndex: number) => {
-    // Znovuvytvoříme graf od začátku až do aktuálního kroku
+	// Funkce, která přepočítá graf
+  const recalcGraph = (stepIndex: number): Graph => {
     let newGraph: Graph = { vertices: [], edges: [] }
     for (let i = 0; i <= stepIndex; i++) {
       const step = tutorialSteps[i]
@@ -445,6 +451,11 @@ export default function TutorialPage() {
         newGraph = step.action(newGraph)
       }
     }
+    return newGraph
+  }
+
+  const handleStepChange = useCallback((stepIndex: number) => {
+    const newGraph = recalcGraph(stepIndex)
     setGraph(newGraph)
   }, [])
 
@@ -457,8 +468,9 @@ export default function TutorialPage() {
       <Typography variant="body1" gutterBottom>
 				Tento tutoriál slouží k seznámení se s tvorbou grafů ze schématu křižovatky. Aktuální podobu grafu lze sledovat v pravé části.
       </Typography>
-      <Box sx={{ mt: 4, textAlign: 'center', flexDirection: 'row', display: 'flex', gap: 4 }}>
-				<Box sx={{ flex: 1 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 1 }}>
+				{/* Křižovatka */}
+				<Box sx={{ width: '400px', textAlign: 'center' }}>
 					<Typography variant="h6" gutterBottom>
 						Původní schéma křižovatky:
 					</Typography>
@@ -468,46 +480,43 @@ export default function TutorialPage() {
 						style={{ width: '400px' }}
 					/>
 				</Box>
-				<Box sx={{ flex: 1, textAlign: 'center' }}>
-          <Typography variant="h6" gutterBottom>
-            Vizualizace grafu
-          </Typography>
-          <IntersectionGraph graph={graph} />
-        </Box>
+				{/* Vizualizace společně se seznamem hran */}
+				<Box sx={{ display: 'flex', flexDirection: 'row', gap: 0, width: '575px' }}>
+					{/* Vizualizace grafu */}
+					<Box sx={{ width: '400px', textAlign: 'center' }}>					
+						<Typography variant="h6" gutterBottom>
+							Vizualizace grafu
+						</Typography>
+						<IntersectionGraph 
+							graph={graph} 
+							hoveredEdgeId={hoveredEdgeId}
+							onEdgeHover={handleEdgeHover}	
+						/>
+					</Box>
+					{/* Seznam hran */}
+					<Box sx={{ width: '175px', textAlign: 'center' }}>
+						<Typography variant="h6" gutterBottom>
+							Seznam hran:
+						</Typography>
+						<EdgeList 
+							graph={graph} 
+							hoveredEdgeId={hoveredEdgeId}
+							onEdgeHover={handleEdgeHover}
+						/>
+					</Box>
+				</Box>
       </Box>
-			<Box sx={{ flex: 1 }}>
-				<Wizard steps={tutorialSteps} onStepChange={handleStepChange} />
+			<Box sx={{
+				width: '100%',
+				maxWidth: '975px',
+				mx: 'auto',
+				mt: 2
+			}}>
+				<Wizard
+					steps={tutorialSteps}
+					onStepChange={handleStepChange}
+				/>
 			</Box>
-			{/* TODO: zobrazit schémata křižovatek u posledního kroku, možná ani není potřeba, dostanou se tam přes domovskou obrazovku */}
-      {/* <Box sx={{ mt: 4, textAlign: 'center' }}>
-        <Typography variant="h6" gutterBottom>
-          Příklady schémat křižovatky:
-        </Typography>
-        <Button 
-          variant="outlined" 
-          onClick={() => handleTypeSelect('T')}
-          sx={{ flexDirection: 'column', p: 2, mr: 2 }}
-        >
-          <img
-            src="/imgs/T-type.png"
-            alt="Schéma křižovatky typu T"
-            style={{ width: '200px' }}
-          />
-          <Typography variant="button" sx={{mt: 1}}>Typ T</Typography>
-        </Button>
-        <Button 
-          variant="outlined" 
-          onClick={() => handleTypeSelect('X')}
-          sx={{ flexDirection: 'column', p: 2 }}
-        >
-          <img
-            src="/imgs/X-type.png"
-            alt="Schéma křižovatky typu X"
-            style={{ width: '200px' }}
-          />
-          <Typography variant="button" sx={{mt: 1}}>Typ X</Typography>
-        </Button>
-      </Box> */}
     </Box>
   )
 }
