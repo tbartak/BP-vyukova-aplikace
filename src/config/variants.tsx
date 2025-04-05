@@ -18,7 +18,6 @@ import { X_scheme_5_variants } from './schemes/X-scheme-5'
   export interface Edge {
     source: string
     target: string
-    color?: string
     value?: number
     type?: 'weak' | 'strong'
   }

@@ -1,10 +1,11 @@
 import { useContext, useState, useCallback } from 'react'
 import { AppContext } from '../context/AppContext'
 import Wizard from '../components/GraphWizard/Wizard'
-import { Box, Typography } from '@mui/material'
+import { Box, Typography, Grid } from '@mui/material'
 import { Graph } from '../config/variants'
 import IntersectionGraph from '../components/IntersectionGraph'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
+import EdgeList from '../components/EdgeList'
 
 export default function DetailPage() {
   const { selectedVariant } = useContext(AppContext)
@@ -42,8 +43,9 @@ export default function DetailPage() {
       <Typography variant="h4" gutterBottom>
         {selectedVariant.name}
       </Typography>
-			<Box sx={{ flexDirection: 'row', display: 'flex', gap: 4, textAlign: 'center', mt: 4 }}>
-				<Box sx={{ flex: 1 }}>
+			<Box sx={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: 1 }}>
+				{/* Křižovatka */}
+				<Box sx={{ width: '400px', textAlign: 'center' }}>
 					<Typography variant="h6" gutterBottom>
 						Zvolená varianta křižovatky:
 					</Typography>
@@ -53,16 +55,27 @@ export default function DetailPage() {
 						style={{ width: '400px' }}
 					/>
 				</Box>
-				<Box sx={{ flex: 1, textAlign: 'center' }}>
-					<Typography variant="h6" gutterBottom>
-						Vizualizace grafu:
-					</Typography>
-					<IntersectionGraph graph={graph} />
+				{/* Vizualizace společně se seznamem hran */}
+				<Box sx={{ display: 'flex', flexDirection: 'row', gap: 0, width: '575px' }}>
+					{/* Vizualizace grafu */}
+					<Box sx={{ width: '400px', textAlign: 'center' }}>
+						<Typography variant="h6" gutterBottom>
+							Vizualizace grafu:
+						</Typography>
+						<IntersectionGraph graph={graph} />
+					</Box>
+					{/* Seznam hran */}
+					<Box sx={{ width: '175px', textAlign: 'center' }}>
+						<Typography variant="h6" gutterBottom>
+							Seznam hran:
+						</Typography>
+						<EdgeList graph={graph} />
+					</Box>
 				</Box>
 			</Box>
 			<Box sx={{
 				width: '100%',
-				maxWidth: '830px',
+				maxWidth: '975px',
 				mx: 'auto',
 				mt: 2
 			}}>
