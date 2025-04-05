@@ -3,19 +3,16 @@ import { Box, List, ListItem, Typography, Paper } from '@mui/material';
 import { Graph, Edge } from '../config/variants';
 
 interface EdgeListProps {
-  graph: Graph;
+	graph: Graph;
+	hoveredEdgeId: string | null;
+	onEdgeHover: (edgeId: string | null) => void;
 }
 
-const EdgeList: React.FC<EdgeListProps> = ({ graph }) => {
+const EdgeList: React.FC<EdgeListProps> = ({ graph, hoveredEdgeId, onEdgeHover }) => {
   const [hoveredEdge, setHoveredEdge] = useState<string | null>(null);
 
   // Vytvoří unikátní ID pro hranu
   const getEdgeId = (edge: Edge) => `${edge.source}-${edge.target}`;
-
-  // Handler pro hover na položku seznamu
-  const onEdgeHover = (edgeId: string) => {
-    setHoveredEdge(edgeId);
-  };
 
   return (
     <Paper elevation={2} sx={{ maxHeight: 400, overflow: 'auto', maxWidth: 175, margin: 'auto' }}>
@@ -27,7 +24,7 @@ const EdgeList: React.FC<EdgeListProps> = ({ graph }) => {
         <List dense sx={{ p: 0 }}>
           {graph.edges.map((edge) => {
             const edgeId = getEdgeId(edge);
-            const isHovered = hoveredEdge === edgeId;
+            const isHovered = hoveredEdgeId === edgeId;
             return (
               <ListItem 
                 key={edgeId}

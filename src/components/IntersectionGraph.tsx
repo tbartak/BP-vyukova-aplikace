@@ -3,10 +3,12 @@ import * as d3 from 'd3'
 import { Graph } from '../config/variants'
 
 interface IntersectionGraphProps {
-  graph: Graph
+  graph: Graph;
+	hoveredEdgeId?: string | null;
+	onEdgeHover?: (edgeId: string | null) => void;
 }
 
-const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
+const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdgeId = null, onEdgeHover = () => {} }) => {
   const svgRef = useRef<SVGSVGElement | null>(null)
   
   useEffect(() => {
@@ -36,6 +38,9 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 
     svg.attr('width', width).attr('height', height)
 
+		// Unikátní ID pro hranu
+    const getEdgeId = (d) => `${d.source}-${d.target}`;
+
     // Vykreslíme hrany
     svg
       .selectAll('line')
@@ -47,8 +52,17 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
       .attr('x2', d => vertexPositions[d.target][0])
       .attr('y2', d => vertexPositions[d.target][1])
       .attr('stroke', d => d.color || 'black')
-      .attr('stroke-width', 2)
+      .attr('stroke-width', d => getEdgeId(d) === hoveredEdgeId ? 4 : 2)
+      .attr('stroke-opacity', d => getEdgeId(d) === hoveredEdgeId ? 1 : 0.8)
 			.attr('stroke-dasharray', d => d.type === 'weak' ? '5,5' : 'none')
+			.attr('data-edge-id', getEdgeId) // Data atribut pro snadné selektování
+      .style('cursor', 'pointer')
+      .on('mouseenter', (event, d) => {
+        onEdgeHover(getEdgeId(d));
+      })
+      .on('mouseleave', () => {
+        onEdgeHover(null);
+      });
 
 		// Vytvoříme nejprve skupinu pro pozadí textů (budou pod hranami) // TODO: teoreticky se zamyslet nad něčím jiným pro hrany, ale prozatím funkční
     const labelBackgroundGroup = svg.append('g').attr('class', 'label-backgrounds');
@@ -241,7 +255,25 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph }) => {
 			.attr('font-size', '12px')
 			.attr('fill', 'black')
 
-  }, [graph])
+  }, [graph, hoveredEdgeId, onEdgeHover])
+
+	// Druhý useEffect pro aktualizaci vizuálních aspektů při změně hoveredEdgeId
+  useEffect(() => {
+    if (!svgRef.current || !hoveredEdgeId) return;
+    
+    // Aktualizace tloušťky hran podle hoveredEdgeId
+    d3.select(svgRef.current)
+      .selectAll('line')
+      .attr('stroke-width', d => {
+        const edgeId = `${d.source}-${d.target}`;
+        return edgeId === hoveredEdgeId ? 4 : 2;
+      })
+      .attr('stroke-opacity', d => {
+        const edgeId = `${d.source}-${d.target}`;
+        return edgeId === hoveredEdgeId ? 1 : 0.8;
+      });
+      
+  }, [hoveredEdgeId]);
 
   return <svg ref={svgRef} />
 }

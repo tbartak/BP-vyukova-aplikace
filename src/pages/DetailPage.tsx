@@ -10,6 +10,12 @@ import EdgeList from '../components/EdgeList'
 export default function DetailPage() {
   const { selectedVariant } = useContext(AppContext)
   const [graph, setGraph] = useState<Graph>({ vertices: [], edges: [] })
+	const [hoveredEdgeId, setHoveredEdgeId] = useState<string | null>(null);
+
+	// Handler pro změnu zvýrazněné hrany
+	const handleEdgeHover = useCallback((edgeId: string | null) => {
+		setHoveredEdgeId(edgeId);
+	}, []);
 
   if (!selectedVariant) {
     return (
@@ -62,14 +68,22 @@ export default function DetailPage() {
 						<Typography variant="h6" gutterBottom>
 							Vizualizace grafu:
 						</Typography>
-						<IntersectionGraph graph={graph} />
+						<IntersectionGraph 
+							graph={graph}
+							hoveredEdgeId={hoveredEdgeId}
+							onEdgeHover={handleEdgeHover}	
+						/>
 					</Box>
 					{/* Seznam hran */}
 					<Box sx={{ width: '175px', textAlign: 'center' }}>
 						<Typography variant="h6" gutterBottom>
 							Seznam hran:
 						</Typography>
-						<EdgeList graph={graph} />
+						<EdgeList 
+							graph={graph} 
+							hoveredEdgeId={hoveredEdgeId}
+							onEdgeHover={handleEdgeHover}
+						/>
 					</Box>
 				</Box>
 			</Box>
