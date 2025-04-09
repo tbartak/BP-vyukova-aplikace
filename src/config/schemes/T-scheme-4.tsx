@@ -347,10 +347,10 @@ export const variant2Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Obarvíme vrchol SE barvou jeho sousedního vrcholu WE, červeně.',
+			text: 'Obarvíme vrchol SE barvou jeho sousedního vrcholu WE, zeleně.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SE' ? { ...v, color: 'red' } : v
+					v.id === 'SE' ? { ...v, color: 'yellowgreen' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
