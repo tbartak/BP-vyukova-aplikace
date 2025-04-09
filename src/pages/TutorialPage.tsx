@@ -361,7 +361,7 @@ const tutorialSteps: Step[] = [
 			text: 'Na základě nezávislých množin bude frakcionálně obarven vrchol NS barvou, která je přiřazená množině S1 a S2, tedy červená a zelená. Tento vrchol bude tedy z poloviny obarvený červeně a z poloviny zeleně, což reprezentuje jeho podíl v nezávislých množinách S1 a S2.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'NS' ? { ...v, color: { type: 'gradient', colors: ['red', 'yellowgreen'] } } : v
+					v.id === 'NS' ? { ...v, color: { type: 'fractional', colors: ['red', 'yellowgreen'] } } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -370,7 +370,7 @@ const tutorialSteps: Step[] = [
 			text: 'Podobným způsobem jsme schopni obarvit také zbylé vrcholy, například vrchol NE patří do nezávislých množin S1 a S3, které mají přiřazeny červenou a modrou barvu. Obarvíme tento vrchol tedy frakcionálně červenou a modrou barvou.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'NE' ? { ...v, color: { type: 'gradient', colors: ['red', 'cyan'] } } : v
+					v.id === 'NE' ? { ...v, color: { type: 'fractional', colors: ['red', 'cyan'] } } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -379,7 +379,7 @@ const tutorialSteps: Step[] = [
 			text: 'Dále vrchol ES patří do nezávislých množin S2 a S4, které mají přiřazeny zelenou a žlutou barvu. Obarvíme tento vrchol tedy frakcionálně zelenou a žlutou barvou.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'ES' ? { ...v, color: { type: 'gradient', colors: ['yellowgreen', 'yellow'] } } : v
+					v.id === 'ES' ? { ...v, color: { type: 'fractional', colors: ['yellowgreen', 'yellow'] } } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -388,7 +388,7 @@ const tutorialSteps: Step[] = [
 			text: 'Dále vrchol SW patří do nezávislých množin S3 a S5, které mají přiřazeny modrou a fialovou barvu. Obarvíme tento vrchol tedy frakcionálně modrou a fialovou barvou.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SW' ? { ...v, color: { type: 'gradient', colors: ['cyan', 'mediumpurple'] } } : v
+					v.id === 'SW' ? { ...v, color: { type: 'fractional', colors: ['cyan', 'mediumpurple'] } } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}
@@ -397,7 +397,7 @@ const tutorialSteps: Step[] = [
 			text: 'Nakonec vrchol WN patří do nezávislých množin S4 a S5, které mají přiřazeny žlutou a fialovou barvu. Obarvíme tento vrchol tedy frakcionálně žlutou a fialovou barvou.',
 			action: (graph: Graph) => {				
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WN' ? { ...v, color: { type: 'gradient', colors: ['yellow', 'mediumpurple'] } } : v
+					v.id === 'WN' ? { ...v, color: { type: 'fractional', colors: ['yellow', 'mediumpurple'] } } : v
 				)
 				return { ...graph, vertices: newVertices }
 			}

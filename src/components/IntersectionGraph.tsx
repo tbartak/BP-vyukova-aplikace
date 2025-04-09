@@ -150,86 +150,17 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
       .attr('cx', v => vertexPositions[v.id][0])
       .attr('cy', v => vertexPositions[v.id][1])
       .attr('r', 15)
-      // .attr('fill', v => {
-			// 	if (v.color?.startsWith('linear-gradient')) {
-			// 		// Extrahovat barvy z řetězce gradientu
-			// 		const colorRegex = /linear-gradient\(\d+deg,\s*([\w]+)\s*(\d+)%,\s*([\w]+)\s*(\d+)%(,\s*([\w]+)\s*(\d+)%)?\)/;
-			// 		const matches = v.color.match(colorRegex);
-					
-			// 		const gradientId = `gradient-${v.id}`;
-			// 		const gradient = svg.append('defs')
-			// 			.append('linearGradient')
-			// 			.attr('id', gradientId);
-					
-			// 		if (matches) {
-			// 			// První barva a pozice
-			// 			const color1 = matches[1] || 'red';
-			// 			const pos1 = matches[2] || '33';
-						
-			// 			// Druhá barva a pozice  
-			// 			const color2 = matches[3] || 'cyan';
-			// 			const pos2 = matches[4] || '66';
-						
-			// 			// Třetí barva a pozice (pokud existuje)
-			// 			const color3 = matches[6] || null;
-			// 			const pos3 = matches[7] || '100';
-						
-			// 			// Vytvoříme gradient se dvěma nebo třemi barvami
-			// 			gradient.append('stop')
-			// 				.attr('offset', '0%')
-			// 				.attr('stop-color', color1);
-						
-			// 			gradient.append('stop')
-			// 				.attr('offset', `${pos1}%`)
-			// 				.attr('stop-color', color1);
-						
-			// 			gradient.append('stop')
-			// 				.attr('offset', `${pos1}%`)
-			// 				.attr('stop-color', color2);
-						
-			// 			if (color3) {
-			// 				gradient.append('stop')
-			// 					.attr('offset', `${pos2}%`)
-			// 					.attr('stop-color', color2);
-							
-			// 				gradient.append('stop')
-			// 					.attr('offset', `${pos2}%`)
-			// 					.attr('stop-color', color3);
-							
-			// 				gradient.append('stop')
-			// 					.attr('offset', '100%')
-			// 					.attr('stop-color', color3);
-			// 			} else {
-			// 				gradient.append('stop')
-			// 					.attr('offset', '100%')
-			// 					.attr('stop-color', color2);
-			// 			}
-			// 		} else {
-			// 			// Fallback pro případ, že by regex nefungoval
-			// 			gradient.append('stop')
-			// 				.attr('offset', '0%')
-			// 				.attr('stop-color', 'red');
-							
-			// 			gradient.append('stop')
-			// 				.attr('offset', '50%')
-			// 				.attr('stop-color', 'cyan');
-			// 		}
-					
-			// 		return `url(#${gradientId})`;
-			// 	} else {
-			// 		return v.color || 'lightblue';
-			// 	}
-			// })
 			.attr('fill', v => {
-				if (typeof v.color === 'object' && v.color?.type === 'gradient') {
+				if (typeof v.color === 'object' && v.color?.type === 'fractional') { // pokud se jedná o frakcionální barvení
 					const gradientId = `gradient-${v.id}`;
 					const gradient = svg.append('defs')
 						.append('linearGradient')
 						.attr('id', gradientId);
 					
 					const colors = v.color.colors || ['red', 'cyan'];
-					const sliceSize = 100 / colors.length;
+					const sliceSize = 100 / colors.length; // procentuální velikost každého úseku
 					
+					// Přidání frakcionálního barvení postupně pro každou barvu vrcholu
 					colors.forEach((color, index) => {
 						const position = index * sliceSize;
 						
@@ -255,7 +186,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
 					
 					return `url(#${gradientId})`;
 				} else {
-					return v.color || 'lightblue';
+					return v.color || 'lightblue'; // pokud se vrchol nemá barvit frakcionálně, pak dostane zvolenou barvu a nebo výchozí světle modrou barvu
 				}
 			})
       .attr('stroke', 'black')

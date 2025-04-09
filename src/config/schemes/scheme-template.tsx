@@ -309,7 +309,7 @@ export const variant1Steps: Step[] = [
 			text: 'Frakcionálně obarvíme vrchol SE - z poloviny žlutou barvou a z poloviny fialovou barvou.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SE' ? { ...v, color: { type: 'gradient', colors: ['yellow', 'mediumpurple'] } } : v
+					v.id === 'SE' ? { ...v, color: { type: 'fractional', colors: ['yellow', 'mediumpurple'] } } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -327,7 +327,7 @@ export const variant1Steps: Step[] = [
 			text: 'Frakcionálně obarvíme vrchol EN - z poloviny červenou barvou a z poloviny žlutou barvou.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'EN' ? { ...v, color: { type: 'gradient', colors: ['red', 'yellow'] } } : v
+					v.id === 'EN' ? { ...v, color: { type: 'fractional', colors: ['red', 'yellow'] } } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
