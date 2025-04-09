@@ -262,7 +262,7 @@ export const variant1Steps: Step[] = [
 			text: 'Frakcionálně obarvíme vrchol SN - z poloviny červeně a z poloviny modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'linear-gradient(90deg, red 50%, cyan 50%)' } : v
+					v.id === 'SN' ? { ...v, color: { type: 'gradient', colors: ['red', 'cyan'] } } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -634,7 +634,7 @@ export const variant3Steps: Step[] = [
 			text: 'Frakcionálně obarvíme vrchol SN - ze třetiny červeně, ze třetiny modře a ze třetiny žlutě.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'linear-gradient(90deg, red 33%, cyan 66%, yellow 100%)' } : v
+					v.id === 'SN' ? { ...v, color: { type: 'gradient', colors: ['red', 'cyan', 'yellow'] } } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -811,7 +811,7 @@ export const variant4Steps: Step[] = [
 			text: 'Frakcionálně obarvíme vrchol SN - z poloviny červeně a z poloviny žlutě.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'linear-gradient(90deg, red 50%, yellow 50%)' } : v
+					v.id === 'SN' ? { ...v, color: { type: 'gradient', colors: ['red', 'yellow'] } } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}

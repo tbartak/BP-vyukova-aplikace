@@ -64,82 +64,82 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
         onEdgeHover(null);
       });
 
-		// Vytvoříme nejprve skupinu pro pozadí textů (budou pod hranami) // TODO: teoreticky se zamyslet nad něčím jiným pro hrany, ale prozatím funkční, případně je možné asi úplně odstranit kvůli seznamu hran se zvýrazněním
-    const labelBackgroundGroup = svg.append('g').attr('class', 'label-backgrounds');
+		// // Vytvoříme nejprve skupinu pro pozadí textů (budou pod hranami) // TODO: teoreticky se zamyslet nad něčím jiným pro hrany, ale prozatím funkční, případně je možné asi úplně odstranit kvůli seznamu hran se zvýrazněním
+    // const labelBackgroundGroup = svg.append('g').attr('class', 'label-backgrounds');
     
-    // Pak skupinu pro hrany (ty už jsou vykreslené)
-    // A nakonec skupinu pro texty (budou nad hranami)
-    const labelGroup = svg.append('g').attr('class', 'labels');
+    // // Pak skupinu pro hrany (ty už jsou vykreslené)
+    // // A nakonec skupinu pro texty (budou nad hranami)
+    // const labelGroup = svg.append('g').attr('class', 'labels');
 
-    // Funkce pro výpočet pozice popisku hrany
-    const calculateEdgeLabelPosition = (d) => {
-      const x1 = vertexPositions[d.source][0];
-      const y1 = vertexPositions[d.source][1];
-      const x2 = vertexPositions[d.target][0];
-      const y2 = vertexPositions[d.target][1];
+    // // Funkce pro výpočet pozice popisku hrany
+    // const calculateEdgeLabelPosition = (d) => {
+    //   const x1 = vertexPositions[d.source][0];
+    //   const y1 = vertexPositions[d.source][1];
+    //   const x2 = vertexPositions[d.target][0];
+    //   const y2 = vertexPositions[d.target][1];
       
-      // Středový bod hrany
-      const midX = (x1 + x2) / 2;
-      const midY = (y1 + y2) / 2;
+    //   // Středový bod hrany
+    //   const midX = (x1 + x2) / 2;
+    //   const midY = (y1 + y2) / 2;
       
-      // Vektor kolmý k hraně
-      const dx = x2 - x1;
-      const dy = y2 - y1;
-      const length = Math.sqrt(dx * dx + dy * dy);
+    //   // Vektor kolmý k hraně
+    //   const dx = x2 - x1;
+    //   const dy = y2 - y1;
+    //   const length = Math.sqrt(dx * dx + dy * dy);
       
-      // Normalizovaný kolmý vektor
-      const offsetSize = 15; // Velikost offsetu
-      const offsetX = -dy / length * offsetSize;
-      const offsetY = dx / length * offsetSize;
+    //   // Normalizovaný kolmý vektor
+    //   const offsetSize = 15; // Velikost offsetu
+    //   const offsetX = -dy / length * offsetSize;
+    //   const offsetY = dx / length * offsetSize;
       
-      // Přidáme offset ke středovému bodu
-      return {
-        x: midX + offsetX,
-        y: midY + offsetY
-      };
-    };
+    //   // Přidáme offset ke středovému bodu
+    //   return {
+    //     x: midX + offsetX,
+    //     y: midY + offsetY
+    //   };
+    // };
 
-    // Vykreslíme bílé obdélníky jako pozadí pro popisky hran
-    labelBackgroundGroup
-      .selectAll('.edge-label-bg')
-      .data(graph.edges.filter(e => e.value !== undefined))
-      .enter()
-      .append('rect')
-      .attr('class', 'edge-label-bg')
-      .attr('x', d => {
-        const pos = calculateEdgeLabelPosition(d);
-        return pos.x - 15; // Offset pro obdélník
-      })
-      .attr('y', d => {
-        const pos = calculateEdgeLabelPosition(d);
-        return pos.y - 10; // Offset pro obdélník
-      })
-      .attr('width', 30)
-      .attr('height', 20)
-      .attr('fill', 'white')
-      .attr('rx', 5) // Zaoblené rohy
-      .attr('ry', 5);
+    // // Vykreslíme bílé obdélníky jako pozadí pro popisky hran
+    // labelBackgroundGroup
+    //   .selectAll('.edge-label-bg')
+    //   .data(graph.edges.filter(e => e.value !== undefined))
+    //   .enter()
+    //   .append('rect')
+    //   .attr('class', 'edge-label-bg')
+    //   .attr('x', d => {
+    //     const pos = calculateEdgeLabelPosition(d);
+    //     return pos.x - 15; // Offset pro obdélník
+    //   })
+    //   .attr('y', d => {
+    //     const pos = calculateEdgeLabelPosition(d);
+    //     return pos.y - 10; // Offset pro obdélník
+    //   })
+    //   .attr('width', 30)
+    //   .attr('height', 20)
+    //   .attr('fill', 'white')
+    //   .attr('rx', 5) // Zaoblené rohy
+    //   .attr('ry', 5);
 
-    // Vykreslíme hodnoty hran, pokud existují
-    labelGroup
-      .selectAll('.edge-value')
-      .data(graph.edges.filter(e => e.value !== undefined))
-      .enter()
-      .append('text')
-      .attr('class', 'edge-value')
-      .attr('x', d => {
-        const pos = calculateEdgeLabelPosition(d);
-        return pos.x;
-      })
-      .attr('y', d => {
-        const pos = calculateEdgeLabelPosition(d);
-        return pos.y;
-      })
-      .attr('text-anchor', 'middle')
-      .attr('dominant-baseline', 'central') // Centruje vertikálně
-      .text(d => d.value)
-      .attr('font-size', '12px')
-      .attr('fill', 'black');
+    // // Vykreslíme hodnoty hran, pokud existují
+    // labelGroup
+    //   .selectAll('.edge-value')
+    //   .data(graph.edges.filter(e => e.value !== undefined))
+    //   .enter()
+    //   .append('text')
+    //   .attr('class', 'edge-value')
+    //   .attr('x', d => {
+    //     const pos = calculateEdgeLabelPosition(d);
+    //     return pos.x;
+    //   })
+    //   .attr('y', d => {
+    //     const pos = calculateEdgeLabelPosition(d);
+    //     return pos.y;
+    //   })
+    //   .attr('text-anchor', 'middle')
+    //   .attr('dominant-baseline', 'central') // Centruje vertikálně
+    //   .text(d => d.value)
+    //   .attr('font-size', '12px')
+    //   .attr('fill', 'black');
 
     // Vykreslíme vrcholy
     svg
@@ -150,70 +150,108 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
       .attr('cx', v => vertexPositions[v.id][0])
       .attr('cy', v => vertexPositions[v.id][1])
       .attr('r', 15)
-      .attr('fill', v => {
-				if (v.color?.startsWith('linear-gradient')) {
-					// Extrahovat barvy z řetězce gradientu
-					const colorRegex = /linear-gradient\(\d+deg,\s*([\w]+)\s*(\d+)%,\s*([\w]+)\s*(\d+)%(,\s*([\w]+)\s*(\d+)%)?\)/;
-					const matches = v.color.match(colorRegex);
+      // .attr('fill', v => {
+			// 	if (v.color?.startsWith('linear-gradient')) {
+			// 		// Extrahovat barvy z řetězce gradientu
+			// 		const colorRegex = /linear-gradient\(\d+deg,\s*([\w]+)\s*(\d+)%,\s*([\w]+)\s*(\d+)%(,\s*([\w]+)\s*(\d+)%)?\)/;
+			// 		const matches = v.color.match(colorRegex);
 					
+			// 		const gradientId = `gradient-${v.id}`;
+			// 		const gradient = svg.append('defs')
+			// 			.append('linearGradient')
+			// 			.attr('id', gradientId);
+					
+			// 		if (matches) {
+			// 			// První barva a pozice
+			// 			const color1 = matches[1] || 'red';
+			// 			const pos1 = matches[2] || '33';
+						
+			// 			// Druhá barva a pozice  
+			// 			const color2 = matches[3] || 'cyan';
+			// 			const pos2 = matches[4] || '66';
+						
+			// 			// Třetí barva a pozice (pokud existuje)
+			// 			const color3 = matches[6] || null;
+			// 			const pos3 = matches[7] || '100';
+						
+			// 			// Vytvoříme gradient se dvěma nebo třemi barvami
+			// 			gradient.append('stop')
+			// 				.attr('offset', '0%')
+			// 				.attr('stop-color', color1);
+						
+			// 			gradient.append('stop')
+			// 				.attr('offset', `${pos1}%`)
+			// 				.attr('stop-color', color1);
+						
+			// 			gradient.append('stop')
+			// 				.attr('offset', `${pos1}%`)
+			// 				.attr('stop-color', color2);
+						
+			// 			if (color3) {
+			// 				gradient.append('stop')
+			// 					.attr('offset', `${pos2}%`)
+			// 					.attr('stop-color', color2);
+							
+			// 				gradient.append('stop')
+			// 					.attr('offset', `${pos2}%`)
+			// 					.attr('stop-color', color3);
+							
+			// 				gradient.append('stop')
+			// 					.attr('offset', '100%')
+			// 					.attr('stop-color', color3);
+			// 			} else {
+			// 				gradient.append('stop')
+			// 					.attr('offset', '100%')
+			// 					.attr('stop-color', color2);
+			// 			}
+			// 		} else {
+			// 			// Fallback pro případ, že by regex nefungoval
+			// 			gradient.append('stop')
+			// 				.attr('offset', '0%')
+			// 				.attr('stop-color', 'red');
+							
+			// 			gradient.append('stop')
+			// 				.attr('offset', '50%')
+			// 				.attr('stop-color', 'cyan');
+			// 		}
+					
+			// 		return `url(#${gradientId})`;
+			// 	} else {
+			// 		return v.color || 'lightblue';
+			// 	}
+			// })
+			.attr('fill', v => {
+				if (typeof v.color === 'object' && v.color?.type === 'gradient') {
 					const gradientId = `gradient-${v.id}`;
 					const gradient = svg.append('defs')
 						.append('linearGradient')
 						.attr('id', gradientId);
 					
-					if (matches) {
-						// První barva a pozice
-						const color1 = matches[1] || 'red';
-						const pos1 = matches[2] || '33';
+					const colors = v.color.colors || ['red', 'cyan'];
+					const sliceSize = 100 / colors.length;
+					
+					colors.forEach((color, index) => {
+						const position = index * sliceSize;
 						
-						// Druhá barva a pozice  
-						const color2 = matches[3] || 'cyan';
-						const pos2 = matches[4] || '66';
-						
-						// Třetí barva a pozice (pokud existuje)
-						const color3 = matches[6] || null;
-						const pos3 = matches[7] || '100';
-						
-						// Vytvoříme gradient se dvěma nebo třemi barvami
-						gradient.append('stop')
-							.attr('offset', '0%')
-							.attr('stop-color', color1);
-						
-						gradient.append('stop')
-							.attr('offset', `${pos1}%`)
-							.attr('stop-color', color1);
-						
-						gradient.append('stop')
-							.attr('offset', `${pos1}%`)
-							.attr('stop-color', color2);
-						
-						if (color3) {
+						if (index > 0) {
+							// Konec předchozí barvy
 							gradient.append('stop')
-								.attr('offset', `${pos2}%`)
-								.attr('stop-color', color2);
-							
-							gradient.append('stop')
-								.attr('offset', `${pos2}%`)
-								.attr('stop-color', color3);
-							
-							gradient.append('stop')
-								.attr('offset', '100%')
-								.attr('stop-color', color3);
-						} else {
-							gradient.append('stop')
-								.attr('offset', '100%')
-								.attr('stop-color', color2);
+								.attr('offset', `${position}%`)
+								.attr('stop-color', colors[index-1]);
 						}
-					} else {
-						// Fallback pro případ, že by regex nefungoval
+						
+						// Začátek aktuální barvy
 						gradient.append('stop')
-							.attr('offset', '0%')
-							.attr('stop-color', 'red');
-							
-						gradient.append('stop')
-							.attr('offset', '50%')
-							.attr('stop-color', 'cyan');
-					}
+							.attr('offset', `${position}%`)
+							.attr('stop-color', color);
+						
+						// Pokud je to poslední barva, pokračuje až do konce
+						if (index === colors.length - 1) {
+							gradient.append('stop')
+								.attr('offset', '100%')
+								.attr('stop-color', color);
+						}
+					});
 					
 					return `url(#${gradientId})`;
 				} else {

@@ -272,7 +272,7 @@ export const variant1Steps: Step[] = [
 			text: 'Nakonec frakcionálně obarvíme vrchol WS - ze třetiny červenou, ze třetiny modrou a ze třetiny žlutou.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'linear-gradient(90deg, red 33%, cyan 66%, yellow 100%)' } : v
+					v.id === 'WS' ? { ...v, color: { type: 'gradient', colors: ['red', 'cyan', 'yellow'] } } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
@@ -624,7 +624,7 @@ export const variant3Steps: Step[] = [
 			text: 'Nakonec frakcionálně obarvíme vrchol WS - z poloviny červeně a z poloviny modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'WS' ? { ...v, color: 'linear-gradient(90deg, red 50%, cyan 50%)' } : v
+					v.id === 'WS' ? { ...v, color: { type: 'gradient', colors: ['red', 'cyan'] } } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}
