@@ -5,7 +5,6 @@ import { createSteps, getStepCounts } from '../scheme_utils'
 
 // Definice ID variant // TODO: needs changing for new variant (numbers/types)
 const variant1Id = 'X-scheme-2-var-1'
-const variant2Id = 'X-scheme-2-var-2'
 // TODO: ... další varianty
 
 // Vrcholy jsou totožné pro všechny varianty X-scheme-2 // TODO: change comment number for new scheme
@@ -120,11 +119,9 @@ const createCommonSteps = (variantId: string): Step[] => {
 
 // Vytvoření společných kroků // TODO: add for every variant
 const commonStepsVar1 = createCommonSteps(variant1Id);
-const commonStepsVar2 = createCommonSteps(variant2Id);
 
 // Získání počtu kroků v společné části // TODO: add for every variant
 const { totalSteps: var1TotalSteps, numberedSteps: var1NumberedSteps } = getStepCounts(commonStepsVar1);
-const { totalSteps: var2TotalSteps, numberedSteps: var2NumberedSteps } = getStepCounts(commonStepsVar2);
 
 // Varianta 1 // TODO: change content based on the scheme
 export const variant1Steps: Step[] = [

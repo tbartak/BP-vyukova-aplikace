@@ -11,7 +11,10 @@ import { X_scheme_5_variants } from './schemes/X-scheme-5'
   
   export interface Vertex {
     id: string
-    color?: string
+    color?: string | {
+      type: string // Fractional coloring if type == 'fractional'
+      colors: string[] // List of all colors that the vertex should be fractionally colored with
+    }
     value?: number
   }
 

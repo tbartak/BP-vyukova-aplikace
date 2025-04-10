@@ -1,9 +1,8 @@
 import { useState, useCallback, useContext, useEffect } from 'react'
-import { Box, Typography, Button } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import Wizard from '../components/GraphWizard/Wizard'
 import IntersectionGraph from '../components/IntersectionGraph'
 import { Graph, Step } from '../config/variants'
-import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../context/AppContext'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
 import { createSteps } from '../config/scheme_utils'
@@ -338,11 +337,7 @@ const tutorialSteps: Step[] = [
 				});
 				// Odstranění hrany mezi ES a NS a také SW a WN (v obou směrech)
 				const resetEdges = graph.edges
-					.filter(e => !( (e.source === 'ES' && e.target === 'NS') || (e.source === 'NS' && e.target === 'ES') || (e.source === 'SW' && e.target === 'WN') || (e.source === 'WN' && e.target === 'SW') ))
-					.map(e => {
-						const { color, ...rest } = e;
-						return rest;
-					});
+					.filter(e => !( (e.source === 'ES' && e.target === 'NS') || (e.source === 'NS' && e.target === 'ES') || (e.source === 'SW' && e.target === 'WN') || (e.source === 'WN' && e.target === 'SW') ));
 				return { ...graph, vertices: resetVertices, edges: resetEdges };
 			},
 		},
@@ -422,7 +417,6 @@ const tutorialSteps: Step[] = [
 
 export default function TutorialPage() {
   const [graph, setGraph] = useState<Graph>({ vertices: [], edges: [] })
-	const navigate = useNavigate()
 	const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext);
 	const [hoveredEdgeId, setHoveredEdgeId] = useState<string | null>(null);	
 
@@ -437,10 +431,6 @@ export default function TutorialPage() {
     setSelectedScheme(null);
     setSelectedVariant(null);
   }, [setSelectedType, setSelectedScheme, setSelectedVariant]);
-
-	const handleTypeSelect = (type: 'T' | 'X') => {
-    navigate(`/select-scheme/${type}`)
-  }
 
 	// Funkce, která přepočítá graf
   const recalcGraph = (stepIndex: number): Graph => {

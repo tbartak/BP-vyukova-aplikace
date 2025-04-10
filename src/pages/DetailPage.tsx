@@ -1,7 +1,7 @@
 import { useContext, useState, useCallback } from 'react'
 import { AppContext } from '../context/AppContext'
 import Wizard from '../components/GraphWizard/Wizard'
-import { Box, Typography, Grid } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import { Graph } from '../config/variants'
 import IntersectionGraph from '../components/IntersectionGraph'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'

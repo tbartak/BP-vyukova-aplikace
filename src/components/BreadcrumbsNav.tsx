@@ -16,10 +16,10 @@ export default function BreadcrumbsNav() {
   }
 
   // Pomocná funkce, která podle cesty zjišťuje, zda-li zvýraznit daný breadcrumb
-  const isActive = (path) => location.pathname === path || location.pathname.startsWith(path + '/')
+  const isActive = (path: string) => location.pathname === path || location.pathname.startsWith(path + '/')
 
   // Vytvoření jednoho breadcrumbu
-  const createBreadcrumb = (label, path) => {
+  const createBreadcrumb = (label: string, path: string) => {
     return isActive(path)
       ? <Typography key={label} color="text.primary">{label}</Typography>
       : <Link 

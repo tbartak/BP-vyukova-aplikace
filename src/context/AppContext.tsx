@@ -3,7 +3,7 @@ import { Variant } from '../config/variants'
 
 interface AppContextProps {
   selectedVariant: Variant | null
-  setSelectedVariant: (variant: Variant) => void
+  setSelectedVariant: (variant: Variant | null) => void
   selectedType: 'T' | 'X' | null
   setSelectedType: (type: 'T' | 'X' | null) => void
   selectedScheme: string | null

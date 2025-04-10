@@ -12,7 +12,6 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
-    "@mui/icons-material": "^6.4.7",
     "@mui/material": "^6.4.6",
     "d3": "^7.9.0",
     "react": "^19.0.0",
@@ -21,6 +20,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@types/d3": "^7.4.3",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react-swc": "^3.8.0",

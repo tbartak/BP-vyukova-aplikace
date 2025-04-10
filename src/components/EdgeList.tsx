@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Box, List, ListItem, Typography, Paper } from '@mui/material';
 import { Graph, Edge } from '../config/variants';
 
@@ -9,7 +9,6 @@ interface EdgeListProps {
 }
 
 const EdgeList: React.FC<EdgeListProps> = ({ graph, hoveredEdgeId, onEdgeHover }) => {
-  const [hoveredEdge, setHoveredEdge] = useState<string | null>(null);
 
   // Vytvoří unikátní ID pro hranu
   const getEdgeId = (edge: Edge) => `${edge.source}-${edge.target}`;
