@@ -320,7 +320,7 @@ const tutorialSteps: Step[] = [
 			noNumber: true
 		},
 		{
-			text: 'Tímto se nám podařilo nastínit proces, jakým schéma křižovatky převést na graf a následně tento graf obarvit. Tento styl barvení však není jedinou možností, jak graf obarvit. Existují i další možnosti, my se dále zaměříme na barvení grafu pomocí frakcionálního barvení, pomocí kterého jde v některých případech snížit počet barev potřebných k zabarvení grafu a tím tedy průjezd samotnou křižovatkou zefektivnit.',
+			text: 'Tímto se nám podařilo nastínit proces, jakým schéma křižovatky převést na graf a následně tento graf obarvit. Tento styl barvení však není jedinou možností, jak graf obarvit. Existují i další možnosti, my se dále zaměříme na barvení grafu pomocí frakcionálního barvení, pomocí kterého jde v některých případech zefektivnit průjezd křižovatkou.',
 			noNumber: true
 		},
 		{
@@ -431,7 +431,7 @@ export default function TutorialPage() {
 		setHoveredEdgeId(edgeId);
 	}, []);
 
-	// Reset při načtení tutoriálu // TODO: teoreticky by nemuselo být potřeba, protože se vždy musí na tutoriál přes home, kde se to zresetuje, ale kdyby někdo šel přes odkaz, tak je to asi vhodné
+	// Reset kontextu při načtení tutoriálu
   useEffect(() => {
     setSelectedType(null);
     setSelectedScheme(null);

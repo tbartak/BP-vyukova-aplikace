@@ -268,7 +268,7 @@ export const variant1Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Vrchol NS je z poloviny červený a z poloviny modrý, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.',
+			text: 'Graf je nyní frakcionálně obarven. Vrchol NS je z poloviny červený a z poloviny modrý, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout efektivnějšího nastavení průjezdu křižovatkou, a to i přesto, že chromatické číslo takto obarveného grafu je stále 3.',
 			noNumber: true
 		}
 	], {
@@ -440,7 +440,7 @@ export const variant2Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Vrchol NS je z poloviny červený a z poloviny modrý, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.',
+			text: 'Graf je nyní frakcionálně obarven. Vrchol NS je z poloviny červený a z poloviny modrý, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout efektivnějšího nastavení průjezdu křižovatkou, a to i přesto, že chromatické číslo takto obarveného grafu je stále 3.',
 			noNumber: true
 		}
 	], {

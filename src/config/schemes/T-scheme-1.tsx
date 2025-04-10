@@ -290,7 +290,7 @@ export const variant1Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Vrchol EW je z poloviny červený a z poloviny modrý, podobně jsou také vrcholy SE a WS obarveny frakcionálně, což znamená, že využívají dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
+			text: 'Graf je nyní frakcionálně obarven. Vrchol EW je z poloviny červený a z poloviny modrý, podobně jsou také vrcholy SE a WS obarveny frakcionálně, což znamená, že využívají dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout efektivnějšího nastavení průjezdu křižovatkou, a to i přesto, že chromatické číslo takto obarveného grafu je stále 3.',
 			noNumber: true
 		}
 	], {
@@ -483,7 +483,7 @@ export const variant2Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Vrchol EW je z poloviny červený a z poloviny zelený, podobně je také vrchol SE obarven frakcionálně, což znamená, že využívají dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
+			text: 'Graf je nyní frakcionálně obarven. Vrchol EW je z poloviny červený a z poloviny zelený, podobně je také vrchol SE obarven frakcionálně, což znamená, že využívají dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout efektivnějšího nastavení průjezdu křižovatkou, a to i přesto, že chromatické číslo takto obarveného grafu je stále 3.',
 			noNumber: true
 		}
 	], {
@@ -676,7 +676,7 @@ export const variant3Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Vrchol SW je z poloviny červený a z poloviny zelený, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout chromatického čísla 2.5, což je lepší než původní chromatické číslo 3.', // TODO: doplnit správné chromatické číslo https://www.pmcalculators.com/simplex-method-calculator/?problem=('cr![30929.1592.1298.0556.0825.0896.18824BcoA64~s!3777*BrA54~o!'Minimizar')*≥'-6'~.4,32'~03['4']5-16'~17*~*~8229-0A!3155B]~BA98765432.-*_
+			text: 'Graf je nyní frakcionálně obarven. Vrchol SW je z poloviny červený a z poloviny zelený, což znamená, že využívá dvě různé barvy s vahou 0.5 každá. Díky tomuto přístupu můžeme dosáhnout efektivnějšího nastavení průjezdu křižovatkou, a to i přesto, že chromatické číslo takto obarveného grafu je stále 3.', 
 			noNumber: true
 		}
 	], {
@@ -869,7 +869,7 @@ export const variant4Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Graf je nyní frakcionálně obarven. Frakcionální barvení není v tomto případě efektivnější. Chromatické číslo tedy zůstává 3.',
+			text: 'Graf je nyní frakcionálně obarven. Frakcionální barvení není v tomto případě efektivnější. Chromatické číslo stále zůstává 3.',
 			noNumber: true
 		}
 	], {

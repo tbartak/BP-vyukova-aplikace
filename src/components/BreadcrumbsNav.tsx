@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { Breadcrumbs, Link, Typography, Box } from '@mui/material'
-import HomeIcon from '@mui/icons-material/Home'
 import { AppContext } from '../context/AppContext'
 
 // TODO: přidat kdyžtak breadcrumbs včetně úpravy kontextu do BP dokumentace
