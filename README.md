@@ -1,50 +1,49 @@
-# React + TypeScript + Vite
+# Návod k instalaci
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Přemístit se do složky vyukova-aplikace
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+cd vyukova-aplikace
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Instalace všech požadovaných závislostí
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+npm install
 ```
+
+Tento příkaz zajistí, že se nainstalují všechny balíčky, které jsou definované v `package.json`, včetně:
+
+- React a React DOM (19.0.0)
+- React Router (7.2.0)
+- Material UI (6.4.6)
+- D3.js (7.9.0)
+- a dalších balíčků včetně nástrojů pro vývoj:
+  - TypeScript (5.7.2)
+  - ESLint (9.21.0)
+  - Vite (6.2.0)
+  - ...
+
+## Lokální spuštění aplikace na vývojovém serveru
+
+```bash
+npm run dev
+```
+
+Tento příkaz zpřístupní aplikaci na lokálním počítači prostřednictvím odkazu.
+
+## Vytvoření verze pro produkci
+
+```bash
+npm run build
+```
+
+## Lokální kontrola produkční verze
+
+```bash
+npm run preview
+```
+
+# Nasazení na web
+
+Aplikace je vystavena na webovém hostingu Vercel, na adrese: [https://bp-vyukova-aplikace.vercel.app](https://bp-vyukova-aplikace.vercel.app). Tento hosting byl zvolen pro jednoduché nasazení a propojení s Git repositářem, díky čemuž je možné aplikaci průběžně, velmi jednoduše aktualizovat s novými změnami v repositáři.
