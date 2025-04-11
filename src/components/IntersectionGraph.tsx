@@ -28,11 +28,11 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
     	return
     }
 
-    const angleStep = (2 * Math.PI) / graph.vertices.length
+    const angleStep = (2 * Math.PI) / graph.vertices.length // úhel mezi vrcholy
     graph.vertices.forEach((vertex, i) => {
       const angle = i * angleStep
-      const x = width / 2 + radius * Math.cos(angle)
-      const y = height / 2 + radius * Math.sin(angle)
+      const x = width / 2 + radius * Math.cos(angle) // pozice na ose x
+      const y = height / 2 + radius * Math.sin(angle) // pozice na ose y
       vertexPositions[vertex.id] = [x, y]
     })
 
