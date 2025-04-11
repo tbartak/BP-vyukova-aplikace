@@ -680,10 +680,10 @@ export const variant3Steps: Step[] = [
 			}
 		},
 		{
-			text: 'Podobně obarvíme vrchol SN pouze zeleně.',
+			text: 'Podobně obarvíme vrchol SN pouze modře.',
 			action: (graph: Graph) => {
 				const newVertices = graph.vertices.map(v =>
-					v.id === 'SN' ? { ...v, color: 'yellowgreen' } : v
+					v.id === 'SN' ? { ...v, color: 'cyan' } : v
 				);
 				return { ...graph, vertices: newVertices };
 			}

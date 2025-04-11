@@ -92,12 +92,12 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
       .attr('x2', (edge: Edge) => vertexPositions[edge.target][0])
       .attr('y2', (edge: Edge) => vertexPositions[edge.target][1])
       .attr('stroke', 'black')
-      .attr('stroke-width', (edge: Edge) => getEdgeId(edge) === hoveredEdgeId ? 4 : 2)
-      .attr('stroke-opacity', (edge: Edge) => getEdgeId(edge) === hoveredEdgeId ? 1 : 0.8)
-			.attr('stroke-dasharray', (edge: Edge) => edge.type === 'weak' ? '5,5' : 'none')
-			.attr('data-edge-id', getEdgeId) // Data atribut pro snadné selektování
+      .attr('stroke-width', (edge: Edge) => getEdgeId(edge) === hoveredEdgeId ? 4 : 2) // zvolená hrana bude tučnější
+      .attr('stroke-opacity', (edge: Edge) => getEdgeId(edge) === hoveredEdgeId ? 1 : 0.8) // zvýraznění zvolené hrany
+			.attr('stroke-dasharray', (edge: Edge) => edge.type === 'weak' ? '5,5' : 'none') // pokud je hrana slabá, tak bude čárkovaně
+			.attr('data-edge-id', getEdgeId) // atribut pro snadné selektování
       .style('cursor', 'pointer')
-      .on('mouseenter', (_event: MouseEvent, edge: Edge) => {
+      .on('mouseenter', (_event: MouseEvent, edge: Edge) => { // vybrání hrany přejetím kurzoru
         onEdgeHover(getEdgeId(edge));
       })
       .on('mouseleave', () => {
@@ -113,7 +113,7 @@ const IntersectionGraph: React.FC<IntersectionGraphProps> = ({ graph, hoveredEdg
       .attr('cx', (vertex: Vertex) => vertexPositions[vertex.id][0])
       .attr('cy', (vertex: Vertex) => vertexPositions[vertex.id][1])
       .attr('r', 15)
-			.attr('fill', (vertex: Vertex) => getVertexFill(vertex, svg)) // Barva vrcholu
+			.attr('fill', (vertex: Vertex) => getVertexFill(vertex, svg)) // barva vrcholu
       .attr('stroke', 'black')
 
     // Přidáme popisky vrcholů

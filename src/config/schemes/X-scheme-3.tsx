@@ -475,7 +475,7 @@ export const variant3Steps: Step[] = [
 					// Přiřadíme hodnoty podle páru vrcholů
 					if (e.source === 'NE' && e.target === 'ES') return { ...e, value: 0.45 }
 					if (e.source === 'NE' && e.target === 'SN') return { ...e, value: 0.55 }
-					if (e.source === 'NE' && e.target === 'WE') return { ...e, value: 0.15 } // L/H
+					if (e.source === 'NE' && e.target === 'WE') return { ...e, value: 0.1 } // L/H
 					if (e.source === 'ES' && e.target === 'SN') return { ...e, value: 0.5 } 
 					if (e.source === 'ES' && e.target === 'WE') return { ...e, value: 0.35 }
 					if (e.source === 'ES' && e.target === 'WS') return { ...e, value: 0.45 } // L/H
@@ -651,7 +651,7 @@ export const variant4Steps: Step[] = [
 					// Přiřadíme hodnoty podle páru vrcholů
 					if (e.source === 'NE' && e.target === 'ES') return { ...e, value: 0.45 }
 					if (e.source === 'NE' && e.target === 'SN') return { ...e, value: 0.55 }
-					if (e.source === 'NE' && e.target === 'WE') return { ...e, value: 0.15 } // L/H
+					if (e.source === 'NE' && e.target === 'WE') return { ...e, value: 0.1 } // L/H
 					if (e.source === 'ES' && e.target === 'SN') return { ...e, value: 0.5 } 
 					if (e.source === 'ES' && e.target === 'WE') return { ...e, value: 0.35 }
 					if (e.source === 'ES' && e.target === 'WS') return { ...e, value: 0.2 } // L/H

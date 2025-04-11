@@ -24,7 +24,7 @@ export function createSteps(
 	variantId: string,
 	descriptions: Array<{
 		text: string,
-		noNumber?: boolean, // true pokud nechceme číslo v popisu
+		noNumber?: boolean, // true, pokud nechceme číslo v popisu
 		action?: (graph: Graph) => Graph // optional, může být jen popis
 	}>,
 	options?: {
