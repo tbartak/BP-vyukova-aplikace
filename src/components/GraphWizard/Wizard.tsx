@@ -21,8 +21,8 @@ interface WizardProps {
 
 /**
  * Komponenta sloužící jako vícekrokový průvodce převodu schématu křižovatky na graf s jeho následným obarvením. Poskytuje obousměrnou navigaci mezi jednotlivými kroky včetně popisu a změn vizualizace grafu.
- * @param {WizardProps} props - vlastnosti komponenty
- * @returns {JSX.Element} - render komponenty průvodce
+ * @param props Vlastnosti komponenty
+ * @returns Render komponenty průvodce
  */
 export default function Wizard({ steps, onStepChange }: WizardProps) {
   /**
@@ -107,7 +107,7 @@ export default function Wizard({ steps, onStepChange }: WizardProps) {
       }
     };
 
-    // Přidání event listeneru pro stisk klávesy
+    // Přidání posluchače akcí pro stisk klávesy
     window.addEventListener('keydown', handleKeyDown);
 
     // Odstranění event listeneru, když se komponenta přestane používat, aby nedocházelo k duplicitám a dalším nezamýšleným chováním
