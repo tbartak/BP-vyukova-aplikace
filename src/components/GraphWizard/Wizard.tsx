@@ -11,8 +11,8 @@ import { Box, Button, Typography } from '@mui/material'
 /**
  * Rozhraní průvodce s danými parametry
  * @interface WizardProps
- * @property {Step[]} steps - pole kroků, které se mají zobrazit
- * @property {Function} onStepChange - funkce, která se zavolá při změně kroku
+ * @property {Step[]} steps - Pole kroků, které se mají zobrazit
+ * @property {Function} onStepChange - Funkce, která se zavolá při změně kroku
  */
 interface WizardProps {
   steps: Step[]
