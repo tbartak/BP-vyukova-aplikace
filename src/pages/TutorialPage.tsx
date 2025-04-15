@@ -445,6 +445,10 @@ export default function TutorialPage() {
   }
 
   const handleStepChange = useCallback((stepIndex: number) => {
+		if (stepIndex === 0) { // Pokud je krok 0, dojde k resetování grafu
+			setGraph({ vertices: [], edges: [] })
+			return
+		}
     const newGraph = recalcGraph(stepIndex)
     setGraph(newGraph)
   }, [])

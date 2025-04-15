@@ -39,6 +39,10 @@ export default function DetailPage() {
 
   // Memoizovaná funkce, která při změně kroku přepočítá graf
   const handleStepChange = useCallback((stepIndex: number) => {
+		if (stepIndex === 0) { // Pokud je krok 0, dojde k resetování grafu
+			setGraph({ vertices: [], edges: [] })
+			return
+		}
     const newGraph = recalcGraph(stepIndex)
     setGraph(newGraph)
   }, [selectedVariant])
