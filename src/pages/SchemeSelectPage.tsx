@@ -1,3 +1,9 @@
+/**
+ * @file SchemeSelectPage.tsx
+ * @author Tomáš Barták
+ * @description
+ * Tato stránka slouží k výběru schématu křižovatky na základě zvoleného typu (T nebo X).
+ */
 import { useParams, useNavigate } from 'react-router-dom'
 import { intersectionConfig } from '../config/variants'
 import { Box, Button, Typography } from '@mui/material'
@@ -5,6 +11,9 @@ import BreadcrumbsNav from '../components/BreadcrumbsNav'
 import { useContext, useEffect } from 'react'
 import { AppContext } from '../context/AppContext'
 
+/**
+ * Stránka pro výběr schématu křižovatky na základě zvoleného typu (T nebo X).
+ */
 export default function SchemeSelectPage() {
   const { type } = useParams<{ type: 'T' | 'X' }>()
   const navigate = useNavigate()
@@ -21,6 +30,7 @@ export default function SchemeSelectPage() {
 
   const intersectionType = intersectionConfig.find(item => item.type === type)
 
+  // Pokud není nalezen typ křižovatky, zobrazí se chybová zpráva
   if (!intersectionType) {
     return (
       <Box sx={{ p: 3 }}>
@@ -30,6 +40,7 @@ export default function SchemeSelectPage() {
     )
   }
 
+  // Handler pro výběr schématu
   const handleSchemeSelect = (schemeId: string) => {
     setSelectedScheme(schemeId);
     navigate(`/select-variant/${type}/${schemeId}`)

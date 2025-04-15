@@ -1,3 +1,9 @@
+/**
+ * @file TutorialPage.tsx
+ * @author Tomáš Barták
+ * @description
+ * Tato stránka obsahuje tutoriál pro uživatele obsahující základy převodu schématu křižovatky na fuzzy graf a jeho následné barvení.
+ */
 import { useState, useCallback, useContext, useEffect } from 'react'
 import { Box, Typography } from '@mui/material'
 import Wizard from '../components/GraphWizard/Wizard'
@@ -8,6 +14,9 @@ import BreadcrumbsNav from '../components/BreadcrumbsNav'
 import { createSteps } from '../config/scheme_utils'
 import EdgeList from '../components/EdgeList'
 
+/**
+ * Kroky tutoriálu pro převod schématu křižovatky na fuzzy graf a jeho následné barvení.
+ */
 const tutorialSteps: Step[] = [
 	...createSteps('tut', [
 		{
@@ -341,7 +350,7 @@ const tutorialSteps: Step[] = [
 				return { ...graph, vertices: resetVertices, edges: resetEdges };
 			},
 		},
-		{ // TODO: možná by stálo za to ty kroky nějak odlišit, jestli normální barvení nebo frakcionální, například krok 44a/44b?
+		{
 			text: 'Nezávislé množiny: Určíme tedy nezávislé množiny mezi silně sousedícími vrcholy (vrcholy, které nejsou mezi sebou přímo spojené hranou), S1 = {NS, NE}, S2 = {NS, ES}, S3 = {NE, SW}, S4 = {ES, WN}, S5 = {SW, WN}. Každé takové nezávislé množině přidělíme jednu barvu. Zvolíme například červenou pro S1, zelenou pro S2, modrou pro S3, žlutou pro S4 a fialovou pro S5.',
 		},
 		{
@@ -415,9 +424,18 @@ const tutorialSteps: Step[] = [
 		}])
 ];
 
+/**
+ * Stránka s tutoriálem
+ */
 export default function TutorialPage() {
+	/**
+	 * Aktuální stav grafu
+	 */
   const [graph, setGraph] = useState<Graph>({ vertices: [], edges: [] })
 	const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext);
+	/**
+	 * Zvýrazněná hrana
+	 */
 	const [hoveredEdgeId, setHoveredEdgeId] = useState<string | null>(null);	
 
 	// Handler pro změnu zvýrazněné hrany
@@ -433,6 +451,11 @@ export default function TutorialPage() {
   }, [setSelectedType, setSelectedScheme, setSelectedVariant]);
 
 	// Funkce, která přepočítá graf
+	/**
+	 * Funkce, která přepočítá graf na základě aktuálního kroku tutoriálu
+	 * @param stepIndex Index aktuálního kroku
+	 * @returns Aktualizovaný graf
+	 */
   const recalcGraph = (stepIndex: number): Graph => {
     let newGraph: Graph = { vertices: [], edges: [] }
     for (let i = 0; i <= stepIndex; i++) {
@@ -444,6 +467,11 @@ export default function TutorialPage() {
     return newGraph
   }
 
+	/**
+	 * Handler pro změnu kroku tutoriálu
+	 * @param stepIndex Index aktuálního kroku
+	 * @returns Aktualizovaný graf
+	 */
   const handleStepChange = useCallback((stepIndex: number) => {
 		if (stepIndex === 0) { // Pokud je krok 0, dojde k resetování grafu
 			setGraph({ vertices: [], edges: [] })

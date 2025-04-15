@@ -1,3 +1,9 @@
+/**
+ * @file VariantSelectPage.tsx
+ * @author Tomáš Barták
+ * @description
+ * Tato stránka slouží k výběru varianty křižovatky na základě zvoleného typu (T nebo X) a schématu.
+ */
 import { useParams, useNavigate } from 'react-router-dom'
 import { intersectionConfig } from '../config/variants'
 import { useContext, useEffect } from 'react'
@@ -5,6 +11,9 @@ import { AppContext } from '../context/AppContext'
 import { Box, Button, Typography } from '@mui/material'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
 
+/**
+ * Stránka pro výběr varianty křižovatky na základě zvoleného typu (T nebo X) a schématu.
+ */
 export default function VariantSelectPage() {
   const { type, schemeId } = useParams<{ type: 'T' | 'X'; schemeId: string }>()
   const navigate = useNavigate()
@@ -19,6 +28,7 @@ export default function VariantSelectPage() {
     }
   }, [type, schemeId, setSelectedType, setSelectedScheme]);
 
+  // Pokud není nalezen typ křižovatky, zobrazí se chybová zpráva
   const intersectionType = intersectionConfig.find(item => item.type === type)
   if (!intersectionType) {
     return (
@@ -28,7 +38,7 @@ export default function VariantSelectPage() {
       </Box>
     )
   }
-
+  // Pokud není nalezeno schéma křižovatky, zobrazí se chybová zpráva
   const scheme = intersectionType.schemes.find(s => s.id === schemeId)
   if (!scheme) {
     return (
@@ -39,6 +49,7 @@ export default function VariantSelectPage() {
     )
   }
 
+  // Handler pro výběr konkrétního schématu
   const handleVariantSelect = (variant: any) => {
     setSelectedVariant(variant)
     navigate('/detail')

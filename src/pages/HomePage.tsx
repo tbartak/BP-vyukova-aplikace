@@ -1,9 +1,18 @@
+/**
+ * @file HomePage.tsx
+ * @author Tomáš Barták
+ * @description
+ * Tato stránka slouží jako úvodní stránka aplikace. Obsahuje uvítací zprávu a tlačítka pro výběr křižovatky nebo tutoriálu.
+ */
 import { Link } from 'react-router-dom'
 import { Button, Typography, Container, Box } from '@mui/material'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
 import { useContext, useEffect } from 'react'
 import { AppContext } from '../context/AppContext'
 
+/**
+ * Stránka zobrazující úvodní informace a navigaci k dalším částem aplikace.
+ */
 const Home = () => {
   const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext);
   

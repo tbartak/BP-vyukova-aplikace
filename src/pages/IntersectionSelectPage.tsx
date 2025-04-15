@@ -1,9 +1,18 @@
+/**
+ * @file IntersectionSelectPage.tsx
+ * @author Tomáš Barták
+ * @description
+ * Tato stránka slouží k výběru typu křižovatky (T nebo X).
+ */
 import { useNavigate } from 'react-router-dom'
 import { Button, Typography, Box } from '@mui/material'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
 import { useContext, useEffect } from 'react'
 import { AppContext } from '../context/AppContext'
 
+/**
+ * Stránka pro výběr typu křižovatky (T nebo X).
+ */
 export default function IntersectionSelectPage() {
   const navigate = useNavigate()
   const { setSelectedType, setSelectedScheme, setSelectedVariant } = useContext(AppContext)
@@ -15,6 +24,7 @@ export default function IntersectionSelectPage() {
     setSelectedVariant(null);
   }, [setSelectedType, setSelectedScheme, setSelectedVariant]);
 
+  // Handler pro výběr typu křižovatky
   const handleTypeSelect = (type: 'T' | 'X') => {
     setSelectedType(type);
     navigate(`/select-scheme/${type}`)

@@ -1,3 +1,9 @@
+/**
+ * @file App.tsx
+ * @author Tomáš Barták
+ * @description
+ * Hlavní komponenta aplikace, která obsahuje router pro navigaci mezi stránkami a poskytuje kontext pro celou aplikaci.
+ */
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import IntersectionSelectPage from './pages/IntersectionSelectPage'
@@ -8,6 +14,9 @@ import TutorialPage from './pages/TutorialPage'
 import { AppProvider } from './context/AppContext'
 import './App.css'
 
+/**
+ * Hlavní komponenta aplikace.
+ */
 function App() {
   return (
     <AppProvider>

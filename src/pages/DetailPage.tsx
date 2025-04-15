@@ -1,3 +1,9 @@
+/**
+ * @file DetailPage.tsx
+ * @author Tomáš Barták
+ * @description
+ * Tato stránka slouží k zobrazení detailů vybrané varianty křižovatky. Obsahuje vizualizaci grafu, seznam hran a navigaci mezi jednotlivými kroky.
+ */
 import { useContext, useState, useCallback } from 'react'
 import { AppContext } from '../context/AppContext'
 import Wizard from '../components/GraphWizard/Wizard'
@@ -7,16 +13,31 @@ import IntersectionGraph from '../components/IntersectionGraph'
 import BreadcrumbsNav from '../components/BreadcrumbsNav'
 import EdgeList from '../components/EdgeList'
 
+/**
+ * Stránka zobrazující detail vybrané varianty křižovatky.
+ */
 export default function DetailPage() {
+	/**
+	 * Vybraná varianta křižovatky.
+	 */
   const { selectedVariant } = useContext(AppContext)
+	/**
+	 * Aktuální stav grafu křižovatky.
+	 */
   const [graph, setGraph] = useState<Graph>({ vertices: [], edges: [] })
+	/**
+	 * Zvýrazněná hrana grafu.
+	 */
 	const [hoveredEdgeId, setHoveredEdgeId] = useState<string | null>(null);
 
-	// Handler pro změnu zvýrazněné hrany
+	/**
+	 * Funkce pro zvýraznění hrany najetím myši.
+	 */
 	const handleEdgeHover = useCallback((edgeId: string | null) => {
 		setHoveredEdgeId(edgeId);
 	}, []);
 
+	// Pokud není vybrána žádná varianta, zobrazí se zpráva o chybě
   if (!selectedVariant) {
     return (
       <Box sx={{ p: 3 }}>
@@ -25,7 +46,11 @@ export default function DetailPage() {
     )
   }
 
-  // Funkce, která přepočítá graf
+	/**
+	 * Funkce, která přepočítá graf na základě vybraného kroku.
+	 * @param stepIndex - Index aktuálního kroku
+	 * @returns Aktualizovaný graf
+	 */
   const recalcGraph = (stepIndex: number): Graph => {
     let newGraph: Graph = { vertices: [], edges: [] }
     for (let i = 0; i <= stepIndex; i++) {
@@ -37,7 +62,11 @@ export default function DetailPage() {
     return newGraph
   }
 
-  // Memoizovaná funkce, která při změně kroku přepočítá graf
+	/**
+	 * Funkce pro změnu kroku v grafu.
+	 * @param stepIndex - Index aktuálního kroku
+	 * @returns Aktualizovaný graf
+	 */
   const handleStepChange = useCallback((stepIndex: number) => {
 		if (stepIndex === 0) { // Pokud je krok 0, dojde k resetování grafu
 			setGraph({ vertices: [], edges: [] })
@@ -91,6 +120,7 @@ export default function DetailPage() {
 					</Box>
 				</Box>
 			</Box>
+			{/* Wizard s kroky */}
 			<Box sx={{
 				width: '100%',
 				maxWidth: '975px',
