@@ -1,3 +1,9 @@
+/**
+ * @file T-scheme-1.tsx
+ * @author Tomáš Barták
+ * @description
+ * Tento soubor obsahuje jednotlivé kroky pro všechny varianty schématu 1 křižovatky typu T.
+ */
 import { Step, Graph } from '../variants'
 import { createSteps, getStepCounts } from '../scheme_utils'
 
@@ -7,7 +13,11 @@ const variant2Id = 'T-scheme-1-var-2'
 const variant3Id = 'T-scheme-1-var-3'
 const variant4Id = 'T-scheme-1-var-4'
 
-// Vrcholy jsou totožné pro všechny varianty T-scheme-1
+/**
+ * Vytvoření vrcholů grafu. Vrcholy jsou totožné pro všechny varianty T-scheme-1.
+ * @param graph Graf, do kterého se přidávají vrcholy
+ * @returns Graf s přidanými vrcholy
+ */
 const createVertices = (graph: Graph): Graph => ({
   ...graph,
   vertices: [
@@ -21,7 +31,11 @@ const createVertices = (graph: Graph): Graph => ({
   ]
 })
 
-// Společné kroky pro všechny varianty T-scheme-1
+/**
+ * Společné kroky pro všechny varianty T-scheme-1
+ * @param variantId Identifikátor varianty
+ * @returns Společné kroky pro dané schéma
+ */
 const createCommonSteps = (variantId: string): Step[] => {
 	return createSteps(variantId, [
 		{
@@ -100,7 +114,7 @@ const commonStepsVar2 = createCommonSteps(variant2Id);
 const commonStepsVar3 = createCommonSteps(variant3Id);
 const commonStepsVar4 = createCommonSteps(variant4Id);
 
-// Získání počtu kroků v společné části
+// Získání počtu kroků ve společné části
 const { totalSteps: var1TotalSteps, numberedSteps: var1NumberedSteps } = getStepCounts(commonStepsVar1);
 const { totalSteps: var2TotalSteps, numberedSteps: var2NumberedSteps } = getStepCounts(commonStepsVar2);
 const { totalSteps: var3TotalSteps, numberedSteps: var3NumberedSteps } = getStepCounts(commonStepsVar3);
@@ -115,7 +129,7 @@ export const variant1Steps: Step[] = [
 			action: (graph: Graph) => {
 				// Ohodnocení všech hran najednou pro názornost
 				const edgesWithValues = graph.edges.map(e => {
-					// Přiřadíme hodnoty podle páru vrcholů
+					// Přiřazení hodnoty podle páru vrcholů
 					if (e.source === 'ES' && e.target === 'SW') return { ...e, value: 0.55 }
 					if (e.source === 'ES' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'ES' && e.target === 'WS') return { ...e, value: 0.45 } // L/H 0,45
@@ -127,7 +141,7 @@ export const variant1Steps: Step[] = [
 				return { ...graph, edges: edgesWithValues }
 			}
 		},
-		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
+		{
 			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), nicméně v této variantě žádné slabě sousedící vrcholy či hrany neexistují.',
 			action: (graph: Graph) => {
 				const edgesWithType = graph.edges.map(e => {
@@ -308,7 +322,7 @@ export const variant2Steps: Step[] = [
 			action: (graph: Graph) => {
 				// Ohodnocení všech hran najednou pro názornost
 				const edgesWithValues = graph.edges.map(e => {
-					// Přiřadíme hodnoty podle páru vrcholů
+					// Přiřazení hodnoty podle páru vrcholů
 					if (e.source === 'ES' && e.target === 'SW') return { ...e, value: 0.55 }
 					if (e.source === 'ES' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'ES' && e.target === 'WS') return { ...e, value: 0.2 } // L/H 0,45
@@ -320,7 +334,7 @@ export const variant2Steps: Step[] = [
 				return { ...graph, edges: edgesWithValues }
 			}
 		},
-		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
+		{
 			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě je slabě sousedící dvojice vrcholů, a to ES a WS.',
 			action: (graph: Graph) => {
 				const edgesWithType = graph.edges.map(e => {
@@ -501,7 +515,7 @@ export const variant3Steps: Step[] = [
 			action: (graph: Graph) => {
 				// Ohodnocení všech hran najednou pro názornost
 				const edgesWithValues = graph.edges.map(e => {
-					// Přiřadíme hodnoty podle páru vrcholů
+					// Přiřazení hodnoty podle páru vrcholů
 					if (e.source === 'ES' && e.target === 'SW') return { ...e, value: 0.55 }
 					if (e.source === 'ES' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'ES' && e.target === 'WS') return { ...e, value: 0.2 } // L/H 0,45
@@ -513,7 +527,7 @@ export const variant3Steps: Step[] = [
 				return { ...graph, edges: edgesWithValues }
 			}
 		},
-		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
+		{
 			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě jsou to slabě sousedící dvojice vrcholů, a to ES a WS a také EW a SW.',
 			action: (graph: Graph) => {
 				const edgesWithType = graph.edges.map(e => {
@@ -694,7 +708,7 @@ export const variant4Steps: Step[] = [
 			action: (graph: Graph) => {
 				// Ohodnocení všech hran najednou pro názornost
 				const edgesWithValues = graph.edges.map(e => {
-					// Přiřadíme hodnoty podle páru vrcholů
+					// Přiřazení hodnoty podle páru vrcholů
 					if (e.source === 'ES' && e.target === 'SW') return { ...e, value: 0.55 }
 					if (e.source === 'ES' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'ES' && e.target === 'WS') return { ...e, value: 0.2 } // L/H 0,45
@@ -706,7 +720,7 @@ export const variant4Steps: Step[] = [
 				return { ...graph, edges: edgesWithValues }
 			}
 		},
-		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak
+		{
 			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), v této variantě jsou to slabě sousedící dvojice vrcholů, a to ES a WS, EW a SW a také SE a WE.',
 			action: (graph: Graph) => {
 				const edgesWithType = graph.edges.map(e => {

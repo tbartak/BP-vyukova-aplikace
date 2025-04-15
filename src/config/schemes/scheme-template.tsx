@@ -1,13 +1,21 @@
+/**
+ * @file scheme-template.tsx
+ * @author Tomáš Barták
+ * @description
+ * Tento soubor slouží pro případné rozšíření a přidání nového schématu s variantami
+ */
 import { Step, Graph } from '../variants'
 import { createSteps, getStepCounts } from '../scheme_utils'
 
-// TODO: popsat změny do dokumentace BP
-
-// Definice ID variant // TODO: needs changing for new variant (numbers/types)
+// Definice ID variant // Změnit ID variant
 const variant1Id = 'X-scheme-2-var-1'
-// TODO: ... další varianty
+// ... další varianty
 
-// Vrcholy jsou totožné pro všechny varianty X-scheme-2 // TODO: change comment number for new scheme
+/**
+ * Vytvoření vrcholů grafu. Vrcholy jsou totožné pro všechny varianty ...
+ * @param graph Graf, do kterého se přidávají vrcholy
+ * @returns Graf s přidanými vrcholy
+ */
 const createVertices = (graph: Graph): Graph => ({
   ...graph,
   vertices: [
@@ -22,7 +30,11 @@ const createVertices = (graph: Graph): Graph => ({
   ]
 })
 
-// Společné kroky pro všechny varianty X-scheme-2 // TODO: change comment numbers for new scheme + change content based on common steps
+/**
+ * Společné kroky pro všechny varianty ...
+ * @param variantId Identifikátor varianty
+ * @returns Společné kroky pro dané schéma
+ */
 const createCommonSteps = (variantId: string): Step[] => {
 	return createSteps(variantId, [
 		{
@@ -117,13 +129,15 @@ const createCommonSteps = (variantId: string): Step[] => {
 	]);
 };
 
-// Vytvoření společných kroků // TODO: add for every variant
+// Vytvoření společných kroků
 const commonStepsVar1 = createCommonSteps(variant1Id);
+// ... podobně pro ostatní varianty
 
-// Získání počtu kroků v společné části // TODO: add for every variant
+// Získání počtu kroků v společné části
 const { totalSteps: var1TotalSteps, numberedSteps: var1NumberedSteps } = getStepCounts(commonStepsVar1);
+// .. podobně pro ostatní varianty
 
-// Varianta 1 // TODO: change content based on the scheme
+// Varianta 1
 export const variant1Steps: Step[] = [
   ...commonStepsVar1,
 	...createSteps(variant1Id, [
@@ -142,13 +156,13 @@ export const variant1Steps: Step[] = [
 					if (e.source === 'SE' && e.target === 'WE') return { ...e, value: 0.6 }
 					if (e.source === 'SN' && e.target === 'WE') return { ...e, value: 0.65 }
 					if (e.source === 'SW' && e.target === 'WE') return { ...e, value: 0.6 }
-					// TODO: atd. pro další hrany
+					// ... atd. pro další hrany
 					return { ...e, value: 0.5 } // výchozí hodnota
 				})
 				return { ...graph, edges: edgesWithValues }
 			}
 		},
-		{ // TODO: rozmyslet se, jestli to dělat takto dynamicky a nebo prostě vypsat konkrétní hranu jako weak // TODO: změnit popisek podle slabých/silných vrcholů a hran
+		{ // ... změnit popisek podle slabých/silných vrcholů a hran
 			text: 'Hledáme slabé hrany (kde hodnota hrany je menší než polovina hodnoty menšího z vrcholů), nicméně v této variantě žádné slabě sousedící vrcholy či hrany neexistují.',
 			action: (graph: Graph) => {
 				const edgesWithType = graph.edges.map(e => {
@@ -234,7 +248,7 @@ export const variant1Steps: Step[] = [
 				return { ...graph, vertices: newVertices }
 			}
 		},
-		// TODO: Další kroky barvení...
+		// ... další kroky barvení...
 		{
 			text: 'Graf je nyní kompletně obarven a má chromatické číslo 3.',
 			noNumber: true,
@@ -334,15 +348,15 @@ export const variant1Steps: Step[] = [
 			noNumber: true
 		}
 	], {
-		startStepNum: var1TotalSteps + 1, // Začátek číslování kroků pro tuto variantu // TODO: change for every variant
-    startDisplayNum: var1NumberedSteps // Začátek číslování zobrazených kroků pro tuto variantu // TODO: change for every variant
+		startStepNum: var1TotalSteps + 1, // Začátek číslování kroků pro tuto variantu // Pro každou variantu odlišné
+    	startDisplayNum: var1NumberedSteps // Začátek číslování zobrazených kroků pro tuto variantu // Pro každou variantu odlišné
 	})
 ];
 
-// TODO: ...dodělat další varianty
+// ... další varianty
 
 // Export všech variant pro použití v hlavním konfiguračním souboru 
-export const X_scheme_2_variants = {// TODO: needs changing for new variant
+export const X_scheme_2_variants = {
   [variant1Id]: variant1Steps,
-  // TODO: ... další varianty
+  // ... další varianty
 }
