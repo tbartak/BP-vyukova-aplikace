@@ -2,7 +2,7 @@
  * @file Wizard.tsx
  * @author Tomáš Barták
  * @description 
- * Tato komponenta slouží jako vícekrokový průvodce, který umožňuje uživateli procházet tuto posloupnost kroků a postupně sledovat ransformaci grafu s jejím popisem.
+ * Tato komponenta slouží jako vícekrokový průvodce, který umožňuje uživateli procházet tuto posloupnost kroků a postupně sledovat transformaci grafu s jejím popisem.
  */
 import { useEffect, useState } from 'react'
 import { Step } from '../../config/variants'
